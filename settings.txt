@@ -1,0 +1,7 @@
+1) Init device by setting control register to 0 (0x6b)
+
+2) Set filter mode (0x1a)
+
+3) Set acc range (0x1c)
+
+4) Set sample divider (0x19)
