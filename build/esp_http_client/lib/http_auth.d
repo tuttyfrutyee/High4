@@ -5,7 +5,7 @@ lib/http_auth.o: \
  /home/tuttyfrutyee/esp/esp-idf/components/esp_wifi/include/esp_private/esp_wifi_types_private.h \
  /home/tuttyfrutyee/esp/esp-idf/components/esp_common/include/esp_err.h \
  /home/tuttyfrutyee/esp/esp-idf/components/newlib/platform_include/assert.h \
- /home/tuttyfrutyee/Documents/embedded_programming/esp/high5/build/include/sdkconfig.h \
+ /home/tuttyfrutyee/Documents/embedded_programming/esp/high4/build/include/sdkconfig.h \
  /home/tuttyfrutyee/esp/esp-idf/components/esp_common/include/esp_interface.h \
  /home/tuttyfrutyee/esp/esp-idf/components/esp_event/include/esp_event_base.h \
  /home/tuttyfrutyee/esp/esp-idf/components/lwip/lwip/src/include/lwip/ip_addr.h \
@@ -100,7 +100,7 @@ lib/http_auth.o: \
 
 /home/tuttyfrutyee/esp/esp-idf/components/newlib/platform_include/assert.h:
 
-/home/tuttyfrutyee/Documents/embedded_programming/esp/high5/build/include/sdkconfig.h:
+/home/tuttyfrutyee/Documents/embedded_programming/esp/high4/build/include/sdkconfig.h:
 
 /home/tuttyfrutyee/esp/esp-idf/components/esp_common/include/esp_interface.h:
 

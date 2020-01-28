@@ -3,7 +3,7 @@ src/flash_partitions.o: \
  /home/tuttyfrutyee/esp/esp-idf/components/bootloader_support/include/esp_flash_partitions.h \
  /home/tuttyfrutyee/esp/esp-idf/components/esp_common/include/esp_err.h \
  /home/tuttyfrutyee/esp/esp-idf/components/esp_common/include/esp_types.h \
- /home/tuttyfrutyee/Documents/embedded_programming/esp/high5/build/bootloader/../include/sdkconfig.h \
+ /home/tuttyfrutyee/Documents/embedded_programming/esp/high4/build/bootloader/../include/sdkconfig.h \
  /home/tuttyfrutyee/esp/esp-idf/components/log/include/esp_log.h \
  /home/tuttyfrutyee/esp/esp-idf/components/esp_rom/include/esp32/rom/ets_sys.h \
  /home/tuttyfrutyee/esp/esp-idf/components/log/include/esp_log_internal.h \
@@ -17,7 +17,7 @@ src/flash_partitions.o: \
 
 /home/tuttyfrutyee/esp/esp-idf/components/esp_common/include/esp_types.h:
 
-/home/tuttyfrutyee/Documents/embedded_programming/esp/high5/build/bootloader/../include/sdkconfig.h:
+/home/tuttyfrutyee/Documents/embedded_programming/esp/high4/build/bootloader/../include/sdkconfig.h:
 
 /home/tuttyfrutyee/esp/esp-idf/components/log/include/esp_log.h:
 

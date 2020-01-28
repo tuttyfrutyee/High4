@@ -1,7 +1,7 @@
 libsodium/src/libsodium/crypto_secretbox/crypto_secretbox_easy.o: \
  /home/tuttyfrutyee/esp/esp-idf/components/libsodium/libsodium/src/libsodium/crypto_secretbox/crypto_secretbox_easy.c \
  /home/tuttyfrutyee/esp/esp-idf/components/newlib/platform_include/assert.h \
- /home/tuttyfrutyee/Documents/embedded_programming/esp/high5/build/include/sdkconfig.h \
+ /home/tuttyfrutyee/Documents/embedded_programming/esp/high4/build/include/sdkconfig.h \
  /home/tuttyfrutyee/esp/esp-idf/components/libsodium/libsodium/src/libsodium/include/sodium/crypto_core_hsalsa20.h \
  /home/tuttyfrutyee/esp/esp-idf/components/libsodium/libsodium/src/libsodium/include/sodium/export.h \
  /home/tuttyfrutyee/esp/esp-idf/components/libsodium/libsodium/src/libsodium/include/sodium/crypto_onetimeauth_poly1305.h \
@@ -13,7 +13,7 @@ libsodium/src/libsodium/crypto_secretbox/crypto_secretbox_easy.o: \
 
 /home/tuttyfrutyee/esp/esp-idf/components/newlib/platform_include/assert.h:
 
-/home/tuttyfrutyee/Documents/embedded_programming/esp/high5/build/include/sdkconfig.h:
+/home/tuttyfrutyee/Documents/embedded_programming/esp/high4/build/include/sdkconfig.h:
 
 /home/tuttyfrutyee/esp/esp-idf/components/libsodium/libsodium/src/libsodium/include/sodium/crypto_core_hsalsa20.h:
 

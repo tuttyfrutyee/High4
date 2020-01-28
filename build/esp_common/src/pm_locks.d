@@ -3,7 +3,7 @@ src/pm_locks.o: \
  /home/tuttyfrutyee/esp/esp-idf/components/esp_common/include/esp_pm.h \
  /home/tuttyfrutyee/esp/esp-idf/components/esp_common/include/esp_err.h \
  /home/tuttyfrutyee/esp/esp-idf/components/newlib/platform_include/assert.h \
- /home/tuttyfrutyee/Documents/embedded_programming/esp/high5/build/include/sdkconfig.h \
+ /home/tuttyfrutyee/Documents/embedded_programming/esp/high4/build/include/sdkconfig.h \
  /home/tuttyfrutyee/esp/esp-idf/components/esp32/include/esp32/pm.h \
  /home/tuttyfrutyee/esp/esp-idf/components/soc/esp32/include/soc/rtc.h \
  /home/tuttyfrutyee/esp/esp-idf/components/soc/esp32/include/soc/soc.h \
@@ -54,7 +54,7 @@ src/pm_locks.o: \
 
 /home/tuttyfrutyee/esp/esp-idf/components/newlib/platform_include/assert.h:
 
-/home/tuttyfrutyee/Documents/embedded_programming/esp/high5/build/include/sdkconfig.h:
+/home/tuttyfrutyee/Documents/embedded_programming/esp/high4/build/include/sdkconfig.h:
 
 /home/tuttyfrutyee/esp/esp-idf/components/esp32/include/esp32/pm.h:
 

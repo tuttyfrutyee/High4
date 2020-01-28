@@ -1,6 +1,6 @@
-#ifndef IMUGATHER
+#ifndef IMUGATHER_
 
-#define IMUGATHER
+#define IMUGATHER_
 
 
 
@@ -31,6 +31,10 @@ int16_t* getGatherAccelerationsAsArrayInOrder(IMUGATHER* gather);
 int selfTestSensors();
 
 void goCollectCurrentModeData(IMUGATHER* gather);
+
+void startRecordingData();
+
+void stopRecordingData();
 
 
 #endif

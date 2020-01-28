@@ -1,7 +1,7 @@
 cache_utils.o: \
  /home/tuttyfrutyee/esp/esp-idf/components/spi_flash/cache_utils.c \
  /home/tuttyfrutyee/esp/esp-idf/components/newlib/platform_include/assert.h \
- /home/tuttyfrutyee/Documents/embedded_programming/esp/high5/build/include/sdkconfig.h \
+ /home/tuttyfrutyee/Documents/embedded_programming/esp/high4/build/include/sdkconfig.h \
  /home/tuttyfrutyee/esp/esp-idf/components/freertos/include/freertos/FreeRTOS.h \
  /home/tuttyfrutyee/esp/esp-idf/components/freertos/include/freertos/FreeRTOSConfig.h \
  /home/tuttyfrutyee/esp/esp-idf/components/freertos/include/freertos/xtensa_config.h \
@@ -56,7 +56,7 @@ cache_utils.o: \
 
 /home/tuttyfrutyee/esp/esp-idf/components/newlib/platform_include/assert.h:
 
-/home/tuttyfrutyee/Documents/embedded_programming/esp/high5/build/include/sdkconfig.h:
+/home/tuttyfrutyee/Documents/embedded_programming/esp/high4/build/include/sdkconfig.h:
 
 /home/tuttyfrutyee/esp/esp-idf/components/freertos/include/freertos/FreeRTOS.h:
 

@@ -2,7 +2,7 @@ esp-mqtt/lib/mqtt_msg.o: \
  /home/tuttyfrutyee/esp/esp-idf/components/mqtt/esp-mqtt/lib/mqtt_msg.c \
  /home/tuttyfrutyee/esp/esp-idf/components/mqtt/esp-mqtt/lib/include/mqtt_msg.h \
  /home/tuttyfrutyee/esp/esp-idf/components/mqtt/esp-mqtt/include/mqtt_config.h \
- /home/tuttyfrutyee/Documents/embedded_programming/esp/high5/build/include/sdkconfig.h \
+ /home/tuttyfrutyee/Documents/embedded_programming/esp/high4/build/include/sdkconfig.h \
  /home/tuttyfrutyee/esp/esp-idf/components/mqtt/esp-mqtt/lib/include/platform.h \
  /home/tuttyfrutyee/esp/esp-idf/components/mqtt/esp-mqtt/lib/include/platform_esp32_idf.h \
  /home/tuttyfrutyee/esp/esp-idf/components/freertos/include/freertos/FreeRTOS.h \
@@ -89,7 +89,7 @@ esp-mqtt/lib/mqtt_msg.o: \
 
 /home/tuttyfrutyee/esp/esp-idf/components/mqtt/esp-mqtt/include/mqtt_config.h:
 
-/home/tuttyfrutyee/Documents/embedded_programming/esp/high5/build/include/sdkconfig.h:
+/home/tuttyfrutyee/Documents/embedded_programming/esp/high4/build/include/sdkconfig.h:
 
 /home/tuttyfrutyee/esp/esp-idf/components/mqtt/esp-mqtt/lib/include/platform.h:
 

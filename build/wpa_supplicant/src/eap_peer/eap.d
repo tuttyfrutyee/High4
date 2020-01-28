@@ -2,7 +2,7 @@ src/eap_peer/eap.o: \
  /home/tuttyfrutyee/esp/esp-idf/components/wpa_supplicant/src/eap_peer/eap.c \
  /home/tuttyfrutyee/esp/esp-idf/components/esp_common/include/esp_err.h \
  /home/tuttyfrutyee/esp/esp-idf/components/newlib/platform_include/assert.h \
- /home/tuttyfrutyee/Documents/embedded_programming/esp/high5/build/include/sdkconfig.h \
+ /home/tuttyfrutyee/Documents/embedded_programming/esp/high4/build/include/sdkconfig.h \
  /home/tuttyfrutyee/esp/esp-idf/components/wpa_supplicant/src/utils/includes.h \
  /home/tuttyfrutyee/esp/esp-idf/components/wpa_supplicant/port/include/supplicant_opt.h \
  /home/tuttyfrutyee/esp/esp-idf/components/esp_rom/include/esp32/rom/ets_sys.h \
@@ -115,7 +115,7 @@ src/eap_peer/eap.o: \
 
 /home/tuttyfrutyee/esp/esp-idf/components/newlib/platform_include/assert.h:
 
-/home/tuttyfrutyee/Documents/embedded_programming/esp/high5/build/include/sdkconfig.h:
+/home/tuttyfrutyee/Documents/embedded_programming/esp/high4/build/include/sdkconfig.h:
 
 /home/tuttyfrutyee/esp/esp-idf/components/wpa_supplicant/src/utils/includes.h:
 

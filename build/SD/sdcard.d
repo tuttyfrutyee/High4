@@ -1,10 +1,10 @@
 sdcard.o: \
- /home/tuttyfrutyee/Documents/embedded_programming/esp/high5/components/SD/sdcard.c \
- /home/tuttyfrutyee/Documents/embedded_programming/esp/high5/components/SD/include/sdcard.h \
+ /home/tuttyfrutyee/Documents/embedded_programming/esp/high4/components/SD/sdcard.c \
+ /home/tuttyfrutyee/Documents/embedded_programming/esp/high4/components/SD/include/sdcard.h \
  /home/tuttyfrutyee/esp/esp-idf/components/newlib/platform_include/sys/unistd.h \
  /home/tuttyfrutyee/esp/esp-idf/components/esp_common/include/esp_err.h \
  /home/tuttyfrutyee/esp/esp-idf/components/newlib/platform_include/assert.h \
- /home/tuttyfrutyee/Documents/embedded_programming/esp/high5/build/include/sdkconfig.h \
+ /home/tuttyfrutyee/Documents/embedded_programming/esp/high4/build/include/sdkconfig.h \
  /home/tuttyfrutyee/esp/esp-idf/components/log/include/esp_log.h \
  /home/tuttyfrutyee/esp/esp-idf/components/esp_rom/include/esp32/rom/ets_sys.h \
  /home/tuttyfrutyee/esp/esp-idf/components/log/include/esp_log_internal.h \
@@ -76,9 +76,9 @@ sdcard.o: \
  /home/tuttyfrutyee/esp/esp-idf/components/soc/include/hal/esp_flash_err.h \
  /home/tuttyfrutyee/esp/esp-idf/components/spi_flash/include/esp_spi_flash.h \
  /home/tuttyfrutyee/esp/esp-idf/components/sdmmc/include/sdmmc_cmd.h \
- /home/tuttyfrutyee/Documents/embedded_programming/esp/high5/components/MPU6050/include/acceleration.h
+ /home/tuttyfrutyee/Documents/embedded_programming/esp/high4/components/MPU6050/include/acceleration.h
 
-/home/tuttyfrutyee/Documents/embedded_programming/esp/high5/components/SD/include/sdcard.h:
+/home/tuttyfrutyee/Documents/embedded_programming/esp/high4/components/SD/include/sdcard.h:
 
 /home/tuttyfrutyee/esp/esp-idf/components/newlib/platform_include/sys/unistd.h:
 
@@ -86,7 +86,7 @@ sdcard.o: \
 
 /home/tuttyfrutyee/esp/esp-idf/components/newlib/platform_include/assert.h:
 
-/home/tuttyfrutyee/Documents/embedded_programming/esp/high5/build/include/sdkconfig.h:
+/home/tuttyfrutyee/Documents/embedded_programming/esp/high4/build/include/sdkconfig.h:
 
 /home/tuttyfrutyee/esp/esp-idf/components/log/include/esp_log.h:
 
@@ -230,5 +230,5 @@ sdcard.o: \
 
 /home/tuttyfrutyee/esp/esp-idf/components/sdmmc/include/sdmmc_cmd.h:
 
-/home/tuttyfrutyee/Documents/embedded_programming/esp/high5/components/MPU6050/include/acceleration.h:
-/home/tuttyfrutyee/Documents/embedded_programming/esp/high5/components/SD/./sdcard.c:
+/home/tuttyfrutyee/Documents/embedded_programming/esp/high4/components/MPU6050/include/acceleration.h:
+/home/tuttyfrutyee/Documents/embedded_programming/esp/high4/components/SD/./sdcard.c:

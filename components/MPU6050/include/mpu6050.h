@@ -1,6 +1,6 @@
-#ifndef MPU6050
+#ifndef MPU6050_
 
-#define MPU6050
+#define MPU6050_
 
 
 typedef struct MPU6050 {

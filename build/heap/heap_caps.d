@@ -1,6 +1,6 @@
 heap_caps.o: /home/tuttyfrutyee/esp/esp-idf/components/heap/heap_caps.c \
  /home/tuttyfrutyee/esp/esp-idf/components/newlib/platform_include/assert.h \
- /home/tuttyfrutyee/Documents/embedded_programming/esp/high5/build/include/sdkconfig.h \
+ /home/tuttyfrutyee/Documents/embedded_programming/esp/high4/build/include/sdkconfig.h \
  /home/tuttyfrutyee/esp/esp-idf/components/esp32/include/esp_attr.h \
  /home/tuttyfrutyee/esp/esp-idf/components/heap/include/esp_heap_caps.h \
  /home/tuttyfrutyee/esp/esp-idf/components/heap/include/multi_heap.h \
@@ -41,7 +41,7 @@ heap_caps.o: /home/tuttyfrutyee/esp/esp-idf/components/heap/heap_caps.c \
 
 /home/tuttyfrutyee/esp/esp-idf/components/newlib/platform_include/assert.h:
 
-/home/tuttyfrutyee/Documents/embedded_programming/esp/high5/build/include/sdkconfig.h:
+/home/tuttyfrutyee/Documents/embedded_programming/esp/high4/build/include/sdkconfig.h:
 
 /home/tuttyfrutyee/esp/esp-idf/components/esp32/include/esp_attr.h:
 

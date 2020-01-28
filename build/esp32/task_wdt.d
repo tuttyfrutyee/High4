@@ -1,5 +1,5 @@
 task_wdt.o: /home/tuttyfrutyee/esp/esp-idf/components/esp32/task_wdt.c \
- /home/tuttyfrutyee/Documents/embedded_programming/esp/high5/build/include/sdkconfig.h \
+ /home/tuttyfrutyee/Documents/embedded_programming/esp/high4/build/include/sdkconfig.h \
  /home/tuttyfrutyee/esp/esp-idf/components/freertos/include/freertos/FreeRTOSConfig.h \
  /home/tuttyfrutyee/esp/esp-idf/components/freertos/include/freertos/xtensa_config.h \
  /home/tuttyfrutyee/esp/esp-idf/components/xtensa/include/xtensa/hal.h \
@@ -56,7 +56,7 @@ task_wdt.o: /home/tuttyfrutyee/esp/esp-idf/components/esp32/task_wdt.c \
  /home/tuttyfrutyee/esp/esp-idf/components/esp_common/include/esp_task_wdt.h \
  /home/tuttyfrutyee/esp/esp-idf/components/esp_common/include/esp_private/system_internal.h
 
-/home/tuttyfrutyee/Documents/embedded_programming/esp/high5/build/include/sdkconfig.h:
+/home/tuttyfrutyee/Documents/embedded_programming/esp/high4/build/include/sdkconfig.h:
 
 /home/tuttyfrutyee/esp/esp-idf/components/freertos/include/freertos/FreeRTOSConfig.h:
 

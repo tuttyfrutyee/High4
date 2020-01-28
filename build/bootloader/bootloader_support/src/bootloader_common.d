@@ -1,6 +1,6 @@
 src/bootloader_common.o: \
  /home/tuttyfrutyee/esp/esp-idf/components/bootloader_support/src/bootloader_common.c \
- /home/tuttyfrutyee/Documents/embedded_programming/esp/high5/build/bootloader/../include/sdkconfig.h \
+ /home/tuttyfrutyee/Documents/embedded_programming/esp/high4/build/bootloader/../include/sdkconfig.h \
  /home/tuttyfrutyee/esp/esp-idf/components/esp_common/include/esp_err.h \
  /home/tuttyfrutyee/esp/esp-idf/components/log/include/esp_log.h \
  /home/tuttyfrutyee/esp/esp-idf/components/esp_rom/include/esp32/rom/ets_sys.h \
@@ -37,7 +37,7 @@ src/bootloader_common.o: \
  /home/tuttyfrutyee/esp/esp-idf/components/soc/esp32/include/soc/rtc_gpio_channel.h \
  /home/tuttyfrutyee/esp/esp-idf/components/bootloader_support/include_bootloader/bootloader_sha.h
 
-/home/tuttyfrutyee/Documents/embedded_programming/esp/high5/build/bootloader/../include/sdkconfig.h:
+/home/tuttyfrutyee/Documents/embedded_programming/esp/high4/build/bootloader/../include/sdkconfig.h:
 
 /home/tuttyfrutyee/esp/esp-idf/components/esp_common/include/esp_err.h:
 

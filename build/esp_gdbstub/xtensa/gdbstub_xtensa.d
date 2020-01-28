@@ -13,7 +13,7 @@ xtensa/gdbstub_xtensa.o: \
  /home/tuttyfrutyee/esp/esp-idf/components/xtensa/esp32/include/xtensa/config/core-matmap.h \
  /home/tuttyfrutyee/esp/esp-idf/components/esp_gdbstub/esp32/gdbstub_target_config.h \
  /home/tuttyfrutyee/esp/esp-idf/components/esp_gdbstub/private_include/esp_gdbstub_common.h \
- /home/tuttyfrutyee/Documents/embedded_programming/esp/high5/build/include/sdkconfig.h \
+ /home/tuttyfrutyee/Documents/embedded_programming/esp/high4/build/include/sdkconfig.h \
  /home/tuttyfrutyee/esp/esp-idf/components/soc/esp32/include/soc/cpu.h \
  /home/tuttyfrutyee/esp/esp-idf/components/soc/include/soc/soc_memory_layout.h \
  /home/tuttyfrutyee/esp/esp-idf/components/soc/esp32/include/soc/soc.h \
@@ -48,7 +48,7 @@ xtensa/gdbstub_xtensa.o: \
 
 /home/tuttyfrutyee/esp/esp-idf/components/esp_gdbstub/private_include/esp_gdbstub_common.h:
 
-/home/tuttyfrutyee/Documents/embedded_programming/esp/high5/build/include/sdkconfig.h:
+/home/tuttyfrutyee/Documents/embedded_programming/esp/high4/build/include/sdkconfig.h:
 
 /home/tuttyfrutyee/esp/esp-idf/components/soc/esp32/include/soc/cpu.h:
 

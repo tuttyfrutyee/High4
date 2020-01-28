@@ -17,6 +17,8 @@
 #define sSDefaultAddr 0x68 //the defaultAddr i2c will talk to. Should be changed syncronously with flagActive
 #define flagActive 0 //this is flag related with ssDefaultAddr, it defines being pins active low or high.
 
+TaskHandle_t xRecorder = NULL;
+
 typedef struct IMU{
 
     int assignedPin;
@@ -31,31 +33,33 @@ typedef struct QueueElement{
 
 } QueueElement;
 
-QueueElement* queue;
-int maxCapacity = 30; //actually max capacity is maxCapacity - 1
-int front = 0, rear = 0;
 
+#define MAXCAPACITY 100 //actually max capacity is maxCapacity - 1
+int front = 0, rear = 0;
+QueueElement** queue[MAXCAPACITY];
 
 //queue functions
 
 int isQueueFull(){
-    return ((rear+1) % maxCapacity) == front;
+    return ((rear+1) % MAXCAPACITY) == front;
 }
 
 int isQueueEmpty(){
     return (rear == front);
 }
 
-int pushToQueue(QueueElement * element){
+int pushToQueue(QueueElement* element){
     
-    if(isQueueFull){
+    if(isQueueFull()){
         printf("Error : Queue is full, can not push anymore\n");
         return 0;
     }
 
-    rear = (rear + 1) % maxCapacity;
+    queue[rear] = element;    
 
-    queue[rear] = element;
+    rear = (rear + 1) % MAXCAPACITY;
+
+    return 1;
 }
 
 QueueElement* popFromQueue(){
@@ -64,7 +68,12 @@ QueueElement* popFromQueue(){
         printf("Error . Queue is empty, can not pop anymore\n");
         return 0;
     }
-    front = (front + 1) % maxCapacity;
+
+    QueueElement* willReturn = queue[front];
+
+    front = (front + 1) % MAXCAPACITY;
+
+    return willReturn;
 
 }
 
@@ -233,12 +242,16 @@ int64_t getTime(){
 
 void goCollectCurrentModeData(IMUGATHER* gather){
 
-    int8_t startSequence[3] = {0,0,0}
+    int8_t startSequence[3] = {0,0,0};
 
     gather->currentModeIndicator = (gather->currentModeIndicator+1) % gather->numberOfModes;
 
     //put start sequence
     writeToSensorDataBytes(startSequence, 3);
+
+    //put number of sensors used
+
+    writeToSensorDataBytes(&(gather->numberOfImu),1);
 
     //put currentMode
     writeToSensorDataBytes(&(gather->currentModeIndicator), 1);
@@ -257,13 +270,15 @@ void goCollectCurrentModeData(IMUGATHER* gather){
 
         getGatherAccelerations();
 
+        printAccelerationDatas(gather);
+
         currentTime = getTime();
 
         if(!(previousTime == startTime)){
             QueueElement* timeDifferenceElement = (QueueElement*)malloc(sizeof(QueueElement));
             timeDifferenceElement->array = (int8_t*)malloc(sizeof(int8_t));
             timeDifferenceElement->array[0] = currentTime - previousTime; // hoping that time difference will fit into 8bit signed integer
-            if((currentTime-previousTime) > 63) printf("Error : Time dif between consequent data capture is bigger than 63ms, it is : %d ms", currentTime-previousTime);
+            if((currentTime-previousTime) > 63) printf("Error : Time dif between consequent data capture is bigger than 63ms, it is : %lld ms", currentTime-previousTime);
             timeDifferenceElement->arrayLength = 1;
             pushToQueue(timeDifferenceElement);
         }
@@ -277,4 +292,59 @@ void goCollectCurrentModeData(IMUGATHER* gather){
     }
 
 
+}
+
+#define CLUSTER_MAX_LENGTH 10
+
+void recordData(){
+    printf("started to recording data peopleeee \n");
+    
+    int iteration = 0;
+
+    QueueElement* elementCluster[CLUSTER_MAX_LENGTH];
+
+    
+    while(1){
+
+        if(isQueueEmpty()){
+            vTaskDelay(200 / portTICK_PERIOD_MS);
+            continue;
+        }
+
+        printf("this is iteration %d\n", iteration);
+
+        iteration++;
+
+        int elementClusterLength = 0;
+        int totalTransmitByteLength = 0;
+
+        for(; elementClusterLength < CLUSTER_MAX_LENGTH; elementClusterLength++){
+            if(isQueueEmpty())
+                break;
+            elementCluster[elementClusterLength] = popFromQueue();
+            totalTransmitByteLength += elementCluster[elementClusterLength]->arrayLength;
+        }
+
+        int8_t* byteCluster = (int8_t*) malloc(sizeof(int8_t) * totalTransmitByteLength);
+
+        int byteIndex = 0;
+
+        for(int j = 0; j < elementClusterLength; j++){
+            for(int k = 0; k < elementCluster[j]->arrayLength; k++){
+                byteCluster[byteIndex] = elementCluster[j]->array[k];
+                byteIndex++;
+            }
+        }
+
+        writeToSensorDataBytes(byteCluster, totalTransmitByteLength);
+
+    }
+}
+
+void startRecordingData(){
+    xTaskCreate( recordData, "dataRecorder", 4 * MAXCAPACITY * 100 , NULL, 3 | portPRIVILEGE_BIT, &xRecorder );
+}
+
+void stopRecordingData(){
+    vTaskDelete(xRecorder);
 }

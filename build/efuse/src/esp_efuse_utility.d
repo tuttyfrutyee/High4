@@ -4,7 +4,7 @@ src/esp_efuse_utility.o: \
  /home/tuttyfrutyee/esp/esp-idf/components/esp_common/include/esp_types.h \
  /home/tuttyfrutyee/esp/esp-idf/components/esp_common/include/esp_err.h \
  /home/tuttyfrutyee/esp/esp-idf/components/newlib/platform_include/assert.h \
- /home/tuttyfrutyee/Documents/embedded_programming/esp/high5/build/include/sdkconfig.h \
+ /home/tuttyfrutyee/Documents/embedded_programming/esp/high4/build/include/sdkconfig.h \
  /home/tuttyfrutyee/esp/esp-idf/components/efuse/include/esp_efuse.h \
  /home/tuttyfrutyee/esp/esp-idf/components/log/include/esp_log.h \
  /home/tuttyfrutyee/esp/esp-idf/components/esp_rom/include/esp32/rom/ets_sys.h \
@@ -23,7 +23,7 @@ src/esp_efuse_utility.o: \
 
 /home/tuttyfrutyee/esp/esp-idf/components/newlib/platform_include/assert.h:
 
-/home/tuttyfrutyee/Documents/embedded_programming/esp/high5/build/include/sdkconfig.h:
+/home/tuttyfrutyee/Documents/embedded_programming/esp/high4/build/include/sdkconfig.h:
 
 /home/tuttyfrutyee/esp/esp-idf/components/efuse/include/esp_efuse.h:
 

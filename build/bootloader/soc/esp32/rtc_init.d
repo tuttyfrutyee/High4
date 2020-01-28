@@ -15,7 +15,7 @@ esp32/rtc_init.o: \
  /home/tuttyfrutyee/esp/esp-idf/components/soc/esp32/include/soc/dport_reg.h \
  /home/tuttyfrutyee/esp/esp-idf/components/soc/esp32/include/soc/dport_access.h \
  /home/tuttyfrutyee/esp/esp-idf/components/esp32/include/esp_attr.h \
- /home/tuttyfrutyee/Documents/embedded_programming/esp/high5/build/bootloader/../include/sdkconfig.h \
+ /home/tuttyfrutyee/Documents/embedded_programming/esp/high4/build/bootloader/../include/sdkconfig.h \
  /home/tuttyfrutyee/esp/esp-idf/components/esp32/include/esp32/dport_access.h \
  /home/tuttyfrutyee/esp/esp-idf/components/soc/esp32/include/soc/uart_reg.h \
  /home/tuttyfrutyee/esp/esp-idf/components/xtensa/include/xtensa/xtruntime.h \
@@ -66,7 +66,7 @@ esp32/rtc_init.o: \
 
 /home/tuttyfrutyee/esp/esp-idf/components/esp32/include/esp_attr.h:
 
-/home/tuttyfrutyee/Documents/embedded_programming/esp/high5/build/bootloader/../include/sdkconfig.h:
+/home/tuttyfrutyee/Documents/embedded_programming/esp/high4/build/bootloader/../include/sdkconfig.h:
 
 /home/tuttyfrutyee/esp/esp-idf/components/esp32/include/esp32/dport_access.h:
 

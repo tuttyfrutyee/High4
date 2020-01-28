@@ -1,7 +1,7 @@
 esp_adapter.o: \
  /home/tuttyfrutyee/esp/esp-idf/components/esp32/esp_adapter.c \
  /home/tuttyfrutyee/esp/esp-idf/components/newlib/platform_include/assert.h \
- /home/tuttyfrutyee/Documents/embedded_programming/esp/high5/build/include/sdkconfig.h \
+ /home/tuttyfrutyee/Documents/embedded_programming/esp/high4/build/include/sdkconfig.h \
  /home/tuttyfrutyee/esp/esp-idf/components/newlib/platform_include/pthread.h \
  /home/tuttyfrutyee/esp/esp-idf/components/newlib/platform_include/sys/time.h \
  /home/tuttyfrutyee/esp/esp-idf/components/freertos/include/freertos/FreeRTOS.h \
@@ -105,7 +105,7 @@ esp_adapter.o: \
 
 /home/tuttyfrutyee/esp/esp-idf/components/newlib/platform_include/assert.h:
 
-/home/tuttyfrutyee/Documents/embedded_programming/esp/high5/build/include/sdkconfig.h:
+/home/tuttyfrutyee/Documents/embedded_programming/esp/high4/build/include/sdkconfig.h:
 
 /home/tuttyfrutyee/esp/esp-idf/components/newlib/platform_include/pthread.h:
 

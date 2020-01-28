@@ -1,12 +1,12 @@
 i2c_imu.o: \
- /home/tuttyfrutyee/Documents/embedded_programming/esp/high5/components/I2C/i2c_imu.c \
- /home/tuttyfrutyee/Documents/embedded_programming/esp/high5/components/I2C/include/i2c_imu.h \
- /home/tuttyfrutyee/Documents/embedded_programming/esp/high5/components/I2C/include/i2c.h \
+ /home/tuttyfrutyee/Documents/embedded_programming/esp/high4/components/I2C/i2c_imu.c \
+ /home/tuttyfrutyee/Documents/embedded_programming/esp/high4/components/I2C/include/i2c_imu.h \
+ /home/tuttyfrutyee/Documents/embedded_programming/esp/high4/components/I2C/include/i2c.h \
  /home/tuttyfrutyee/esp/esp-idf/components/driver/include/driver/i2c.h \
  /home/tuttyfrutyee/esp/esp-idf/components/esp_common/include/esp_types.h \
  /home/tuttyfrutyee/esp/esp-idf/components/esp_common/include/esp_err.h \
  /home/tuttyfrutyee/esp/esp-idf/components/newlib/platform_include/assert.h \
- /home/tuttyfrutyee/Documents/embedded_programming/esp/high5/build/include/sdkconfig.h \
+ /home/tuttyfrutyee/Documents/embedded_programming/esp/high4/build/include/sdkconfig.h \
  /home/tuttyfrutyee/esp/esp-idf/components/esp32/include/esp_intr_alloc.h \
  /home/tuttyfrutyee/esp/esp-idf/components/freertos/include/freertos/xtensa_api.h \
  /home/tuttyfrutyee/esp/esp-idf/components/xtensa/include/xtensa/hal.h \
@@ -56,9 +56,9 @@ i2c_imu.o: \
  /home/tuttyfrutyee/esp/esp-idf/components/soc/esp32/include/soc/gpio_reg.h \
  /home/tuttyfrutyee/esp/esp-idf/components/soc/esp32/include/soc/gpio_sig_map.h
 
-/home/tuttyfrutyee/Documents/embedded_programming/esp/high5/components/I2C/include/i2c_imu.h:
+/home/tuttyfrutyee/Documents/embedded_programming/esp/high4/components/I2C/include/i2c_imu.h:
 
-/home/tuttyfrutyee/Documents/embedded_programming/esp/high5/components/I2C/include/i2c.h:
+/home/tuttyfrutyee/Documents/embedded_programming/esp/high4/components/I2C/include/i2c.h:
 
 /home/tuttyfrutyee/esp/esp-idf/components/driver/include/driver/i2c.h:
 
@@ -68,7 +68,7 @@ i2c_imu.o: \
 
 /home/tuttyfrutyee/esp/esp-idf/components/newlib/platform_include/assert.h:
 
-/home/tuttyfrutyee/Documents/embedded_programming/esp/high5/build/include/sdkconfig.h:
+/home/tuttyfrutyee/Documents/embedded_programming/esp/high4/build/include/sdkconfig.h:
 
 /home/tuttyfrutyee/esp/esp-idf/components/esp32/include/esp_intr_alloc.h:
 
@@ -165,4 +165,4 @@ i2c_imu.o: \
 /home/tuttyfrutyee/esp/esp-idf/components/soc/esp32/include/soc/gpio_reg.h:
 
 /home/tuttyfrutyee/esp/esp-idf/components/soc/esp32/include/soc/gpio_sig_map.h:
-/home/tuttyfrutyee/Documents/embedded_programming/esp/high5/components/I2C/./i2c_imu.c:
+/home/tuttyfrutyee/Documents/embedded_programming/esp/high4/components/I2C/./i2c_imu.c:

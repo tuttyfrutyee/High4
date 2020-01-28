@@ -1,6 +1,6 @@
 hw_random.o: /home/tuttyfrutyee/esp/esp-idf/components/esp32/hw_random.c \
  /home/tuttyfrutyee/esp/esp-idf/components/esp32/include/esp_attr.h \
- /home/tuttyfrutyee/Documents/embedded_programming/esp/high5/build/include/sdkconfig.h \
+ /home/tuttyfrutyee/Documents/embedded_programming/esp/high4/build/include/sdkconfig.h \
  /home/tuttyfrutyee/esp/esp-idf/components/esp32/include/esp32/clk.h \
  /home/tuttyfrutyee/esp/esp-idf/components/soc/esp32/include/soc/wdev_reg.h \
  /home/tuttyfrutyee/esp/esp-idf/components/soc/esp32/include/soc/soc.h \
@@ -23,7 +23,7 @@ hw_random.o: /home/tuttyfrutyee/esp/esp-idf/components/esp32/hw_random.c \
 
 /home/tuttyfrutyee/esp/esp-idf/components/esp32/include/esp_attr.h:
 
-/home/tuttyfrutyee/Documents/embedded_programming/esp/high5/build/include/sdkconfig.h:
+/home/tuttyfrutyee/Documents/embedded_programming/esp/high4/build/include/sdkconfig.h:
 
 /home/tuttyfrutyee/esp/esp-idf/components/esp32/include/esp32/clk.h:
 

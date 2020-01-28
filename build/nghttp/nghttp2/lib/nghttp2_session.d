@@ -17,7 +17,7 @@ nghttp2/lib/nghttp2_session.o: \
  /home/tuttyfrutyee/esp/esp-idf/components/nghttp/nghttp2/lib/nghttp2_pq.h \
  /home/tuttyfrutyee/esp/esp-idf/components/nghttp/nghttp2/lib/nghttp2_callbacks.h \
  /home/tuttyfrutyee/esp/esp-idf/components/newlib/platform_include/assert.h \
- /home/tuttyfrutyee/Documents/embedded_programming/esp/high5/build/include/sdkconfig.h \
+ /home/tuttyfrutyee/Documents/embedded_programming/esp/high4/build/include/sdkconfig.h \
  /home/tuttyfrutyee/esp/esp-idf/components/nghttp/nghttp2/lib/nghttp2_helper.h \
  /home/tuttyfrutyee/esp/esp-idf/components/nghttp/nghttp2/lib/nghttp2_net.h \
  /home/tuttyfrutyee/esp/esp-idf/components/nghttp/nghttp2/lib/nghttp2_priority_spec.h \
@@ -59,7 +59,7 @@ nghttp2/lib/nghttp2_session.o: \
 
 /home/tuttyfrutyee/esp/esp-idf/components/newlib/platform_include/assert.h:
 
-/home/tuttyfrutyee/Documents/embedded_programming/esp/high5/build/include/sdkconfig.h:
+/home/tuttyfrutyee/Documents/embedded_programming/esp/high4/build/include/sdkconfig.h:
 
 /home/tuttyfrutyee/esp/esp-idf/components/nghttp/nghttp2/lib/nghttp2_helper.h:
 

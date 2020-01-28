@@ -20,7 +20,7 @@
 
 void initSdCard();
 
-void writeToSensorDataArray(int16_t* dataArray);
+
 void writeToSensorDataBytes(int8_t* bytes, int count);
 
 void writeToErrorLog(char* error);

@@ -2,7 +2,7 @@ port/portevent_m.o: \
  /home/tuttyfrutyee/esp/esp-idf/components/freemodbus/port/portevent_m.c \
  /home/tuttyfrutyee/esp/esp-idf/components/freemodbus/modbus/include/mb_m.h \
  /home/tuttyfrutyee/esp/esp-idf/components/freemodbus/modbus/include/mbconfig.h \
- /home/tuttyfrutyee/Documents/embedded_programming/esp/high5/build/include/sdkconfig.h \
+ /home/tuttyfrutyee/Documents/embedded_programming/esp/high4/build/include/sdkconfig.h \
  /home/tuttyfrutyee/esp/esp-idf/components/freemodbus/port/port.h \
  /home/tuttyfrutyee/esp/esp-idf/components/freertos/include/freertos/FreeRTOS.h \
  /home/tuttyfrutyee/esp/esp-idf/components/freertos/include/freertos/FreeRTOSConfig.h \
@@ -77,7 +77,7 @@ port/portevent_m.o: \
 
 /home/tuttyfrutyee/esp/esp-idf/components/freemodbus/modbus/include/mbconfig.h:
 
-/home/tuttyfrutyee/Documents/embedded_programming/esp/high5/build/include/sdkconfig.h:
+/home/tuttyfrutyee/Documents/embedded_programming/esp/high4/build/include/sdkconfig.h:
 
 /home/tuttyfrutyee/esp/esp-idf/components/freemodbus/port/port.h:
 

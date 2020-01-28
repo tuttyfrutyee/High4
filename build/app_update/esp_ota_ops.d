@@ -1,7 +1,7 @@
 esp_ota_ops.o: \
  /home/tuttyfrutyee/esp/esp-idf/components/app_update/esp_ota_ops.c \
  /home/tuttyfrutyee/esp/esp-idf/components/newlib/platform_include/assert.h \
- /home/tuttyfrutyee/Documents/embedded_programming/esp/high5/build/include/sdkconfig.h \
+ /home/tuttyfrutyee/Documents/embedded_programming/esp/high4/build/include/sdkconfig.h \
  /home/tuttyfrutyee/esp/esp-idf/components/freertos/include/freertos/FreeRTOS.h \
  /home/tuttyfrutyee/esp/esp-idf/components/freertos/include/freertos/FreeRTOSConfig.h \
  /home/tuttyfrutyee/esp/esp-idf/components/freertos/include/freertos/xtensa_config.h \
@@ -60,7 +60,7 @@ esp_ota_ops.o: \
 
 /home/tuttyfrutyee/esp/esp-idf/components/newlib/platform_include/assert.h:
 
-/home/tuttyfrutyee/Documents/embedded_programming/esp/high5/build/include/sdkconfig.h:
+/home/tuttyfrutyee/Documents/embedded_programming/esp/high4/build/include/sdkconfig.h:
 
 /home/tuttyfrutyee/esp/esp-idf/components/freertos/include/freertos/FreeRTOS.h:
 

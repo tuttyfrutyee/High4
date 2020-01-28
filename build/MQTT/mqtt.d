@@ -1,10 +1,10 @@
 mqtt.o: \
- /home/tuttyfrutyee/Documents/embedded_programming/esp/high5/components/MQTT/mqtt.c \
- /home/tuttyfrutyee/Documents/embedded_programming/esp/high5/components/MQTT/include/mqtt.h \
+ /home/tuttyfrutyee/Documents/embedded_programming/esp/high4/components/MQTT/mqtt.c \
+ /home/tuttyfrutyee/Documents/embedded_programming/esp/high4/components/MQTT/include/mqtt.h \
  /home/tuttyfrutyee/esp/esp-idf/components/esp_wifi/include/esp_wifi.h \
  /home/tuttyfrutyee/esp/esp-idf/components/esp_common/include/esp_err.h \
  /home/tuttyfrutyee/esp/esp-idf/components/newlib/platform_include/assert.h \
- /home/tuttyfrutyee/Documents/embedded_programming/esp/high5/build/include/sdkconfig.h \
+ /home/tuttyfrutyee/Documents/embedded_programming/esp/high4/build/include/sdkconfig.h \
  /home/tuttyfrutyee/esp/esp-idf/components/esp_wifi/include/esp_wifi_types.h \
  /home/tuttyfrutyee/esp/esp-idf/components/esp_wifi/include/esp_private/esp_wifi_types_private.h \
  /home/tuttyfrutyee/esp/esp-idf/components/esp_common/include/esp_interface.h \
@@ -82,7 +82,7 @@ mqtt.o: \
  /home/tuttyfrutyee/esp/esp-idf/components/esp_common/include/esp_types.h \
  /home/tuttyfrutyee/esp/esp-idf/components/soc/include/hal/esp_flash_err.h \
  /home/tuttyfrutyee/esp/esp-idf/components/spi_flash/include/esp_spi_flash.h \
- /home/tuttyfrutyee/Documents/embedded_programming/esp/high5/components/MQTT/include/protocol_examples_common.h \
+ /home/tuttyfrutyee/Documents/embedded_programming/esp/high4/components/MQTT/include/protocol_examples_common.h \
  /home/tuttyfrutyee/esp/esp-idf/components/lwip/lwip/src/include/lwip/sockets.h \
  /home/tuttyfrutyee/esp/esp-idf/components/newlib/platform_include/sys/poll.h \
  /home/tuttyfrutyee/esp/esp-idf/components/lwip/lwip/src/include/lwip/netif.h \
@@ -103,7 +103,7 @@ mqtt.o: \
  /home/tuttyfrutyee/esp/esp-idf/components/mqtt/esp-mqtt/include/mqtt_client.h \
  /home/tuttyfrutyee/esp/esp-idf/components/mqtt/esp-mqtt/include/mqtt_config.h
 
-/home/tuttyfrutyee/Documents/embedded_programming/esp/high5/components/MQTT/include/mqtt.h:
+/home/tuttyfrutyee/Documents/embedded_programming/esp/high4/components/MQTT/include/mqtt.h:
 
 /home/tuttyfrutyee/esp/esp-idf/components/esp_wifi/include/esp_wifi.h:
 
@@ -111,7 +111,7 @@ mqtt.o: \
 
 /home/tuttyfrutyee/esp/esp-idf/components/newlib/platform_include/assert.h:
 
-/home/tuttyfrutyee/Documents/embedded_programming/esp/high5/build/include/sdkconfig.h:
+/home/tuttyfrutyee/Documents/embedded_programming/esp/high4/build/include/sdkconfig.h:
 
 /home/tuttyfrutyee/esp/esp-idf/components/esp_wifi/include/esp_wifi_types.h:
 
@@ -267,7 +267,7 @@ mqtt.o: \
 
 /home/tuttyfrutyee/esp/esp-idf/components/spi_flash/include/esp_spi_flash.h:
 
-/home/tuttyfrutyee/Documents/embedded_programming/esp/high5/components/MQTT/include/protocol_examples_common.h:
+/home/tuttyfrutyee/Documents/embedded_programming/esp/high4/components/MQTT/include/protocol_examples_common.h:
 
 /home/tuttyfrutyee/esp/esp-idf/components/lwip/lwip/src/include/lwip/sockets.h:
 
@@ -306,4 +306,4 @@ mqtt.o: \
 /home/tuttyfrutyee/esp/esp-idf/components/mqtt/esp-mqtt/include/mqtt_client.h:
 
 /home/tuttyfrutyee/esp/esp-idf/components/mqtt/esp-mqtt/include/mqtt_config.h:
-/home/tuttyfrutyee/Documents/embedded_programming/esp/high5/components/MQTT/./mqtt.c:
+/home/tuttyfrutyee/Documents/embedded_programming/esp/high4/components/MQTT/./mqtt.c:

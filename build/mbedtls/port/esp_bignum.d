@@ -1,7 +1,7 @@
 port/esp_bignum.o: \
  /home/tuttyfrutyee/esp/esp-idf/components/mbedtls/port/esp_bignum.c \
  /home/tuttyfrutyee/esp/esp-idf/components/newlib/platform_include/assert.h \
- /home/tuttyfrutyee/Documents/embedded_programming/esp/high5/build/include/sdkconfig.h \
+ /home/tuttyfrutyee/Documents/embedded_programming/esp/high4/build/include/sdkconfig.h \
  /home/tuttyfrutyee/esp/esp-idf/components/esp_rom/include/esp32/rom/bigint.h \
  /home/tuttyfrutyee/esp/esp-idf/components/soc/include/soc/hwcrypto_periph.h \
  /home/tuttyfrutyee/esp/esp-idf/components/soc/esp32/include/soc/dport_reg.h \
@@ -62,7 +62,7 @@ port/esp_bignum.o: \
 
 /home/tuttyfrutyee/esp/esp-idf/components/newlib/platform_include/assert.h:
 
-/home/tuttyfrutyee/Documents/embedded_programming/esp/high5/build/include/sdkconfig.h:
+/home/tuttyfrutyee/Documents/embedded_programming/esp/high4/build/include/sdkconfig.h:
 
 /home/tuttyfrutyee/esp/esp-idf/components/esp_rom/include/esp32/rom/bigint.h:
 

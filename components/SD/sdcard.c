@@ -19,7 +19,7 @@ void initSdCard(){
     slot_config.gpio_sck  = PIN_NUM_CLK;
     slot_config.gpio_cs   = PIN_NUM_CS;
 
-    host.max_freq_khz = 2000;
+    host.max_freq_khz = 1000;
 
 
     esp_vfs_fat_sdmmc_mount_config_t mount_config = {
@@ -47,29 +47,17 @@ void initSdCard(){
 
 }
 
-void writeToSensorDataArray(int16_t* dataArray){
-
-    //assumes high4 folder exists
-
-    FILE* f = fopen("/sdcard/high4/sData.bin", "a+b");
-    if (f == NULL) {
-        ESP_LOGE(TAG, "Failed to open file for writing");
-        return;
-    }
-    fwrite(dataArray, sizeof(int16_t), 6, f);
-
-    fclose(f);
-    ESP_LOGI(TAG, "File written");
-}
-
 void writeToSensorDataBytes(int8_t* bytes, int count){
     FILE* f = fopen("/sdcard/high4/sData.bin","a+b");
     if(f == NULL) {
         ESP_LOGE(TAG, "Failed to open file for writing");
         return;        
     }
-    fwrite(bytes, sizeof(int8_t), count, f);
+    int successCount = fwrite(bytes, sizeof(int8_t), count, f);
     
+    if(successCount != count)
+        printf("Error occured while writing sensor data bytes\n");
+
     fclose(f);
 }
 

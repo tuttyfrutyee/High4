@@ -1,7 +1,7 @@
 port/esp32/netif/dhcp_state.o: \
  /home/tuttyfrutyee/esp/esp-idf/components/lwip/port/esp32/netif/dhcp_state.c \
  /home/tuttyfrutyee/esp/esp-idf/components/newlib/platform_include/assert.h \
- /home/tuttyfrutyee/Documents/embedded_programming/esp/high5/build/include/sdkconfig.h \
+ /home/tuttyfrutyee/Documents/embedded_programming/esp/high4/build/include/sdkconfig.h \
  /home/tuttyfrutyee/esp/esp-idf/components/nvs_flash/include/nvs.h \
  /home/tuttyfrutyee/esp/esp-idf/components/esp32/include/esp_attr.h \
  /home/tuttyfrutyee/esp/esp-idf/components/esp_common/include/esp_err.h \
@@ -88,7 +88,7 @@ port/esp32/netif/dhcp_state.o: \
 
 /home/tuttyfrutyee/esp/esp-idf/components/newlib/platform_include/assert.h:
 
-/home/tuttyfrutyee/Documents/embedded_programming/esp/high5/build/include/sdkconfig.h:
+/home/tuttyfrutyee/Documents/embedded_programming/esp/high4/build/include/sdkconfig.h:
 
 /home/tuttyfrutyee/esp/esp-idf/components/nvs_flash/include/nvs.h:
 

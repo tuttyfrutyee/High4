@@ -1,6 +1,6 @@
 pm_trace.o: /home/tuttyfrutyee/esp/esp-idf/components/esp32/pm_trace.c \
  /home/tuttyfrutyee/esp/esp-idf/components/esp_common/include/esp_private/pm_trace.h \
- /home/tuttyfrutyee/Documents/embedded_programming/esp/high5/build/include/sdkconfig.h \
+ /home/tuttyfrutyee/Documents/embedded_programming/esp/high4/build/include/sdkconfig.h \
  /home/tuttyfrutyee/esp/esp-idf/components/driver/include/driver/gpio.h \
  /home/tuttyfrutyee/esp/esp-idf/components/esp_common/include/esp_err.h \
  /home/tuttyfrutyee/esp/esp-idf/components/newlib/platform_include/assert.h \
@@ -30,7 +30,7 @@ pm_trace.o: /home/tuttyfrutyee/esp/esp-idf/components/esp32/pm_trace.c \
 
 /home/tuttyfrutyee/esp/esp-idf/components/esp_common/include/esp_private/pm_trace.h:
 
-/home/tuttyfrutyee/Documents/embedded_programming/esp/high5/build/include/sdkconfig.h:
+/home/tuttyfrutyee/Documents/embedded_programming/esp/high4/build/include/sdkconfig.h:
 
 /home/tuttyfrutyee/esp/esp-idf/components/driver/include/driver/gpio.h:
 

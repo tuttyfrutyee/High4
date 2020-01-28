@@ -1,6 +1,6 @@
 intr_alloc.o: \
  /home/tuttyfrutyee/esp/esp-idf/components/esp32/intr_alloc.c \
- /home/tuttyfrutyee/Documents/embedded_programming/esp/high5/build/include/sdkconfig.h \
+ /home/tuttyfrutyee/Documents/embedded_programming/esp/high4/build/include/sdkconfig.h \
  /home/tuttyfrutyee/esp/esp-idf/components/freertos/include/freertos/FreeRTOS.h \
  /home/tuttyfrutyee/esp/esp-idf/components/freertos/include/freertos/FreeRTOSConfig.h \
  /home/tuttyfrutyee/esp/esp-idf/components/freertos/include/freertos/xtensa_config.h \
@@ -42,7 +42,7 @@ intr_alloc.o: \
  /home/tuttyfrutyee/esp/esp-idf/components/freertos/include/freertos/xtensa_api.h \
  /home/tuttyfrutyee/esp/esp-idf/components/esp_common/include/esp_ipc.h
 
-/home/tuttyfrutyee/Documents/embedded_programming/esp/high5/build/include/sdkconfig.h:
+/home/tuttyfrutyee/Documents/embedded_programming/esp/high4/build/include/sdkconfig.h:
 
 /home/tuttyfrutyee/esp/esp-idf/components/freertos/include/freertos/FreeRTOS.h:
 

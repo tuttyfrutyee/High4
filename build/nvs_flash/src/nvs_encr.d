@@ -3,7 +3,7 @@ src/nvs_encr.o: \
  /home/tuttyfrutyee/esp/esp-idf/components/nvs_flash/src/nvs_encr.hpp \
  /home/tuttyfrutyee/esp/esp-idf/components/esp_common/include/esp_err.h \
  /home/tuttyfrutyee/esp/esp-idf/components/newlib/platform_include/assert.h \
- /home/tuttyfrutyee/Documents/embedded_programming/esp/high5/build/include/sdkconfig.h \
+ /home/tuttyfrutyee/Documents/embedded_programming/esp/high4/build/include/sdkconfig.h \
  /home/tuttyfrutyee/esp/esp-idf/components/mbedtls/mbedtls/include/mbedtls/aes.h \
  /home/tuttyfrutyee/esp/esp-idf/components/mbedtls/port/include/mbedtls/esp_config.h \
  /home/tuttyfrutyee/esp/esp-idf/components/mbedtls/mbedtls/include/mbedtls/config.h \
@@ -33,7 +33,7 @@ src/nvs_encr.o: \
 
 /home/tuttyfrutyee/esp/esp-idf/components/newlib/platform_include/assert.h:
 
-/home/tuttyfrutyee/Documents/embedded_programming/esp/high5/build/include/sdkconfig.h:
+/home/tuttyfrutyee/Documents/embedded_programming/esp/high4/build/include/sdkconfig.h:
 
 /home/tuttyfrutyee/esp/esp-idf/components/mbedtls/mbedtls/include/mbedtls/aes.h:
 

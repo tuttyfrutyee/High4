@@ -1,7 +1,7 @@
 esp32/rtc_clk_init.o: \
  /home/tuttyfrutyee/esp/esp-idf/components/soc/esp32/rtc_clk_init.c \
  /home/tuttyfrutyee/esp/esp-idf/components/esp_rom/include/esp32/rom/ets_sys.h \
- /home/tuttyfrutyee/Documents/embedded_programming/esp/high5/build/bootloader/../include/sdkconfig.h \
+ /home/tuttyfrutyee/Documents/embedded_programming/esp/high4/build/bootloader/../include/sdkconfig.h \
  /home/tuttyfrutyee/esp/esp-idf/components/esp_rom/include/esp32/rom/rtc.h \
  /home/tuttyfrutyee/esp/esp-idf/components/esp_rom/include/esp32/rom/ets_sys.h \
  /home/tuttyfrutyee/esp/esp-idf/components/soc/esp32/include/soc/soc.h \
@@ -47,7 +47,7 @@ esp32/rtc_clk_init.o: \
 
 /home/tuttyfrutyee/esp/esp-idf/components/esp_rom/include/esp32/rom/ets_sys.h:
 
-/home/tuttyfrutyee/Documents/embedded_programming/esp/high5/build/bootloader/../include/sdkconfig.h:
+/home/tuttyfrutyee/Documents/embedded_programming/esp/high4/build/bootloader/../include/sdkconfig.h:
 
 /home/tuttyfrutyee/esp/esp-idf/components/esp_rom/include/esp32/rom/rtc.h:
 

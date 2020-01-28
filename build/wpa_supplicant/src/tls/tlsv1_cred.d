@@ -2,7 +2,7 @@ src/tls/tlsv1_cred.o: \
  /home/tuttyfrutyee/esp/esp-idf/components/wpa_supplicant/src/tls/tlsv1_cred.c \
  /home/tuttyfrutyee/esp/esp-idf/components/wpa_supplicant/src/utils/includes.h \
  /home/tuttyfrutyee/esp/esp-idf/components/wpa_supplicant/port/include/supplicant_opt.h \
- /home/tuttyfrutyee/Documents/embedded_programming/esp/high5/build/include/sdkconfig.h \
+ /home/tuttyfrutyee/Documents/embedded_programming/esp/high4/build/include/sdkconfig.h \
  /home/tuttyfrutyee/esp/esp-idf/components/esp_rom/include/esp32/rom/ets_sys.h \
  /home/tuttyfrutyee/esp/esp-idf/components/wpa_supplicant/include/utils/common.h \
  /home/tuttyfrutyee/esp/esp-idf/components/wpa_supplicant/port/include/os.h \
@@ -27,7 +27,7 @@ src/tls/tlsv1_cred.o: \
 
 /home/tuttyfrutyee/esp/esp-idf/components/wpa_supplicant/port/include/supplicant_opt.h:
 
-/home/tuttyfrutyee/Documents/embedded_programming/esp/high5/build/include/sdkconfig.h:
+/home/tuttyfrutyee/Documents/embedded_programming/esp/high4/build/include/sdkconfig.h:
 
 /home/tuttyfrutyee/esp/esp-idf/components/esp_rom/include/esp32/rom/ets_sys.h:
 

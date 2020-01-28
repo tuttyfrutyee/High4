@@ -1,8 +1,8 @@
 main.o: \
- /home/tuttyfrutyee/Documents/embedded_programming/esp/high5/main/main.c \
+ /home/tuttyfrutyee/Documents/embedded_programming/esp/high4/main/main.c \
  /home/tuttyfrutyee/esp/esp-idf/components/freertos/include/freertos/FreeRTOS.h \
  /home/tuttyfrutyee/esp/esp-idf/components/freertos/include/freertos/FreeRTOSConfig.h \
- /home/tuttyfrutyee/Documents/embedded_programming/esp/high5/build/include/sdkconfig.h \
+ /home/tuttyfrutyee/Documents/embedded_programming/esp/high4/build/include/sdkconfig.h \
  /home/tuttyfrutyee/esp/esp-idf/components/freertos/include/freertos/xtensa_config.h \
  /home/tuttyfrutyee/esp/esp-idf/components/xtensa/include/xtensa/hal.h \
  /home/tuttyfrutyee/esp/esp-idf/components/xtensa/esp32/include/xtensa/config/core.h \
@@ -84,7 +84,7 @@ main.o: \
  /home/tuttyfrutyee/esp/esp-idf/components/spi_flash/include/esp_spi_flash.h \
  /home/tuttyfrutyee/esp/esp-idf/components/log/include/esp_log.h \
  /home/tuttyfrutyee/esp/esp-idf/components/log/include/esp_log_internal.h \
- /home/tuttyfrutyee/Documents/embedded_programming/esp/high5/components/I2C/include/i2c.h \
+ /home/tuttyfrutyee/Documents/embedded_programming/esp/high4/components/I2C/include/i2c.h \
  /home/tuttyfrutyee/esp/esp-idf/components/driver/include/driver/i2c.h \
  /home/tuttyfrutyee/esp/esp-idf/components/esp32/include/esp_intr_alloc.h \
  /home/tuttyfrutyee/esp/esp-idf/components/freertos/include/freertos/xtensa_api.h \
@@ -99,28 +99,9 @@ main.o: \
  /home/tuttyfrutyee/esp/esp-idf/components/soc/esp32/include/soc/gpio_struct.h \
  /home/tuttyfrutyee/esp/esp-idf/components/soc/esp32/include/soc/gpio_reg.h \
  /home/tuttyfrutyee/esp/esp-idf/components/soc/esp32/include/soc/gpio_sig_map.h \
- /home/tuttyfrutyee/Documents/embedded_programming/esp/high5/components/MPU6050/include/acceleration.h \
- /home/tuttyfrutyee/Documents/embedded_programming/esp/high5/components/IMUGATHER/include/imugather.h \
- /home/tuttyfrutyee/Documents/embedded_programming/esp/high5/components/MQTT/include/mqtt.h \
- /home/tuttyfrutyee/Documents/embedded_programming/esp/high5/components/MQTT/include/protocol_examples_common.h \
- /home/tuttyfrutyee/esp/esp-idf/components/lwip/lwip/src/include/lwip/sockets.h \
- /home/tuttyfrutyee/esp/esp-idf/components/newlib/platform_include/sys/poll.h \
- /home/tuttyfrutyee/esp/esp-idf/components/lwip/lwip/src/include/lwip/netif.h \
- /home/tuttyfrutyee/esp/esp-idf/components/lwip/lwip/src/include/lwip/err.h \
- /home/tuttyfrutyee/esp/esp-idf/components/lwip/lwip/src/include/lwip/pbuf.h \
- /home/tuttyfrutyee/esp/esp-idf/components/lwip/lwip/src/include/lwip/stats.h \
- /home/tuttyfrutyee/esp/esp-idf/components/lwip/lwip/src/include/lwip/mem.h \
- /home/tuttyfrutyee/esp/esp-idf/components/lwip/lwip/src/include/lwip/memp.h \
- /home/tuttyfrutyee/esp/esp-idf/components/lwip/lwip/src/include/lwip/priv/memp_std.h \
- /home/tuttyfrutyee/esp/esp-idf/components/lwip/lwip/src/include/lwip/priv/memp_priv.h \
- /home/tuttyfrutyee/esp/esp-idf/components/lwip/lwip/src/include/lwip/priv/mem_priv.h \
- /home/tuttyfrutyee/esp/esp-idf/components/lwip/lwip/src/include/lwip/inet.h \
- /home/tuttyfrutyee/esp/esp-idf/components/lwip/lwip/src/include/lwip/errno.h \
- /home/tuttyfrutyee/esp/esp-idf/components/lwip/lwip/src/include/lwip/dns.h \
- /home/tuttyfrutyee/esp/esp-idf/components/lwip/lwip/src/include/lwip/netdb.h \
- /home/tuttyfrutyee/esp/esp-idf/components/mqtt/esp-mqtt/include/mqtt_client.h \
- /home/tuttyfrutyee/esp/esp-idf/components/mqtt/esp-mqtt/include/mqtt_config.h \
- /home/tuttyfrutyee/Documents/embedded_programming/esp/high5/components/SD/include/sdcard.h \
+ /home/tuttyfrutyee/Documents/embedded_programming/esp/high4/components/MPU6050/include/acceleration.h \
+ /home/tuttyfrutyee/Documents/embedded_programming/esp/high4/components/IMUGATHER/include/imugather.h \
+ /home/tuttyfrutyee/Documents/embedded_programming/esp/high4/components/SD/include/sdcard.h \
  /home/tuttyfrutyee/esp/esp-idf/components/fatfs/vfs/esp_vfs_fat.h \
  /home/tuttyfrutyee/esp/esp-idf/components/driver/include/driver/sdmmc_types.h \
  /home/tuttyfrutyee/esp/esp-idf/components/driver/include/driver/sdmmc_host.h \
@@ -139,13 +120,32 @@ main.o: \
  /home/tuttyfrutyee/esp/esp-idf/components/fatfs/src/ff.h \
  /home/tuttyfrutyee/esp/esp-idf/components/fatfs/src/ffconf.h \
  /home/tuttyfrutyee/esp/esp-idf/components/wear_levelling/include/wear_levelling.h \
- /home/tuttyfrutyee/esp/esp-idf/components/sdmmc/include/sdmmc_cmd.h
+ /home/tuttyfrutyee/esp/esp-idf/components/sdmmc/include/sdmmc_cmd.h \
+ /home/tuttyfrutyee/Documents/embedded_programming/esp/high4/components/MQTT/include/mqtt.h \
+ /home/tuttyfrutyee/Documents/embedded_programming/esp/high4/components/MQTT/include/protocol_examples_common.h \
+ /home/tuttyfrutyee/esp/esp-idf/components/lwip/lwip/src/include/lwip/sockets.h \
+ /home/tuttyfrutyee/esp/esp-idf/components/newlib/platform_include/sys/poll.h \
+ /home/tuttyfrutyee/esp/esp-idf/components/lwip/lwip/src/include/lwip/netif.h \
+ /home/tuttyfrutyee/esp/esp-idf/components/lwip/lwip/src/include/lwip/err.h \
+ /home/tuttyfrutyee/esp/esp-idf/components/lwip/lwip/src/include/lwip/pbuf.h \
+ /home/tuttyfrutyee/esp/esp-idf/components/lwip/lwip/src/include/lwip/stats.h \
+ /home/tuttyfrutyee/esp/esp-idf/components/lwip/lwip/src/include/lwip/mem.h \
+ /home/tuttyfrutyee/esp/esp-idf/components/lwip/lwip/src/include/lwip/memp.h \
+ /home/tuttyfrutyee/esp/esp-idf/components/lwip/lwip/src/include/lwip/priv/memp_std.h \
+ /home/tuttyfrutyee/esp/esp-idf/components/lwip/lwip/src/include/lwip/priv/memp_priv.h \
+ /home/tuttyfrutyee/esp/esp-idf/components/lwip/lwip/src/include/lwip/priv/mem_priv.h \
+ /home/tuttyfrutyee/esp/esp-idf/components/lwip/lwip/src/include/lwip/inet.h \
+ /home/tuttyfrutyee/esp/esp-idf/components/lwip/lwip/src/include/lwip/errno.h \
+ /home/tuttyfrutyee/esp/esp-idf/components/lwip/lwip/src/include/lwip/dns.h \
+ /home/tuttyfrutyee/esp/esp-idf/components/lwip/lwip/src/include/lwip/netdb.h \
+ /home/tuttyfrutyee/esp/esp-idf/components/mqtt/esp-mqtt/include/mqtt_client.h \
+ /home/tuttyfrutyee/esp/esp-idf/components/mqtt/esp-mqtt/include/mqtt_config.h
 
 /home/tuttyfrutyee/esp/esp-idf/components/freertos/include/freertos/FreeRTOS.h:
 
 /home/tuttyfrutyee/esp/esp-idf/components/freertos/include/freertos/FreeRTOSConfig.h:
 
-/home/tuttyfrutyee/Documents/embedded_programming/esp/high5/build/include/sdkconfig.h:
+/home/tuttyfrutyee/Documents/embedded_programming/esp/high4/build/include/sdkconfig.h:
 
 /home/tuttyfrutyee/esp/esp-idf/components/freertos/include/freertos/xtensa_config.h:
 
@@ -309,7 +309,7 @@ main.o: \
 
 /home/tuttyfrutyee/esp/esp-idf/components/log/include/esp_log_internal.h:
 
-/home/tuttyfrutyee/Documents/embedded_programming/esp/high5/components/I2C/include/i2c.h:
+/home/tuttyfrutyee/Documents/embedded_programming/esp/high4/components/I2C/include/i2c.h:
 
 /home/tuttyfrutyee/esp/esp-idf/components/driver/include/driver/i2c.h:
 
@@ -339,49 +339,11 @@ main.o: \
 
 /home/tuttyfrutyee/esp/esp-idf/components/soc/esp32/include/soc/gpio_sig_map.h:
 
-/home/tuttyfrutyee/Documents/embedded_programming/esp/high5/components/MPU6050/include/acceleration.h:
+/home/tuttyfrutyee/Documents/embedded_programming/esp/high4/components/MPU6050/include/acceleration.h:
 
-/home/tuttyfrutyee/Documents/embedded_programming/esp/high5/components/IMUGATHER/include/imugather.h:
+/home/tuttyfrutyee/Documents/embedded_programming/esp/high4/components/IMUGATHER/include/imugather.h:
 
-/home/tuttyfrutyee/Documents/embedded_programming/esp/high5/components/MQTT/include/mqtt.h:
-
-/home/tuttyfrutyee/Documents/embedded_programming/esp/high5/components/MQTT/include/protocol_examples_common.h:
-
-/home/tuttyfrutyee/esp/esp-idf/components/lwip/lwip/src/include/lwip/sockets.h:
-
-/home/tuttyfrutyee/esp/esp-idf/components/newlib/platform_include/sys/poll.h:
-
-/home/tuttyfrutyee/esp/esp-idf/components/lwip/lwip/src/include/lwip/netif.h:
-
-/home/tuttyfrutyee/esp/esp-idf/components/lwip/lwip/src/include/lwip/err.h:
-
-/home/tuttyfrutyee/esp/esp-idf/components/lwip/lwip/src/include/lwip/pbuf.h:
-
-/home/tuttyfrutyee/esp/esp-idf/components/lwip/lwip/src/include/lwip/stats.h:
-
-/home/tuttyfrutyee/esp/esp-idf/components/lwip/lwip/src/include/lwip/mem.h:
-
-/home/tuttyfrutyee/esp/esp-idf/components/lwip/lwip/src/include/lwip/memp.h:
-
-/home/tuttyfrutyee/esp/esp-idf/components/lwip/lwip/src/include/lwip/priv/memp_std.h:
-
-/home/tuttyfrutyee/esp/esp-idf/components/lwip/lwip/src/include/lwip/priv/memp_priv.h:
-
-/home/tuttyfrutyee/esp/esp-idf/components/lwip/lwip/src/include/lwip/priv/mem_priv.h:
-
-/home/tuttyfrutyee/esp/esp-idf/components/lwip/lwip/src/include/lwip/inet.h:
-
-/home/tuttyfrutyee/esp/esp-idf/components/lwip/lwip/src/include/lwip/errno.h:
-
-/home/tuttyfrutyee/esp/esp-idf/components/lwip/lwip/src/include/lwip/dns.h:
-
-/home/tuttyfrutyee/esp/esp-idf/components/lwip/lwip/src/include/lwip/netdb.h:
-
-/home/tuttyfrutyee/esp/esp-idf/components/mqtt/esp-mqtt/include/mqtt_client.h:
-
-/home/tuttyfrutyee/esp/esp-idf/components/mqtt/esp-mqtt/include/mqtt_config.h:
-
-/home/tuttyfrutyee/Documents/embedded_programming/esp/high5/components/SD/include/sdcard.h:
+/home/tuttyfrutyee/Documents/embedded_programming/esp/high4/components/SD/include/sdcard.h:
 
 /home/tuttyfrutyee/esp/esp-idf/components/fatfs/vfs/esp_vfs_fat.h:
 
@@ -420,4 +382,42 @@ main.o: \
 /home/tuttyfrutyee/esp/esp-idf/components/wear_levelling/include/wear_levelling.h:
 
 /home/tuttyfrutyee/esp/esp-idf/components/sdmmc/include/sdmmc_cmd.h:
-/home/tuttyfrutyee/Documents/embedded_programming/esp/high5/main/./main.c:
+
+/home/tuttyfrutyee/Documents/embedded_programming/esp/high4/components/MQTT/include/mqtt.h:
+
+/home/tuttyfrutyee/Documents/embedded_programming/esp/high4/components/MQTT/include/protocol_examples_common.h:
+
+/home/tuttyfrutyee/esp/esp-idf/components/lwip/lwip/src/include/lwip/sockets.h:
+
+/home/tuttyfrutyee/esp/esp-idf/components/newlib/platform_include/sys/poll.h:
+
+/home/tuttyfrutyee/esp/esp-idf/components/lwip/lwip/src/include/lwip/netif.h:
+
+/home/tuttyfrutyee/esp/esp-idf/components/lwip/lwip/src/include/lwip/err.h:
+
+/home/tuttyfrutyee/esp/esp-idf/components/lwip/lwip/src/include/lwip/pbuf.h:
+
+/home/tuttyfrutyee/esp/esp-idf/components/lwip/lwip/src/include/lwip/stats.h:
+
+/home/tuttyfrutyee/esp/esp-idf/components/lwip/lwip/src/include/lwip/mem.h:
+
+/home/tuttyfrutyee/esp/esp-idf/components/lwip/lwip/src/include/lwip/memp.h:
+
+/home/tuttyfrutyee/esp/esp-idf/components/lwip/lwip/src/include/lwip/priv/memp_std.h:
+
+/home/tuttyfrutyee/esp/esp-idf/components/lwip/lwip/src/include/lwip/priv/memp_priv.h:
+
+/home/tuttyfrutyee/esp/esp-idf/components/lwip/lwip/src/include/lwip/priv/mem_priv.h:
+
+/home/tuttyfrutyee/esp/esp-idf/components/lwip/lwip/src/include/lwip/inet.h:
+
+/home/tuttyfrutyee/esp/esp-idf/components/lwip/lwip/src/include/lwip/errno.h:
+
+/home/tuttyfrutyee/esp/esp-idf/components/lwip/lwip/src/include/lwip/dns.h:
+
+/home/tuttyfrutyee/esp/esp-idf/components/lwip/lwip/src/include/lwip/netdb.h:
+
+/home/tuttyfrutyee/esp/esp-idf/components/mqtt/esp-mqtt/include/mqtt_client.h:
+
+/home/tuttyfrutyee/esp/esp-idf/components/mqtt/esp-mqtt/include/mqtt_config.h:
+/home/tuttyfrutyee/Documents/embedded_programming/esp/high4/main/./main.c:

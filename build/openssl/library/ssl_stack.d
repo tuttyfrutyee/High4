@@ -8,7 +8,7 @@ library/ssl_stack.o: \
  /home/tuttyfrutyee/esp/esp-idf/components/openssl/include/internal/x509_vfy.h \
  /home/tuttyfrutyee/esp/esp-idf/components/openssl/include/internal/ssl_dbg.h \
  /home/tuttyfrutyee/esp/esp-idf/components/openssl/include/platform/ssl_opt.h \
- /home/tuttyfrutyee/Documents/embedded_programming/esp/high5/build/include/sdkconfig.h \
+ /home/tuttyfrutyee/Documents/embedded_programming/esp/high4/build/include/sdkconfig.h \
  /home/tuttyfrutyee/esp/esp-idf/components/openssl/include/platform/ssl_port.h \
  /home/tuttyfrutyee/esp/esp-idf/components/esp_common/include/esp_types.h \
  /home/tuttyfrutyee/esp/esp-idf/components/log/include/esp_log.h \
@@ -32,7 +32,7 @@ library/ssl_stack.o: \
 
 /home/tuttyfrutyee/esp/esp-idf/components/openssl/include/platform/ssl_opt.h:
 
-/home/tuttyfrutyee/Documents/embedded_programming/esp/high5/build/include/sdkconfig.h:
+/home/tuttyfrutyee/Documents/embedded_programming/esp/high4/build/include/sdkconfig.h:
 
 /home/tuttyfrutyee/esp/esp-idf/components/openssl/include/platform/ssl_port.h:
 

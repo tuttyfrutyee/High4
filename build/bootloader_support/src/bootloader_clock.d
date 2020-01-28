@@ -3,7 +3,7 @@ src/bootloader_clock.o: \
  /home/tuttyfrutyee/esp/esp-idf/components/esp_rom/include/esp32/rom/uart.h \
  /home/tuttyfrutyee/esp/esp-idf/components/esp_common/include/esp_types.h \
  /home/tuttyfrutyee/esp/esp-idf/components/esp32/include/esp_attr.h \
- /home/tuttyfrutyee/Documents/embedded_programming/esp/high5/build/include/sdkconfig.h \
+ /home/tuttyfrutyee/Documents/embedded_programming/esp/high4/build/include/sdkconfig.h \
  /home/tuttyfrutyee/esp/esp-idf/components/esp_rom/include/esp32/rom/ets_sys.h \
  /home/tuttyfrutyee/esp/esp-idf/components/soc/esp32/include/soc/soc.h \
  /home/tuttyfrutyee/esp/esp-idf/components/esp_common/include/esp_assert.h \
@@ -47,7 +47,7 @@ src/bootloader_clock.o: \
 
 /home/tuttyfrutyee/esp/esp-idf/components/esp32/include/esp_attr.h:
 
-/home/tuttyfrutyee/Documents/embedded_programming/esp/high5/build/include/sdkconfig.h:
+/home/tuttyfrutyee/Documents/embedded_programming/esp/high4/build/include/sdkconfig.h:
 
 /home/tuttyfrutyee/esp/esp-idf/components/esp_rom/include/esp32/rom/ets_sys.h:
 

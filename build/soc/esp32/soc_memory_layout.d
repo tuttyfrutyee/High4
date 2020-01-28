@@ -3,7 +3,7 @@ esp32/soc_memory_layout.o: \
  /home/tuttyfrutyee/esp/esp-idf/components/soc/esp32/include/soc/soc.h \
  /home/tuttyfrutyee/esp/esp-idf/components/esp_common/include/esp_assert.h \
  /home/tuttyfrutyee/esp/esp-idf/components/newlib/platform_include/assert.h \
- /home/tuttyfrutyee/Documents/embedded_programming/esp/high5/build/include/sdkconfig.h \
+ /home/tuttyfrutyee/Documents/embedded_programming/esp/high4/build/include/sdkconfig.h \
  /home/tuttyfrutyee/esp/esp-idf/components/esp_common/include/esp_bit_defs.h \
  /home/tuttyfrutyee/esp/esp-idf/components/soc/include/soc/soc_memory_layout.h \
  /home/tuttyfrutyee/esp/esp-idf/components/esp32/include/esp_attr.h \
@@ -16,7 +16,7 @@ esp32/soc_memory_layout.o: \
 
 /home/tuttyfrutyee/esp/esp-idf/components/newlib/platform_include/assert.h:
 
-/home/tuttyfrutyee/Documents/embedded_programming/esp/high5/build/include/sdkconfig.h:
+/home/tuttyfrutyee/Documents/embedded_programming/esp/high4/build/include/sdkconfig.h:
 
 /home/tuttyfrutyee/esp/esp-idf/components/esp_common/include/esp_bit_defs.h:
 

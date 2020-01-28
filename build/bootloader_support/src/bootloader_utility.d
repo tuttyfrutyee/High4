@@ -1,7 +1,7 @@
 src/bootloader_utility.o: \
  /home/tuttyfrutyee/esp/esp-idf/components/bootloader_support/src/bootloader_utility.c \
  /home/tuttyfrutyee/esp/esp-idf/components/esp32/include/esp_attr.h \
- /home/tuttyfrutyee/Documents/embedded_programming/esp/high5/build/include/sdkconfig.h \
+ /home/tuttyfrutyee/Documents/embedded_programming/esp/high4/build/include/sdkconfig.h \
  /home/tuttyfrutyee/esp/esp-idf/components/log/include/esp_log.h \
  /home/tuttyfrutyee/esp/esp-idf/components/esp_rom/include/esp32/rom/ets_sys.h \
  /home/tuttyfrutyee/esp/esp-idf/components/log/include/esp_log_internal.h \
@@ -77,7 +77,7 @@ src/bootloader_utility.o: \
 
 /home/tuttyfrutyee/esp/esp-idf/components/esp32/include/esp_attr.h:
 
-/home/tuttyfrutyee/Documents/embedded_programming/esp/high5/build/include/sdkconfig.h:
+/home/tuttyfrutyee/Documents/embedded_programming/esp/high4/build/include/sdkconfig.h:
 
 /home/tuttyfrutyee/esp/esp-idf/components/log/include/esp_log.h:
 

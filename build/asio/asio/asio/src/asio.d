@@ -3,7 +3,7 @@ asio/asio/src/asio.o: \
  /home/tuttyfrutyee/esp/esp-idf/components/asio/asio/asio/include/asio/impl/src.hpp \
  /home/tuttyfrutyee/esp/esp-idf/components/asio/asio/asio/include/asio/detail/config.hpp \
  /home/tuttyfrutyee/esp/esp-idf/components/asio/port/include/esp_asio_config.h \
- /home/tuttyfrutyee/Documents/embedded_programming/esp/high5/build/include/sdkconfig.h \
+ /home/tuttyfrutyee/Documents/embedded_programming/esp/high4/build/include/sdkconfig.h \
  /home/tuttyfrutyee/esp/esp-idf/components/asio/asio/asio/include/asio/impl/error.ipp \
  /home/tuttyfrutyee/esp/esp-idf/components/asio/asio/asio/include/asio/error.hpp \
  /home/tuttyfrutyee/esp/esp-idf/components/asio/asio/asio/include/asio/error_code.hpp \
@@ -302,7 +302,7 @@ asio/asio/src/asio.o: \
 
 /home/tuttyfrutyee/esp/esp-idf/components/asio/port/include/esp_asio_config.h:
 
-/home/tuttyfrutyee/Documents/embedded_programming/esp/high5/build/include/sdkconfig.h:
+/home/tuttyfrutyee/Documents/embedded_programming/esp/high4/build/include/sdkconfig.h:
 
 /home/tuttyfrutyee/esp/esp-idf/components/asio/asio/asio/include/asio/impl/error.ipp:
 

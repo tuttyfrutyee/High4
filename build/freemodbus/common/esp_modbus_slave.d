@@ -2,7 +2,7 @@ common/esp_modbus_slave.o: \
  /home/tuttyfrutyee/esp/esp-idf/components/freemodbus/common/esp_modbus_slave.c \
  /home/tuttyfrutyee/esp/esp-idf/components/esp_common/include/esp_err.h \
  /home/tuttyfrutyee/esp/esp-idf/components/newlib/platform_include/assert.h \
- /home/tuttyfrutyee/Documents/embedded_programming/esp/high5/build/include/sdkconfig.h \
+ /home/tuttyfrutyee/Documents/embedded_programming/esp/high4/build/include/sdkconfig.h \
  /home/tuttyfrutyee/esp/esp-idf/components/freemodbus/common/mbc_slave.h \
  /home/tuttyfrutyee/esp/esp-idf/components/driver/include/driver/uart.h \
  /home/tuttyfrutyee/esp/esp-idf/components/soc/include/soc/uart_periph.h \
@@ -77,7 +77,7 @@ common/esp_modbus_slave.o: \
 
 /home/tuttyfrutyee/esp/esp-idf/components/newlib/platform_include/assert.h:
 
-/home/tuttyfrutyee/Documents/embedded_programming/esp/high5/build/include/sdkconfig.h:
+/home/tuttyfrutyee/Documents/embedded_programming/esp/high4/build/include/sdkconfig.h:
 
 /home/tuttyfrutyee/esp/esp-idf/components/freemodbus/common/mbc_slave.h:
 

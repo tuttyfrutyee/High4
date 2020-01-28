@@ -2,7 +2,7 @@ src/tls/x509v3.o: \
  /home/tuttyfrutyee/esp/esp-idf/components/wpa_supplicant/src/tls/x509v3.c \
  /home/tuttyfrutyee/esp/esp-idf/components/wpa_supplicant/src/utils/includes.h \
  /home/tuttyfrutyee/esp/esp-idf/components/wpa_supplicant/port/include/supplicant_opt.h \
- /home/tuttyfrutyee/Documents/embedded_programming/esp/high5/build/include/sdkconfig.h \
+ /home/tuttyfrutyee/Documents/embedded_programming/esp/high4/build/include/sdkconfig.h \
  /home/tuttyfrutyee/esp/esp-idf/components/esp_rom/include/esp32/rom/ets_sys.h \
  /home/tuttyfrutyee/esp/esp-idf/components/wpa_supplicant/src/rsn_supp/wpa.h \
  /home/tuttyfrutyee/esp/esp-idf/components/wpa_supplicant/include/utils/common.h \
@@ -38,7 +38,7 @@ src/tls/x509v3.o: \
 
 /home/tuttyfrutyee/esp/esp-idf/components/wpa_supplicant/port/include/supplicant_opt.h:
 
-/home/tuttyfrutyee/Documents/embedded_programming/esp/high5/build/include/sdkconfig.h:
+/home/tuttyfrutyee/Documents/embedded_programming/esp/high4/build/include/sdkconfig.h:
 
 /home/tuttyfrutyee/esp/esp-idf/components/esp_rom/include/esp32/rom/ets_sys.h:
 

@@ -1,6 +1,6 @@
 multi_heap.o: /home/tuttyfrutyee/esp/esp-idf/components/heap/multi_heap.c \
  /home/tuttyfrutyee/esp/esp-idf/components/newlib/platform_include/assert.h \
- /home/tuttyfrutyee/Documents/embedded_programming/esp/high5/build/include/sdkconfig.h \
+ /home/tuttyfrutyee/Documents/embedded_programming/esp/high4/build/include/sdkconfig.h \
  /home/tuttyfrutyee/esp/esp-idf/components/heap/include/multi_heap.h \
  /home/tuttyfrutyee/esp/esp-idf/components/heap/multi_heap_internal.h \
  /home/tuttyfrutyee/esp/esp-idf/components/heap/multi_heap_platform.h \
@@ -38,7 +38,7 @@ multi_heap.o: /home/tuttyfrutyee/esp/esp-idf/components/heap/multi_heap.c \
 
 /home/tuttyfrutyee/esp/esp-idf/components/newlib/platform_include/assert.h:
 
-/home/tuttyfrutyee/Documents/embedded_programming/esp/high5/build/include/sdkconfig.h:
+/home/tuttyfrutyee/Documents/embedded_programming/esp/high4/build/include/sdkconfig.h:
 
 /home/tuttyfrutyee/esp/esp-idf/components/heap/include/multi_heap.h:
 

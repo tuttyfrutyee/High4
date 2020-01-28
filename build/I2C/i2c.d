@@ -1,11 +1,11 @@
 i2c.o: \
- /home/tuttyfrutyee/Documents/embedded_programming/esp/high5/components/I2C/i2c.c \
- /home/tuttyfrutyee/Documents/embedded_programming/esp/high5/components/I2C/./include/i2c.h \
+ /home/tuttyfrutyee/Documents/embedded_programming/esp/high4/components/I2C/i2c.c \
+ /home/tuttyfrutyee/Documents/embedded_programming/esp/high4/components/I2C/./include/i2c.h \
  /home/tuttyfrutyee/esp/esp-idf/components/driver/include/driver/i2c.h \
  /home/tuttyfrutyee/esp/esp-idf/components/esp_common/include/esp_types.h \
  /home/tuttyfrutyee/esp/esp-idf/components/esp_common/include/esp_err.h \
  /home/tuttyfrutyee/esp/esp-idf/components/newlib/platform_include/assert.h \
- /home/tuttyfrutyee/Documents/embedded_programming/esp/high5/build/include/sdkconfig.h \
+ /home/tuttyfrutyee/Documents/embedded_programming/esp/high4/build/include/sdkconfig.h \
  /home/tuttyfrutyee/esp/esp-idf/components/esp32/include/esp_intr_alloc.h \
  /home/tuttyfrutyee/esp/esp-idf/components/freertos/include/freertos/xtensa_api.h \
  /home/tuttyfrutyee/esp/esp-idf/components/xtensa/include/xtensa/hal.h \
@@ -57,7 +57,7 @@ i2c.o: \
  /home/tuttyfrutyee/esp/esp-idf/components/log/include/esp_log.h \
  /home/tuttyfrutyee/esp/esp-idf/components/log/include/esp_log_internal.h
 
-/home/tuttyfrutyee/Documents/embedded_programming/esp/high5/components/I2C/./include/i2c.h:
+/home/tuttyfrutyee/Documents/embedded_programming/esp/high4/components/I2C/./include/i2c.h:
 
 /home/tuttyfrutyee/esp/esp-idf/components/driver/include/driver/i2c.h:
 
@@ -67,7 +67,7 @@ i2c.o: \
 
 /home/tuttyfrutyee/esp/esp-idf/components/newlib/platform_include/assert.h:
 
-/home/tuttyfrutyee/Documents/embedded_programming/esp/high5/build/include/sdkconfig.h:
+/home/tuttyfrutyee/Documents/embedded_programming/esp/high4/build/include/sdkconfig.h:
 
 /home/tuttyfrutyee/esp/esp-idf/components/esp32/include/esp_intr_alloc.h:
 
@@ -168,4 +168,4 @@ i2c.o: \
 /home/tuttyfrutyee/esp/esp-idf/components/log/include/esp_log.h:
 
 /home/tuttyfrutyee/esp/esp-idf/components/log/include/esp_log_internal.h:
-/home/tuttyfrutyee/Documents/embedded_programming/esp/high5/components/I2C/./i2c.c:
+/home/tuttyfrutyee/Documents/embedded_programming/esp/high4/components/I2C/./i2c.c:

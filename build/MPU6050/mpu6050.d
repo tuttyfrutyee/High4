@@ -1,13 +1,13 @@
 mpu6050.o: \
- /home/tuttyfrutyee/Documents/embedded_programming/esp/high5/components/MPU6050/mpu6050.c \
- /home/tuttyfrutyee/Documents/embedded_programming/esp/high5/components/MPU6050/include/acceleration.h \
- /home/tuttyfrutyee/Documents/embedded_programming/esp/high5/components/MPU6050/include/mpu6050.h \
- /home/tuttyfrutyee/Documents/embedded_programming/esp/high5/components/I2C/include/i2c.h \
+ /home/tuttyfrutyee/Documents/embedded_programming/esp/high4/components/MPU6050/mpu6050.c \
+ /home/tuttyfrutyee/Documents/embedded_programming/esp/high4/components/MPU6050/include/acceleration.h \
+ /home/tuttyfrutyee/Documents/embedded_programming/esp/high4/components/MPU6050/include/mpu6050.h \
+ /home/tuttyfrutyee/Documents/embedded_programming/esp/high4/components/I2C/include/i2c.h \
  /home/tuttyfrutyee/esp/esp-idf/components/driver/include/driver/i2c.h \
  /home/tuttyfrutyee/esp/esp-idf/components/esp_common/include/esp_types.h \
  /home/tuttyfrutyee/esp/esp-idf/components/esp_common/include/esp_err.h \
  /home/tuttyfrutyee/esp/esp-idf/components/newlib/platform_include/assert.h \
- /home/tuttyfrutyee/Documents/embedded_programming/esp/high5/build/include/sdkconfig.h \
+ /home/tuttyfrutyee/Documents/embedded_programming/esp/high4/build/include/sdkconfig.h \
  /home/tuttyfrutyee/esp/esp-idf/components/esp32/include/esp_intr_alloc.h \
  /home/tuttyfrutyee/esp/esp-idf/components/freertos/include/freertos/xtensa_api.h \
  /home/tuttyfrutyee/esp/esp-idf/components/xtensa/include/xtensa/hal.h \
@@ -56,13 +56,13 @@ mpu6050.o: \
  /home/tuttyfrutyee/esp/esp-idf/components/soc/esp32/include/soc/gpio_struct.h \
  /home/tuttyfrutyee/esp/esp-idf/components/soc/esp32/include/soc/gpio_reg.h \
  /home/tuttyfrutyee/esp/esp-idf/components/soc/esp32/include/soc/gpio_sig_map.h \
- /home/tuttyfrutyee/Documents/embedded_programming/esp/high5/components/I2C/include/i2c_imu.h
+ /home/tuttyfrutyee/Documents/embedded_programming/esp/high4/components/I2C/include/i2c_imu.h
 
-/home/tuttyfrutyee/Documents/embedded_programming/esp/high5/components/MPU6050/include/acceleration.h:
+/home/tuttyfrutyee/Documents/embedded_programming/esp/high4/components/MPU6050/include/acceleration.h:
 
-/home/tuttyfrutyee/Documents/embedded_programming/esp/high5/components/MPU6050/include/mpu6050.h:
+/home/tuttyfrutyee/Documents/embedded_programming/esp/high4/components/MPU6050/include/mpu6050.h:
 
-/home/tuttyfrutyee/Documents/embedded_programming/esp/high5/components/I2C/include/i2c.h:
+/home/tuttyfrutyee/Documents/embedded_programming/esp/high4/components/I2C/include/i2c.h:
 
 /home/tuttyfrutyee/esp/esp-idf/components/driver/include/driver/i2c.h:
 
@@ -72,7 +72,7 @@ mpu6050.o: \
 
 /home/tuttyfrutyee/esp/esp-idf/components/newlib/platform_include/assert.h:
 
-/home/tuttyfrutyee/Documents/embedded_programming/esp/high5/build/include/sdkconfig.h:
+/home/tuttyfrutyee/Documents/embedded_programming/esp/high4/build/include/sdkconfig.h:
 
 /home/tuttyfrutyee/esp/esp-idf/components/esp32/include/esp_intr_alloc.h:
 
@@ -170,5 +170,5 @@ mpu6050.o: \
 
 /home/tuttyfrutyee/esp/esp-idf/components/soc/esp32/include/soc/gpio_sig_map.h:
 
-/home/tuttyfrutyee/Documents/embedded_programming/esp/high5/components/I2C/include/i2c_imu.h:
-/home/tuttyfrutyee/Documents/embedded_programming/esp/high5/components/MPU6050/./mpu6050.c:
+/home/tuttyfrutyee/Documents/embedded_programming/esp/high4/components/I2C/include/i2c_imu.h:
+/home/tuttyfrutyee/Documents/embedded_programming/esp/high4/components/MPU6050/./mpu6050.c:

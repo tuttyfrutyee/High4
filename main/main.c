@@ -11,6 +11,7 @@
 
 #include "acceleration.h"
 #include "imugather.h"
+#include "sdcard.h"
 
 #include "mqtt.h"
 
@@ -35,11 +36,13 @@ void app_main(void)
 
     int ret;
 
-    IMUGATHER gather = {1,3,0,2,3000};
+    IMUGATHER gather = {1,3,0,300};
 
     ret = i2c_master_init(300000);
 
     initSdCard();
+
+    startRecordingData();
 
     int16_t* dataArray = NULL;
 
@@ -54,7 +57,7 @@ void app_main(void)
 
         selfTestSensors(&gather);
 
-        for(int i=0; i < 3; i++){
+/*         for(int i=0; i < 3; i++){
 
             
 
@@ -65,17 +68,18 @@ void app_main(void)
             printAccelerationRawDatas(&gather);
 
             dataArray = getGatherAccelerationsAsArrayInOrder(&gather);
-            writeToSensorDataArray(dataArray);
+            writeToSensorDataBytes(dataArray,12);
 
             vTaskDelay(50 / portTICK_PERIOD_MS);
-        }
+        } */
+
+        goCollectCurrentModeData(&gather);
 
     }
     else{
         printf("something went wrong with i2c init\n");
     }
 
-    unMountSdCard();
 
     printf("all done\n");
 

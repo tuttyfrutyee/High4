@@ -1,7 +1,7 @@
 spi_flash_os_func_app.o: \
  /home/tuttyfrutyee/esp/esp-idf/components/spi_flash/spi_flash_os_func_app.c \
  /home/tuttyfrutyee/esp/esp-idf/components/esp_rom/include/esp32/rom/ets_sys.h \
- /home/tuttyfrutyee/Documents/embedded_programming/esp/high5/build/include/sdkconfig.h \
+ /home/tuttyfrutyee/Documents/embedded_programming/esp/high4/build/include/sdkconfig.h \
  /home/tuttyfrutyee/esp/esp-idf/components/esp32/include/esp_attr.h \
  /home/tuttyfrutyee/esp/esp-idf/components/spi_flash/include/esp_spi_flash.h \
  /home/tuttyfrutyee/esp/esp-idf/components/esp_common/include/esp_err.h \
@@ -13,7 +13,7 @@ spi_flash_os_func_app.o: \
 
 /home/tuttyfrutyee/esp/esp-idf/components/esp_rom/include/esp32/rom/ets_sys.h:
 
-/home/tuttyfrutyee/Documents/embedded_programming/esp/high5/build/include/sdkconfig.h:
+/home/tuttyfrutyee/Documents/embedded_programming/esp/high4/build/include/sdkconfig.h:
 
 /home/tuttyfrutyee/esp/esp-idf/components/esp32/include/esp_attr.h:
 

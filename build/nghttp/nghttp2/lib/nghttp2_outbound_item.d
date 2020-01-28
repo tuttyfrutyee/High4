@@ -12,7 +12,7 @@ nghttp2/lib/nghttp2_outbound_item.o: \
  /home/tuttyfrutyee/esp/esp-idf/components/nghttp/nghttp2/lib/nghttp2_mem.h \
  /home/tuttyfrutyee/esp/esp-idf/components/nghttp/nghttp2/lib/nghttp2_rcbuf.h \
  /home/tuttyfrutyee/esp/esp-idf/components/newlib/platform_include/assert.h \
- /home/tuttyfrutyee/Documents/embedded_programming/esp/high5/build/include/sdkconfig.h
+ /home/tuttyfrutyee/Documents/embedded_programming/esp/high4/build/include/sdkconfig.h
 
 /home/tuttyfrutyee/esp/esp-idf/components/nghttp/nghttp2/lib/nghttp2_outbound_item.h:
 
@@ -38,5 +38,5 @@ nghttp2/lib/nghttp2_outbound_item.o: \
 
 /home/tuttyfrutyee/esp/esp-idf/components/newlib/platform_include/assert.h:
 
-/home/tuttyfrutyee/Documents/embedded_programming/esp/high5/build/include/sdkconfig.h:
+/home/tuttyfrutyee/Documents/embedded_programming/esp/high4/build/include/sdkconfig.h:
 /home/tuttyfrutyee/esp/esp-idf/components/nghttp/nghttp2/lib/nghttp2_outbound_item.c:

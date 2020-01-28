@@ -6,7 +6,7 @@ lwip/src/core/ipv6/ip6_addr.o: \
  /home/tuttyfrutyee/esp/esp-idf/components/newlib/platform_include/sys/time.h \
  /home/tuttyfrutyee/esp/esp-idf/components/vfs/include/sys/ioctl.h \
  /home/tuttyfrutyee/esp/esp-idf/components/esp_common/include/esp_task.h \
- /home/tuttyfrutyee/Documents/embedded_programming/esp/high5/build/include/sdkconfig.h \
+ /home/tuttyfrutyee/Documents/embedded_programming/esp/high4/build/include/sdkconfig.h \
  /home/tuttyfrutyee/esp/esp-idf/components/freertos/include/freertos/FreeRTOSConfig.h \
  /home/tuttyfrutyee/esp/esp-idf/components/freertos/include/freertos/xtensa_config.h \
  /home/tuttyfrutyee/esp/esp-idf/components/xtensa/include/xtensa/hal.h \
@@ -72,7 +72,7 @@ lwip/src/core/ipv6/ip6_addr.o: \
 
 /home/tuttyfrutyee/esp/esp-idf/components/esp_common/include/esp_task.h:
 
-/home/tuttyfrutyee/Documents/embedded_programming/esp/high5/build/include/sdkconfig.h:
+/home/tuttyfrutyee/Documents/embedded_programming/esp/high4/build/include/sdkconfig.h:
 
 /home/tuttyfrutyee/esp/esp-idf/components/freertos/include/freertos/FreeRTOSConfig.h:
 

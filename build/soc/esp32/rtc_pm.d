@@ -1,7 +1,7 @@
 esp32/rtc_pm.o: \
  /home/tuttyfrutyee/esp/esp-idf/components/soc/esp32/rtc_pm.c \
  /home/tuttyfrutyee/esp/esp-idf/components/newlib/platform_include/assert.h \
- /home/tuttyfrutyee/Documents/embedded_programming/esp/high5/build/include/sdkconfig.h \
+ /home/tuttyfrutyee/Documents/embedded_programming/esp/high4/build/include/sdkconfig.h \
  /home/tuttyfrutyee/esp/esp-idf/components/soc/esp32/include/soc/rtc.h \
  /home/tuttyfrutyee/esp/esp-idf/components/soc/esp32/include/soc/soc.h \
  /home/tuttyfrutyee/esp/esp-idf/components/esp_common/include/esp_assert.h \
@@ -17,7 +17,7 @@ esp32/rtc_pm.o: \
 
 /home/tuttyfrutyee/esp/esp-idf/components/newlib/platform_include/assert.h:
 
-/home/tuttyfrutyee/Documents/embedded_programming/esp/high5/build/include/sdkconfig.h:
+/home/tuttyfrutyee/Documents/embedded_programming/esp/high4/build/include/sdkconfig.h:
 
 /home/tuttyfrutyee/esp/esp-idf/components/soc/esp32/include/soc/rtc.h:
 

@@ -1,6 +1,6 @@
 dport_access.o: \
  /home/tuttyfrutyee/esp/esp-idf/components/esp32/dport_access.c \
- /home/tuttyfrutyee/Documents/embedded_programming/esp/high5/build/include/sdkconfig.h \
+ /home/tuttyfrutyee/Documents/embedded_programming/esp/high4/build/include/sdkconfig.h \
  /home/tuttyfrutyee/esp/esp-idf/components/esp32/include/esp_attr.h \
  /home/tuttyfrutyee/esp/esp-idf/components/esp_common/include/esp_err.h \
  /home/tuttyfrutyee/esp/esp-idf/components/newlib/platform_include/assert.h \
@@ -65,7 +65,7 @@ dport_access.o: \
  /home/tuttyfrutyee/esp/esp-idf/components/freertos/include/freertos/portmacro.h \
  /home/tuttyfrutyee/esp/esp-idf/components/xtensa/include/xtensa/core-macros.h
 
-/home/tuttyfrutyee/Documents/embedded_programming/esp/high5/build/include/sdkconfig.h:
+/home/tuttyfrutyee/Documents/embedded_programming/esp/high4/build/include/sdkconfig.h:
 
 /home/tuttyfrutyee/esp/esp-idf/components/esp32/include/esp_attr.h:
 

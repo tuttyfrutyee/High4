@@ -1,12 +1,18 @@
 imugather.o: \
- /home/tuttyfrutyee/Documents/embedded_programming/esp/high5/components/IMUGATHER/imugather.c \
- /home/tuttyfrutyee/Documents/embedded_programming/esp/high5/components/MPU6050/include/acceleration.h \
- /home/tuttyfrutyee/Documents/embedded_programming/esp/high5/components/IMUGATHER/include/imugather.h \
- /home/tuttyfrutyee/Documents/embedded_programming/esp/high5/components/MPU6050/include/mpu6050.h \
- /home/tuttyfrutyee/esp/esp-idf/components/driver/include/driver/gpio.h \
+ /home/tuttyfrutyee/Documents/embedded_programming/esp/high4/components/IMUGATHER/imugather.c \
+ /home/tuttyfrutyee/Documents/embedded_programming/esp/high4/components/MPU6050/include/acceleration.h \
+ /home/tuttyfrutyee/Documents/embedded_programming/esp/high4/components/IMUGATHER/include/imugather.h \
+ /home/tuttyfrutyee/Documents/embedded_programming/esp/high4/components/MPU6050/include/mpu6050.h \
+ /home/tuttyfrutyee/Documents/embedded_programming/esp/high4/components/SD/include/sdcard.h \
+ /home/tuttyfrutyee/esp/esp-idf/components/newlib/platform_include/sys/unistd.h \
  /home/tuttyfrutyee/esp/esp-idf/components/esp_common/include/esp_err.h \
  /home/tuttyfrutyee/esp/esp-idf/components/newlib/platform_include/assert.h \
- /home/tuttyfrutyee/Documents/embedded_programming/esp/high5/build/include/sdkconfig.h \
+ /home/tuttyfrutyee/Documents/embedded_programming/esp/high4/build/include/sdkconfig.h \
+ /home/tuttyfrutyee/esp/esp-idf/components/log/include/esp_log.h \
+ /home/tuttyfrutyee/esp/esp-idf/components/esp_rom/include/esp32/rom/ets_sys.h \
+ /home/tuttyfrutyee/esp/esp-idf/components/log/include/esp_log_internal.h \
+ /home/tuttyfrutyee/esp/esp-idf/components/fatfs/vfs/esp_vfs_fat.h \
+ /home/tuttyfrutyee/esp/esp-idf/components/driver/include/driver/gpio.h \
  /home/tuttyfrutyee/esp/esp-idf/components/esp_common/include/esp_types.h \
  /home/tuttyfrutyee/esp/esp-idf/components/esp_common/include/esp_bit_defs.h \
  /home/tuttyfrutyee/esp/esp-idf/components/esp_rom/include/esp32/rom/gpio.h \
@@ -30,11 +36,10 @@ imugather.o: \
  /home/tuttyfrutyee/esp/esp-idf/components/soc/esp32/include/soc/gpio_struct.h \
  /home/tuttyfrutyee/esp/esp-idf/components/soc/esp32/include/soc/gpio_reg.h \
  /home/tuttyfrutyee/esp/esp-idf/components/soc/esp32/include/soc/gpio_sig_map.h \
- /home/tuttyfrutyee/esp/esp-idf/components/esp_common/include/esp_timer.h \
+ /home/tuttyfrutyee/esp/esp-idf/components/driver/include/driver/sdmmc_types.h \
  /home/tuttyfrutyee/esp/esp-idf/components/freertos/include/freertos/FreeRTOS.h \
  /home/tuttyfrutyee/esp/esp-idf/components/freertos/include/freertos/FreeRTOSConfig.h \
  /home/tuttyfrutyee/esp/esp-idf/components/freertos/include/freertos/xtensa_config.h \
- /home/tuttyfrutyee/esp/esp-idf/components/esp_rom/include/esp32/rom/ets_sys.h \
  /home/tuttyfrutyee/esp/esp-idf/components/freertos/include/freertos/projdefs.h \
  /home/tuttyfrutyee/esp/esp-idf/components/freertos/include/freertos/portable.h \
  /home/tuttyfrutyee/esp/esp-idf/components/freertos/include/freertos/deprecated_definitions.h \
@@ -43,17 +48,40 @@ imugather.o: \
  /home/tuttyfrutyee/esp/esp-idf/components/xtensa/esp32/include/xtensa/config/specreg.h \
  /home/tuttyfrutyee/esp/esp-idf/components/xtensa/include/xtensa/xtruntime-core-state.h \
  /home/tuttyfrutyee/esp/esp-idf/components/esp_common/include/esp_private/crosscore_int.h \
+ /home/tuttyfrutyee/esp/esp-idf/components/esp_common/include/esp_timer.h \
  /home/tuttyfrutyee/esp/esp-idf/components/heap/include/esp_heap_caps.h \
  /home/tuttyfrutyee/esp/esp-idf/components/heap/include/multi_heap.h \
  /home/tuttyfrutyee/esp/esp-idf/components/freertos/include/freertos/portbenchmark.h \
  /home/tuttyfrutyee/esp/esp-idf/components/freertos/include/freertos/mpu_wrappers.h \
  /home/tuttyfrutyee/esp/esp-idf/components/esp_common/include/esp_system.h \
  /home/tuttyfrutyee/esp/esp-idf/components/esp_common/include/esp_idf_version.h \
+ /home/tuttyfrutyee/esp/esp-idf/components/driver/include/driver/sdmmc_host.h \
+ /home/tuttyfrutyee/esp/esp-idf/components/driver/include/driver/sdmmc_types.h \
+ /home/tuttyfrutyee/esp/esp-idf/components/driver/include/driver/sdspi_host.h \
+ /home/tuttyfrutyee/esp/esp-idf/components/driver/include/driver/spi_master.h \
+ /home/tuttyfrutyee/esp/esp-idf/components/driver/include/driver/spi_common.h \
+ /home/tuttyfrutyee/esp/esp-idf/components/esp_rom/include/esp32/rom/lldesc.h \
+ /home/tuttyfrutyee/esp/esp-idf/components/soc/include/soc/spi_periph.h \
+ /home/tuttyfrutyee/esp/esp-idf/components/soc/esp32/include/soc/soc.h \
+ /home/tuttyfrutyee/esp/esp-idf/components/soc/esp32/include/soc/periph_defs.h \
+ /home/tuttyfrutyee/esp/esp-idf/components/soc/esp32/include/soc/spi_caps.h \
+ /home/tuttyfrutyee/esp/esp-idf/components/soc/esp32/include/soc/spi_reg.h \
+ /home/tuttyfrutyee/esp/esp-idf/components/soc/esp32/include/soc/spi_struct.h \
+ /home/tuttyfrutyee/esp/esp-idf/components/soc/include/hal/spi_types.h \
+ /home/tuttyfrutyee/esp/esp-idf/components/fatfs/src/ff.h \
+ /home/tuttyfrutyee/esp/esp-idf/components/fatfs/src/ffconf.h \
+ /home/tuttyfrutyee/esp/esp-idf/components/freertos/include/freertos/semphr.h \
+ /home/tuttyfrutyee/esp/esp-idf/components/freertos/include/freertos/queue.h \
+ /home/tuttyfrutyee/esp/esp-idf/components/wear_levelling/include/wear_levelling.h \
+ /home/tuttyfrutyee/esp/esp-idf/components/spi_flash/include/esp_partition.h \
+ /home/tuttyfrutyee/esp/esp-idf/components/spi_flash/include/esp_flash.h \
+ /home/tuttyfrutyee/esp/esp-idf/components/soc/include/hal/spi_flash_types.h \
+ /home/tuttyfrutyee/esp/esp-idf/components/soc/include/hal/esp_flash_err.h \
+ /home/tuttyfrutyee/esp/esp-idf/components/spi_flash/include/esp_spi_flash.h \
+ /home/tuttyfrutyee/esp/esp-idf/components/sdmmc/include/sdmmc_cmd.h \
  /home/tuttyfrutyee/esp/esp-idf/components/esp_event/include/esp_event.h \
  /home/tuttyfrutyee/esp/esp-idf/components/freertos/include/freertos/task.h \
  /home/tuttyfrutyee/esp/esp-idf/components/freertos/include/freertos/list.h \
- /home/tuttyfrutyee/esp/esp-idf/components/freertos/include/freertos/queue.h \
- /home/tuttyfrutyee/esp/esp-idf/components/freertos/include/freertos/semphr.h \
  /home/tuttyfrutyee/esp/esp-idf/components/freertos/include/freertos/queue.h \
  /home/tuttyfrutyee/esp/esp-idf/components/esp_event/include/esp_event_base.h \
  /home/tuttyfrutyee/esp/esp-idf/components/esp_event/include/esp_event_legacy.h \
@@ -65,7 +93,6 @@ imugather.o: \
  /home/tuttyfrutyee/esp/esp-idf/components/lwip/lwip/src/include/lwip/ip_addr.h \
  /home/tuttyfrutyee/esp/esp-idf/components/lwip/lwip/src/include/lwip/opt.h \
  /home/tuttyfrutyee/esp/esp-idf/components/lwip/port/esp32/include/lwipopts.h \
- /home/tuttyfrutyee/esp/esp-idf/components/newlib/platform_include/time.h \
  /home/tuttyfrutyee/esp/esp-idf/components/newlib/platform_include/sys/time.h \
  /home/tuttyfrutyee/esp/esp-idf/components/vfs/include/sys/ioctl.h \
  /home/tuttyfrutyee/esp/esp-idf/components/esp_common/include/esp_task.h \
@@ -86,19 +113,31 @@ imugather.o: \
  /home/tuttyfrutyee/esp/esp-idf/components/lwip/include/apps/dhcpserver/dhcpserver.h \
  /home/tuttyfrutyee/esp/esp-idf/components/esp_event/include/esp_event_loop.h
 
-/home/tuttyfrutyee/Documents/embedded_programming/esp/high5/components/MPU6050/include/acceleration.h:
+/home/tuttyfrutyee/Documents/embedded_programming/esp/high4/components/MPU6050/include/acceleration.h:
 
-/home/tuttyfrutyee/Documents/embedded_programming/esp/high5/components/IMUGATHER/include/imugather.h:
+/home/tuttyfrutyee/Documents/embedded_programming/esp/high4/components/IMUGATHER/include/imugather.h:
 
-/home/tuttyfrutyee/Documents/embedded_programming/esp/high5/components/MPU6050/include/mpu6050.h:
+/home/tuttyfrutyee/Documents/embedded_programming/esp/high4/components/MPU6050/include/mpu6050.h:
 
-/home/tuttyfrutyee/esp/esp-idf/components/driver/include/driver/gpio.h:
+/home/tuttyfrutyee/Documents/embedded_programming/esp/high4/components/SD/include/sdcard.h:
+
+/home/tuttyfrutyee/esp/esp-idf/components/newlib/platform_include/sys/unistd.h:
 
 /home/tuttyfrutyee/esp/esp-idf/components/esp_common/include/esp_err.h:
 
 /home/tuttyfrutyee/esp/esp-idf/components/newlib/platform_include/assert.h:
 
-/home/tuttyfrutyee/Documents/embedded_programming/esp/high5/build/include/sdkconfig.h:
+/home/tuttyfrutyee/Documents/embedded_programming/esp/high4/build/include/sdkconfig.h:
+
+/home/tuttyfrutyee/esp/esp-idf/components/log/include/esp_log.h:
+
+/home/tuttyfrutyee/esp/esp-idf/components/esp_rom/include/esp32/rom/ets_sys.h:
+
+/home/tuttyfrutyee/esp/esp-idf/components/log/include/esp_log_internal.h:
+
+/home/tuttyfrutyee/esp/esp-idf/components/fatfs/vfs/esp_vfs_fat.h:
+
+/home/tuttyfrutyee/esp/esp-idf/components/driver/include/driver/gpio.h:
 
 /home/tuttyfrutyee/esp/esp-idf/components/esp_common/include/esp_types.h:
 
@@ -146,15 +185,13 @@ imugather.o: \
 
 /home/tuttyfrutyee/esp/esp-idf/components/soc/esp32/include/soc/gpio_sig_map.h:
 
-/home/tuttyfrutyee/esp/esp-idf/components/esp_common/include/esp_timer.h:
+/home/tuttyfrutyee/esp/esp-idf/components/driver/include/driver/sdmmc_types.h:
 
 /home/tuttyfrutyee/esp/esp-idf/components/freertos/include/freertos/FreeRTOS.h:
 
 /home/tuttyfrutyee/esp/esp-idf/components/freertos/include/freertos/FreeRTOSConfig.h:
 
 /home/tuttyfrutyee/esp/esp-idf/components/freertos/include/freertos/xtensa_config.h:
-
-/home/tuttyfrutyee/esp/esp-idf/components/esp_rom/include/esp32/rom/ets_sys.h:
 
 /home/tuttyfrutyee/esp/esp-idf/components/freertos/include/freertos/projdefs.h:
 
@@ -172,6 +209,8 @@ imugather.o: \
 
 /home/tuttyfrutyee/esp/esp-idf/components/esp_common/include/esp_private/crosscore_int.h:
 
+/home/tuttyfrutyee/esp/esp-idf/components/esp_common/include/esp_timer.h:
+
 /home/tuttyfrutyee/esp/esp-idf/components/heap/include/esp_heap_caps.h:
 
 /home/tuttyfrutyee/esp/esp-idf/components/heap/include/multi_heap.h:
@@ -184,15 +223,59 @@ imugather.o: \
 
 /home/tuttyfrutyee/esp/esp-idf/components/esp_common/include/esp_idf_version.h:
 
+/home/tuttyfrutyee/esp/esp-idf/components/driver/include/driver/sdmmc_host.h:
+
+/home/tuttyfrutyee/esp/esp-idf/components/driver/include/driver/sdmmc_types.h:
+
+/home/tuttyfrutyee/esp/esp-idf/components/driver/include/driver/sdspi_host.h:
+
+/home/tuttyfrutyee/esp/esp-idf/components/driver/include/driver/spi_master.h:
+
+/home/tuttyfrutyee/esp/esp-idf/components/driver/include/driver/spi_common.h:
+
+/home/tuttyfrutyee/esp/esp-idf/components/esp_rom/include/esp32/rom/lldesc.h:
+
+/home/tuttyfrutyee/esp/esp-idf/components/soc/include/soc/spi_periph.h:
+
+/home/tuttyfrutyee/esp/esp-idf/components/soc/esp32/include/soc/soc.h:
+
+/home/tuttyfrutyee/esp/esp-idf/components/soc/esp32/include/soc/periph_defs.h:
+
+/home/tuttyfrutyee/esp/esp-idf/components/soc/esp32/include/soc/spi_caps.h:
+
+/home/tuttyfrutyee/esp/esp-idf/components/soc/esp32/include/soc/spi_reg.h:
+
+/home/tuttyfrutyee/esp/esp-idf/components/soc/esp32/include/soc/spi_struct.h:
+
+/home/tuttyfrutyee/esp/esp-idf/components/soc/include/hal/spi_types.h:
+
+/home/tuttyfrutyee/esp/esp-idf/components/fatfs/src/ff.h:
+
+/home/tuttyfrutyee/esp/esp-idf/components/fatfs/src/ffconf.h:
+
+/home/tuttyfrutyee/esp/esp-idf/components/freertos/include/freertos/semphr.h:
+
+/home/tuttyfrutyee/esp/esp-idf/components/freertos/include/freertos/queue.h:
+
+/home/tuttyfrutyee/esp/esp-idf/components/wear_levelling/include/wear_levelling.h:
+
+/home/tuttyfrutyee/esp/esp-idf/components/spi_flash/include/esp_partition.h:
+
+/home/tuttyfrutyee/esp/esp-idf/components/spi_flash/include/esp_flash.h:
+
+/home/tuttyfrutyee/esp/esp-idf/components/soc/include/hal/spi_flash_types.h:
+
+/home/tuttyfrutyee/esp/esp-idf/components/soc/include/hal/esp_flash_err.h:
+
+/home/tuttyfrutyee/esp/esp-idf/components/spi_flash/include/esp_spi_flash.h:
+
+/home/tuttyfrutyee/esp/esp-idf/components/sdmmc/include/sdmmc_cmd.h:
+
 /home/tuttyfrutyee/esp/esp-idf/components/esp_event/include/esp_event.h:
 
 /home/tuttyfrutyee/esp/esp-idf/components/freertos/include/freertos/task.h:
 
 /home/tuttyfrutyee/esp/esp-idf/components/freertos/include/freertos/list.h:
-
-/home/tuttyfrutyee/esp/esp-idf/components/freertos/include/freertos/queue.h:
-
-/home/tuttyfrutyee/esp/esp-idf/components/freertos/include/freertos/semphr.h:
 
 /home/tuttyfrutyee/esp/esp-idf/components/freertos/include/freertos/queue.h:
 
@@ -215,8 +298,6 @@ imugather.o: \
 /home/tuttyfrutyee/esp/esp-idf/components/lwip/lwip/src/include/lwip/opt.h:
 
 /home/tuttyfrutyee/esp/esp-idf/components/lwip/port/esp32/include/lwipopts.h:
-
-/home/tuttyfrutyee/esp/esp-idf/components/newlib/platform_include/time.h:
 
 /home/tuttyfrutyee/esp/esp-idf/components/newlib/platform_include/sys/time.h:
 
@@ -255,4 +336,4 @@ imugather.o: \
 /home/tuttyfrutyee/esp/esp-idf/components/lwip/include/apps/dhcpserver/dhcpserver.h:
 
 /home/tuttyfrutyee/esp/esp-idf/components/esp_event/include/esp_event_loop.h:
-/home/tuttyfrutyee/Documents/embedded_programming/esp/high5/components/IMUGATHER/./imugather.c:
+/home/tuttyfrutyee/Documents/embedded_programming/esp/high4/components/IMUGATHER/./imugather.c:

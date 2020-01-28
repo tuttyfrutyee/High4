@@ -14,7 +14,7 @@ dport_panic_highint_hdl.o: \
  /home/tuttyfrutyee/esp/esp-idf/components/freertos/include/freertos/xtensa_context.h \
  /home/tuttyfrutyee/esp/esp-idf/components/xtensa/include/xtensa/xtruntime-frames.h \
  /home/tuttyfrutyee/esp/esp-idf/components/xtensa/include/esp_private/panic_reason.h \
- /home/tuttyfrutyee/Documents/embedded_programming/esp/high5/build/include/sdkconfig.h \
+ /home/tuttyfrutyee/Documents/embedded_programming/esp/high4/build/include/sdkconfig.h \
  /home/tuttyfrutyee/esp/esp-idf/components/soc/esp32/include/soc/soc.h \
  /home/tuttyfrutyee/esp/esp-idf/components/esp_common/include/esp_bit_defs.h \
  /home/tuttyfrutyee/esp/esp-idf/components/soc/esp32/include/soc/dport_reg.h \
@@ -48,7 +48,7 @@ dport_panic_highint_hdl.o: \
 
 /home/tuttyfrutyee/esp/esp-idf/components/xtensa/include/esp_private/panic_reason.h:
 
-/home/tuttyfrutyee/Documents/embedded_programming/esp/high5/build/include/sdkconfig.h:
+/home/tuttyfrutyee/Documents/embedded_programming/esp/high4/build/include/sdkconfig.h:
 
 /home/tuttyfrutyee/esp/esp-idf/components/soc/esp32/include/soc/soc.h:
 

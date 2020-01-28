@@ -1,9 +1,9 @@
 stdin_out.o: \
- /home/tuttyfrutyee/Documents/embedded_programming/esp/high5/components/MQTT/stdin_out.c \
- /home/tuttyfrutyee/Documents/embedded_programming/esp/high5/components/MQTT/include/protocol_examples_common.h \
+ /home/tuttyfrutyee/Documents/embedded_programming/esp/high4/components/MQTT/stdin_out.c \
+ /home/tuttyfrutyee/Documents/embedded_programming/esp/high4/components/MQTT/include/protocol_examples_common.h \
  /home/tuttyfrutyee/esp/esp-idf/components/esp_common/include/esp_err.h \
  /home/tuttyfrutyee/esp/esp-idf/components/newlib/platform_include/assert.h \
- /home/tuttyfrutyee/Documents/embedded_programming/esp/high5/build/include/sdkconfig.h \
+ /home/tuttyfrutyee/Documents/embedded_programming/esp/high4/build/include/sdkconfig.h \
  /home/tuttyfrutyee/esp/esp-idf/components/tcpip_adapter/include/tcpip_adapter.h \
  /home/tuttyfrutyee/esp/esp-idf/components/esp_wifi/include/esp_wifi_types.h \
  /home/tuttyfrutyee/esp/esp-idf/components/esp_wifi/include/esp_private/esp_wifi_types_private.h \
@@ -85,13 +85,13 @@ stdin_out.o: \
  /home/tuttyfrutyee/esp/esp-idf/components/esp_ringbuf/include/freertos/ringbuf.h \
  /home/tuttyfrutyee/esp/esp-idf/components/esp_common/include/esp_types.h
 
-/home/tuttyfrutyee/Documents/embedded_programming/esp/high5/components/MQTT/include/protocol_examples_common.h:
+/home/tuttyfrutyee/Documents/embedded_programming/esp/high4/components/MQTT/include/protocol_examples_common.h:
 
 /home/tuttyfrutyee/esp/esp-idf/components/esp_common/include/esp_err.h:
 
 /home/tuttyfrutyee/esp/esp-idf/components/newlib/platform_include/assert.h:
 
-/home/tuttyfrutyee/Documents/embedded_programming/esp/high5/build/include/sdkconfig.h:
+/home/tuttyfrutyee/Documents/embedded_programming/esp/high4/build/include/sdkconfig.h:
 
 /home/tuttyfrutyee/esp/esp-idf/components/tcpip_adapter/include/tcpip_adapter.h:
 
@@ -252,4 +252,4 @@ stdin_out.o: \
 /home/tuttyfrutyee/esp/esp-idf/components/esp_ringbuf/include/freertos/ringbuf.h:
 
 /home/tuttyfrutyee/esp/esp-idf/components/esp_common/include/esp_types.h:
-/home/tuttyfrutyee/Documents/embedded_programming/esp/high5/components/MQTT/./stdin_out.c:
+/home/tuttyfrutyee/Documents/embedded_programming/esp/high4/components/MQTT/./stdin_out.c:

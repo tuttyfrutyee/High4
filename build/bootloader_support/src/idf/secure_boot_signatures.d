@@ -1,6 +1,6 @@
 src/idf/secure_boot_signatures.o: \
  /home/tuttyfrutyee/esp/esp-idf/components/bootloader_support/src/idf/secure_boot_signatures.c \
- /home/tuttyfrutyee/Documents/embedded_programming/esp/high5/build/include/sdkconfig.h \
+ /home/tuttyfrutyee/Documents/embedded_programming/esp/high4/build/include/sdkconfig.h \
  /home/tuttyfrutyee/esp/esp-idf/components/bootloader_support/include_bootloader/bootloader_flash.h \
  /home/tuttyfrutyee/esp/esp-idf/components/esp_common/include/esp_err.h \
  /home/tuttyfrutyee/esp/esp-idf/components/newlib/platform_include/assert.h \
@@ -34,7 +34,7 @@ src/idf/secure_boot_signatures.o: \
  /home/tuttyfrutyee/esp/esp-idf/components/mbedtls/mbedtls/include/mbedtls/ecp.h \
  /home/tuttyfrutyee/esp/esp-idf/components/mbedtls/mbedtls/include/mbedtls/ecdsa.h
 
-/home/tuttyfrutyee/Documents/embedded_programming/esp/high5/build/include/sdkconfig.h:
+/home/tuttyfrutyee/Documents/embedded_programming/esp/high4/build/include/sdkconfig.h:
 
 /home/tuttyfrutyee/esp/esp-idf/components/bootloader_support/include_bootloader/bootloader_flash.h:
 

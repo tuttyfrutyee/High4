@@ -1,6 +1,6 @@
 log.o: /home/tuttyfrutyee/esp/esp-idf/components/log/log.c \
  /home/tuttyfrutyee/esp/esp-idf/components/esp32/include/esp_attr.h \
- /home/tuttyfrutyee/Documents/embedded_programming/esp/high5/build/bootloader/../include/sdkconfig.h \
+ /home/tuttyfrutyee/Documents/embedded_programming/esp/high4/build/bootloader/../include/sdkconfig.h \
  /home/tuttyfrutyee/esp/esp-idf/components/xtensa/include/xtensa/hal.h \
  /home/tuttyfrutyee/esp/esp-idf/components/soc/esp32/include/soc/soc.h \
  /home/tuttyfrutyee/esp/esp-idf/components/esp_common/include/esp_assert.h \
@@ -12,7 +12,7 @@ log.o: /home/tuttyfrutyee/esp/esp-idf/components/log/log.c \
 
 /home/tuttyfrutyee/esp/esp-idf/components/esp32/include/esp_attr.h:
 
-/home/tuttyfrutyee/Documents/embedded_programming/esp/high5/build/bootloader/../include/sdkconfig.h:
+/home/tuttyfrutyee/Documents/embedded_programming/esp/high4/build/bootloader/../include/sdkconfig.h:
 
 /home/tuttyfrutyee/esp/esp-idf/components/xtensa/include/xtensa/hal.h:
 
