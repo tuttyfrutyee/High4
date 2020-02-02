@@ -1,6 +1,6 @@
 #include "mqtt.h"
 
-#define CONFIG_BROKER_URL "mqtt://192.168.1.22:1883"
+#define CONFIG_BROKER_URL "mqtt://192.168.1.24:1883"
 
 static const char *TAG = "MQTT";
 

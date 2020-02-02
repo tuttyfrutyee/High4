@@ -23,24 +23,26 @@ static const char *TAG = "mpu6050";
 //vTaskDelay(300 / portTICK_PERIOD_MS);
 void app_main(void)
 {
-
-/*     ESP_ERROR_CHECK(nvs_flash_init());
+/* 
+    ESP_ERROR_CHECK(nvs_flash_init());
     tcpip_adapter_init();
     ESP_ERROR_CHECK(esp_event_loop_create_default());
  
 
      ESP_ERROR_CHECK(example_connect());
 
-    mqtt_app_start(); */
-
+    mqtt_app_start();
+ */
 
     int ret;
 
-    IMUGATHER gather = {1,3,0,300};
+    IMUGATHER gather = {4,3,0,3000};
 
     ret = i2c_master_init(300000);
 
     initSdCard();
+
+    printf("hello world\n");
 
     startRecordingData();
 
@@ -57,21 +59,6 @@ void app_main(void)
 
         selfTestSensors(&gather);
 
-/*         for(int i=0; i < 3; i++){
-
-            
-
-            getGatherAccelerations();
-
-            //printAccelerationDatas(&gather);
-
-            printAccelerationRawDatas(&gather);
-
-            dataArray = getGatherAccelerationsAsArrayInOrder(&gather);
-            writeToSensorDataBytes(dataArray,12);
-
-            vTaskDelay(50 / portTICK_PERIOD_MS);
-        } */
 
         goCollectCurrentModeData(&gather);
 

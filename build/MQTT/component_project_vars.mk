@@ -1,8 +1,0 @@
-# Automatically generated build file. Do not edit.
-COMPONENT_INCLUDES += $(PROJECT_PATH)/components/MQTT/include
-COMPONENT_LDFLAGS += -L$(BUILD_DIR_BASE)/MQTT -lMQTT
-COMPONENT_LINKER_DEPS += 
-COMPONENT_SUBMODULES += 
-COMPONENT_LIBRARIES += MQTT
-COMPONENT_LDFRAGMENTS += 
-component-MQTT-build: 

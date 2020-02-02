@@ -2,6 +2,13 @@
 
 #define MPU6050_
 
+//Global Constants
+extern int linRange; 
+extern int radRange; 
+
+//hardcoded register values
+extern uint16_t linRangeBox[17];
+extern uint16_t radRangeBox[9];
 
 typedef struct MPU6050 {
     Acceleration acc;

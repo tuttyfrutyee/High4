@@ -34,7 +34,7 @@ typedef struct QueueElement{
 } QueueElement;
 
 
-#define MAXCAPACITY 100 //actually max capacity is maxCapacity - 1
+#define MAXCAPACITY 10000 //actually max capacity is maxCapacity - 1
 int front = 0, rear = 0;
 QueueElement** queue[MAXCAPACITY];
 
@@ -256,6 +256,12 @@ void goCollectCurrentModeData(IMUGATHER* gather){
     //put currentMode
     writeToSensorDataBytes(&(gather->currentModeIndicator), 1);
 
+    //put configSettings -> linRangeBox[linRange](1byte) - radRangeBox[radRange](1byte)
+
+    writeToSensorDataBytes(&linRangeBox[linRange], 1);
+
+    writeToSensorDataBytes(&radRangeBox[radRange], 1);
+
     //start to fetch data continously with duration gather->dataCollectDuration
 
     int64_t startTime = getTime();
@@ -264,13 +270,17 @@ void goCollectCurrentModeData(IMUGATHER* gather){
 
     previousTime = currentTime = startTime;
 
+    int totalCapture = 0;
+
     while((currentTime - startTime) < gather->dataCollectDuration){
+
+        totalCapture++;
 
         previousTime = currentTime;
 
         getGatherAccelerations();
 
-        printAccelerationDatas(gather);
+        //printAccelerationDatas(gather);
 
         currentTime = getTime();
 
@@ -291,10 +301,12 @@ void goCollectCurrentModeData(IMUGATHER* gather){
 
     }
 
+    printf("capturePerSecond = %f", ((float)totalCapture) / (currentTime - startTime) * 1000.0 );
+
 
 }
 
-#define CLUSTER_MAX_LENGTH 10
+#define CLUSTER_MAX_LENGTH 100
 
 void recordData(){
     printf("started to recording data peopleeee \n");
@@ -342,7 +354,7 @@ void recordData(){
 }
 
 void startRecordingData(){
-    xTaskCreate( recordData, "dataRecorder", 4 * MAXCAPACITY * 100 , NULL, 3 | portPRIVILEGE_BIT, &xRecorder );
+    xTaskCreate( recordData, "dataRecorder", 4 * CLUSTER_MAX_LENGTH * 200 , NULL, 3 | portPRIVILEGE_BIT, &xRecorder );
 }
 
 void stopRecordingData(){
