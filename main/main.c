@@ -24,13 +24,8 @@ static const char *TAG = "mpu6050";
 void app_main(void)
 {
 /* 
-    ESP_ERROR_CHECK(nvs_flash_init());
-    tcpip_adapter_init();
-    ESP_ERROR_CHECK(esp_event_loop_create_default());
- 
-
-     ESP_ERROR_CHECK(example_connect());
-
+    nvs_flash_init();
+    wifi_init();
     mqtt_app_start();
  */
 
