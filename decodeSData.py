@@ -51,6 +51,15 @@ def getMultipleInt16sFromBytes(_byteArray):
 
     return willReturn
 
+def getStream(_byteArray, imuCount):
+
+    i = 0
+
+    while(i < len(_byteArray)):
+        if(i%2 == 0):
+        
+        else:
+
 def checkSSequenceExist(index) : 
     if (index + 2) >= len(allBytes):
         return 0
