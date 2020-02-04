@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "sdcard.h": "c",
-        "i2c.h": "c"
+        "i2c.h": "c",
+        "time.h": "c"
     }
 }

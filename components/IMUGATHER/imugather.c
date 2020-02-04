@@ -34,7 +34,7 @@ typedef struct QueueElement{
 } QueueElement;
 
 
-#define MAXCAPACITY 10000 //actually max capacity is maxCapacity - 1
+#define MAXCAPACITY 1000 //actually max capacity is maxCapacity - 1
 int front = 0, rear = 0;
 QueueElement** queue[MAXCAPACITY];
 
@@ -46,6 +46,13 @@ int isQueueFull(){
 
 int isQueueEmpty(){
     return (rear == front);
+}
+
+int getQueueSize(){
+    int size = (rear - front);
+    if(size < 0)
+        size += MAXCAPACITY;
+    return size;
 }
 
 int pushToQueue(QueueElement* element){
@@ -112,6 +119,9 @@ int initIMUGATHERSensors(IMUGATHER* _gather){
     gather = _gather;
 
     imuStack = (IMU*) malloc(gather->numberOfImu * sizeof(IMU));
+
+    if(!imuStack)  printf("could not allocate imuStack \n");
+    printf("gather->numberOfImu = %d\n", _gather->numberOfImu);
 
     for(int i = 0; i < gather->numberOfImu; i++)
         imuStack[i].assignedPin = assignedPinsResp[i];
@@ -235,7 +245,7 @@ int16_t* getGatherAccelerationsAsArrayInOrder(IMUGATHER* gather){
 
 }
 
-int64_t getTime(){
+static int64_t getTime(){
     return (int64_t) (clock() * 1000 / CLOCKS_PER_SEC); //returns time in milliseconds
 }
 
@@ -323,8 +333,6 @@ void recordData(){
             continue;
         }
 
-        printf("this is iteration %d\n", iteration);
-
         iteration++;
 
         int elementClusterLength = 0;
@@ -347,6 +355,8 @@ void recordData(){
                 byteIndex++;
             }
         }
+
+        printf("Iteration : %d, queue size %d\n", iteration, getQueueSize());
 
         writeToSensorDataBytes(byteCluster, totalTransmitByteLength);
 
