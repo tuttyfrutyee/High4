@@ -22,68 +22,33 @@
 #include "sdcard.h"
 #include "mqtt.h"
 #include "button.h"
+#include "buzzer.h"
 
 static const char *TAG = "MAIN";
 
 static xQueueHandle gpio_evt_queue;
 
-static IMUGATHER gather = {4,3,0,3000};
+
+static IMUGATHER gather = {4,3,0,3000,7000}; // numberOfImu, numberOfMode, currentMode, criticalTime, dataCollectionDuration
 
 
-
+//local function definitions
 static void buttonHandler();
+static void lifeCycleStart();
+static void initPeripherals();
 
-
-/*     startRecordingData();
-    
-    goCollectCurrentModeData(&gather); */
-
+static int fatalError = 0;
+static int flagGo = 0;
 
 void app_main(void)
 {
 
-/*     //init internal storeage system, not sure if need it, todo: check it
-    nvs_flash_init();
-    
-    //init wifi for mqtt, at this point esp32 draws heavy current
-    wifi_init();
 
-    //init mqtt
-    mqtt_app_start(); */
-    
-    //init i2c
-    int ret;
-    ret = i2c_master_init(300000);
-    if(ret == ESP_OK)
-        printf("i2c is init well\n");
-    else
-        printf("something went wrong with i2c init\n");
-
-    //init gpio relateds
-    //note : it init button gpio and also the internal blue led gpio
-    initButtonGpio();
-
-    
-    //note that, imuInit has to be after i2c init
-
-    initIMUGATHERSensors(&gather);
-
-    //create a queue to handle gpio event from isr
-    gpio_evt_queue = xQueueCreate(10, sizeof(uint32_t));
-    setUpButtonIsr(&gpio_evt_queue);
-    xTaskCreate(buttonHandler, "buttonHandler", 4096 * 2, NULL, 10, NULL);
-
-
-
-    //init spi, sdcard
-    initSdCard();
-
+    initPeripherals();
 
     selfTestSensors(&gather);    
 
-    while(1){
-        vTaskDelay(1000 / portTICK_RATE_MS);
-    }
+    lifeCycleStart();
 
 }
 
@@ -117,6 +82,63 @@ static void buttonHandler(void* arg)
             }
 
         }
+    }
+}
+
+static void initPeripherals(){
+
+/*  //init internal storeage system, not sure if need it, todo: check it
+    nvs_flash_init();
+    
+    //init wifi for mqtt, at this point esp32 draws heavy current
+    wifi_init();
+
+    //init mqtt
+    mqtt_app_start(); */
+    
+    //init i2c
+    int ret;
+    ret = i2c_master_init(300000);
+    if(ret == ESP_OK)
+        printf("i2c is init well\n");
+    else
+        printf("something went wrong with i2c init\n");
+
+    //init gpio relateds
+    //note : it init button gpio and also the internal blue led gpio
+    initButtonGpio();
+
+    //note that, imuInit has to be after i2c init
+    initIMUGATHERSensors(&gather);
+
+    //create a queue to handle gpio event from isr
+    gpio_evt_queue = xQueueCreate(10, sizeof(uint32_t));
+    setUpButtonIsr(&gpio_evt_queue);
+    xTaskCreate(buttonHandler, "buttonHandler", 4096 * 2, NULL, 10, NULL);
+
+
+
+    //init spi, sdcard
+    initSdCard();
+}
+
+static void lifeCycleStart(){
+
+    int lifeCycle = 0;
+
+    startRecordingData();
+
+    while(true){
+
+        while((!flagGo) | fatalError){ //if there is fatal error stay in hold on mode
+            vTaskDelay(100 / portTICK_RATE_MS);
+        }
+
+        //go collect data here
+        goCollectCurrentModeData(&gather);
+
+        flagGo = 0;
+        lifeCycle++;
     }
 }
 
