@@ -5,28 +5,51 @@ void physical_alarmError(){
     lightOnBlueLed();
 }
 
-void physical_standby_start(int64_t duration){ //in ms
-    int64_t startTime = getTime();
+static TaskHandle_t standbyTaskHandle;
+int flagStandby = 0;
 
-    int64_t  currentTime;
-
-   currentTime = startTime;    
+void standby(){
 
     int toggle = 0;
 
-    while((currentTime - startTime) < duration){
+    while(true){
 
         if(toggle) lightOnBlueLed();
         else lightOffBlueLed();
 
-        vTaskDelay(100 / portTICK_RATE_MS);
+        vTaskDelay(75 / portTICK_RATE_MS);
 
         toggle = !toggle;
-        currentTime = getTime();
     }
 }
 
+void physical_standby_start(){ //in ms
+    
+    if(flagStandby) return;
+
+    flagStandby = 1;
+
+    xTaskCreate(standby, "standby", 4096, NULL, 10, &standbyTaskHandle);
+
+}
+
+void physical_standby_stop(){
+    if(!(flagStandby)) return;
+
+    flagStandby = 0;
+
+    vTaskDelete( standbyTaskHandle );
+
+    lightOffBlueLed();
+}
+
 void physical_clear(){
+    lightOffBlueLed();
+}
+
+void flashBlueLight(){
+    lightOnBlueLed();
+    vTaskDelay(200 / portTICK_RATE_MS);    
     lightOffBlueLed();
 }
 

@@ -2,6 +2,7 @@
 #include "imugather.h"
 #include "mpu6050.h"
 #include "sdcard.h"
+#include "helper.h"
 
 #include "driver/gpio.h"
 #include "esp_timer.h"
@@ -212,12 +213,16 @@ void printAccelerationRawDatas(IMUGATHER* gather){
 int selfTestSensors(IMUGATHER* gather){
     if(!imuStack) printf("no Imu stack, hence can't apply self test\n");
   
+    physical_standby_start();
+
     for(int i = 0; i < gather->numberOfImu; i++){
         selectImu(imuStack + i);
         selfTest();
     }    
 
-    vTaskDelay(200 / portTICK_PERIOD_MS);
+    vTaskDelay(200 / portTICK_PERIOD_MS );
+
+    physical_standby_stop();
 
 
     return 1;
@@ -243,10 +248,6 @@ int16_t* getGatherAccelerationsAsArrayInOrder(IMUGATHER* gather){
 
     return accelerationGatherData;
 
-}
-
-static int64_t getTime(){
-    return (int64_t) (clock() * 1000 / CLOCKS_PER_SEC); //returns time in milliseconds
 }
 
 
@@ -309,6 +310,8 @@ void goCollectCurrentModeData(IMUGATHER* gather){
         dataElement->arrayLength = gather->numberOfImu * 6 * 2;
         pushToQueue(dataElement);
 
+        vTaskDelay(3 / portTICK_PERIOD_MS);
+
     }
 
     printf("capturePerSecond = %f", ((float)totalCapture) / (currentTime - startTime) * 1000.0 );
@@ -354,17 +357,20 @@ void recordData(){
                 byteCluster[byteIndex] = elementCluster[j]->array[k];
                 byteIndex++;
             }
+            free(elementCluster[j]->array);
+            free(elementCluster[j]);
         }
 
         printf("Iteration : %d, queue size %d\n", iteration, getQueueSize());
 
         writeToSensorDataBytes(byteCluster, totalTransmitByteLength);
+        free(byteCluster);
 
     }
 }
 
 void startRecordingData(){
-    xTaskCreate( recordData, "dataRecorder", 4 * CLUSTER_MAX_LENGTH * 200 , NULL, 3 | portPRIVILEGE_BIT, &xRecorder );
+    xTaskCreate( recordData, "dataRecorder",  CLUSTER_MAX_LENGTH * 1200 , NULL, 3 | portPRIVILEGE_BIT, &xRecorder );
 }
 
 void stopRecordingData(){

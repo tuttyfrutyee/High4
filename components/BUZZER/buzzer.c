@@ -1,11 +1,11 @@
 #include "buzzer.h"
 
-#define BUZZERPIN 16
+#define BUZZERPIN 15
 
 void initBuzzGpio(){
 
     //init buzzer gpio
-    
+    gpio_config_t io_conf;        
     //disable interrupt
     io_conf.intr_type = GPIO_PIN_INTR_DISABLE;
     //set as output mode

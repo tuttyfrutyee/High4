@@ -23,6 +23,7 @@
 #include "mqtt.h"
 #include "button.h"
 #include "buzzer.h"
+#include "helper.h"
 
 static const char *TAG = "MAIN";
 
@@ -44,9 +45,11 @@ void app_main(void)
 {
 
 
-    initPeripherals();
+    initPeripherals();    
 
     selfTestSensors(&gather);    
+
+
 
     lifeCycleStart();
 
@@ -58,7 +61,6 @@ static void buttonHandler(void* arg)
 {
     uint32_t io_num;
 
-    int counter = 0;
 
     int64_t startTime = getTime();
 
@@ -73,12 +75,8 @@ static void buttonHandler(void* arg)
             currentTime = getTime();
 
             if((currentTime - previousTime) > 250){
-                printf("GPIO[%d] intr, val: %d, time between : %lld\n", io_num, gpio_get_level(io_num), currentTime - previousTime);
-                if(counter % 2 == 0)
-                    lightOnBlueLed();
-                else
-                    lightOffBlueLed();
-                counter ++;
+                flashBlueLight();
+                flagGo = 1;
             }
 
         }
@@ -108,18 +106,22 @@ static void initPeripherals(){
     //note : it init button gpio and also the internal blue led gpio
     initButtonGpio();
 
+    initBuzzGpio();
+
     //note that, imuInit has to be after i2c init
     initIMUGATHERSensors(&gather);
 
     //create a queue to handle gpio event from isr
     gpio_evt_queue = xQueueCreate(10, sizeof(uint32_t));
     setUpButtonIsr(&gpio_evt_queue);
-    xTaskCreate(buttonHandler, "buttonHandler", 4096 * 2, NULL, 10, NULL);
+    xTaskCreate(buttonHandler, "buttonHandler", 4096, NULL, 10, NULL);
 
 
 
     //init spi, sdcard
     initSdCard();
+
+
 }
 
 static void lifeCycleStart(){
@@ -133,7 +135,7 @@ static void lifeCycleStart(){
         while((!flagGo) | fatalError){ //if there is fatal error stay in hold on mode
             vTaskDelay(100 / portTICK_RATE_MS);
         }
-
+        printf("button pressed, collecting... \n");
         //go collect data here
         goCollectCurrentModeData(&gather);
 
