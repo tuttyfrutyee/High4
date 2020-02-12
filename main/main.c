@@ -30,6 +30,7 @@ static const char *TAG = "MAIN";
 static xQueueHandle gpio_evt_queue;
 
 
+
 static IMUGATHER gather = {4,3,0,6000,15000}; // numberOfImu, numberOfMode, currentMode, criticalTime, dataCollectionDuration
 
 
@@ -65,9 +66,10 @@ static int buttonStackSize = 0;
 
 void pushElementToButtonStack(QueueButtonEl el){
     if(buttonStackSize == (BUTTON_STACK_CAPACITY)){
-        for(int i = 0; i < BUTTON_STACK_CAPACITY - 1; i ++){
-            buttonStack[i + 1] = buttonStack[i];
+        for(int i = BUTTON_STACK_CAPACITY - 1; i > 0; i --){
+            buttonStack[i - 1] = buttonStack[i];
         }
+        buttonStack[BUTTON_STACK_CAPACITY - 1] = el;
     }else{
         buttonStack[buttonStackSize] = el;
         buttonStackSize++;
@@ -88,20 +90,25 @@ QueueButtonEl getLastStackButtonEl(){
 static void buttonHandler(void* arg)
 {
     uint32_t io_num;
-    int64_t thresholdTime = 200; //in ms
+    int64_t thresholdTime = 90; //in ms
 
     for(;;) {
         if(xQueueReceive(gpio_evt_queue, &io_num, portMAX_DELAY)) {
+
 
             QueueButtonEl lastElement = getLastStackButtonEl();
 
             if(!lastElement.occTime){
                 QueueButtonEl newEl = {getTime(), gpio_get_level(io_num)};
                 pushElementToButtonStack(newEl);
+                printf("\n           ------------------ \n");
+                printf("initiated queue\n");
             }else{
-
+                //printf("something... \n");
                 if((getTime() - lastElement.occTime) > thresholdTime){
-
+                    
+                    printf("%d\n", gpio_get_level(io_num));                    
+                    printf("put it as queuebuttonel, %lld \n", (getTime() - lastElement.occTime));
                     QueueButtonEl newEl = {getTime(), gpio_get_level(io_num)};
                     pushElementToButtonStack(newEl);
                 }
@@ -115,12 +122,14 @@ static void buttonHandler(void* arg)
 static void tapRecogniser(){
 
     bool flagPrevDetectedSingleTap = 0;
-    int64_t diffSADTap = 750; //in ms
+    int64_t diffSADTap = 400; //in ms
 
     bool singleTapDetected = 0;
     bool doubleTapDetected = 0;
     bool holdMediumDetected = 0;
     bool holdLongDetected = 0;
+
+    printf("tapRecogniser started \n");
 
     while(true){
 
@@ -161,7 +170,7 @@ static void tapRecogniser(){
             flashButtonStack();
         }
 
-        vTaskDelay(100 / portTICK_RATE_MS);
+        vTaskDelay(250 / portTICK_RATE_MS);
 
     }
 
@@ -201,6 +210,8 @@ static void initPeripherals(){
     gpio_evt_queue = xQueueCreate(10, sizeof(uint32_t));
     setUpButtonIsr(&gpio_evt_queue);
     xTaskCreate(buttonHandler, "buttonHandler", 4096, NULL, 10, NULL);
+
+    xTaskCreate(tapRecogniser, "tapRecogniser", 4096 * 20, NULL, 10, NULL);
 
 
 
