@@ -30,7 +30,7 @@ static const char *TAG = "MAIN";
 static xQueueHandle gpio_evt_queue;
 
 
-static IMUGATHER gather = {4,3,0,3000,7000}; // numberOfImu, numberOfMode, currentMode, criticalTime, dataCollectionDuration
+static IMUGATHER gather = {4,3,0,6000,15000}; // numberOfImu, numberOfMode, currentMode, criticalTime, dataCollectionDuration
 
 
 //local function definitions
@@ -55,32 +55,118 @@ void app_main(void)
 
 }
 
+//stack imp for button handler
 
+#define BUTTON_STACK_CAPACITY 5
+
+QueueButtonEl buttonStack[BUTTON_STACK_CAPACITY];
+
+static int buttonStackSize = 0;
+
+void pushElementToButtonStack(QueueButtonEl el){
+    if(buttonStackSize == (BUTTON_STACK_CAPACITY)){
+        for(int i = 0; i < BUTTON_STACK_CAPACITY - 1; i ++){
+            buttonStack[i + 1] = buttonStack[i];
+        }
+    }else{
+        buttonStack[buttonStackSize] = el;
+        buttonStackSize++;
+    }
+}
+
+void flashButtonStack(){
+    buttonStackSize = 0;
+}
+
+QueueButtonEl getLastStackButtonEl(){
+    QueueButtonEl willReturn = {0,0};
+    if(buttonStackSize > 0)
+        willReturn = buttonStack[buttonStackSize - 1];
+    return willReturn;
+}
 
 static void buttonHandler(void* arg)
 {
     uint32_t io_num;
-
-
-    int64_t startTime = getTime();
-
-    int64_t previousTime, currentTime;
-
-    previousTime = currentTime = startTime;
+    int64_t thresholdTime = 200; //in ms
 
     for(;;) {
         if(xQueueReceive(gpio_evt_queue, &io_num, portMAX_DELAY)) {
 
-            previousTime = currentTime;
-            currentTime = getTime();
+            QueueButtonEl lastElement = getLastStackButtonEl();
 
-            if((currentTime - previousTime) > 250){
-                flashBlueLight();
-                flagGo = 1;
+            if(!lastElement.occTime){
+                QueueButtonEl newEl = {getTime(), gpio_get_level(io_num)};
+                pushElementToButtonStack(newEl);
+            }else{
+
+                if((getTime() - lastElement.occTime) > thresholdTime){
+
+                    QueueButtonEl newEl = {getTime(), gpio_get_level(io_num)};
+                    pushElementToButtonStack(newEl);
+                }
+
             }
 
         }
     }
+}
+
+static void tapRecogniser(){
+
+    bool flagPrevDetectedSingleTap = 0;
+    int64_t diffSADTap = 750; //in ms
+
+    bool singleTapDetected = 0;
+    bool doubleTapDetected = 0;
+    bool holdMediumDetected = 0;
+    bool holdLongDetected = 0;
+
+    while(true){
+
+        singleTapDetected = detectSingleTap(buttonStack, buttonStackSize);
+        holdMediumDetected = detectHoldMedium(buttonStack, buttonStackSize);
+        holdLongDetected = detectHoldLong(buttonStack, buttonStackSize);
+
+        if(singleTapDetected){
+
+            vTaskDelay(diffSADTap / portTICK_RATE_MS);
+
+            doubleTapDetected = detectDoubleTap(buttonStack, buttonStackSize);
+
+            if(doubleTapDetected){
+                //handle double tap
+                printf("double tap occured\n");
+                flashButtonStack();
+            }
+            else{
+                //handle single tap
+                printf("single tap occured\n");                
+
+
+                flashButtonStack();
+            }
+        }
+        else if(holdMediumDetected){
+            //handle hold medium
+            printf("hold medium occured\n");
+
+
+            flashButtonStack();
+        }
+        else if(holdLongDetected){
+            //hanlde hold long
+            printf("hold long occured\n");
+
+            flashButtonStack();
+        }
+
+        vTaskDelay(100 / portTICK_RATE_MS);
+
+    }
+
+
+
 }
 
 static void initPeripherals(){

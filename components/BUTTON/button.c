@@ -20,7 +20,7 @@ void initButtonGpio(){
     //init button gpio
 
     gpio_config_t io_conf;    
-    io_conf.intr_type = GPIO_PIN_INTR_POSEDGE;
+    io_conf.intr_type = GPIO_INTR_ANYEDGE;
     //bit mask of the pins, use GPIO4/5 here
     io_conf.pin_bit_mask = 1ULL << BUTTONPIN;
     //set as input mode    
