@@ -5,6 +5,8 @@
         "time.h": "c",
         "helper.h": "c",
         "buzzer.h": "c",
-        "button.h": "c"
+        "button.h": "c",
+        "cstdio": "cpp",
+        "cmath": "c"
     }
 }

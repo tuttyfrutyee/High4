@@ -31,7 +31,7 @@ int16_t* getGatherAccelerationsAsArrayInOrder(IMUGATHER* gather);
 
 int selfTestSensors();
 
-void goCollectCurrentModeData(IMUGATHER* gather);
+void goCollectCurrentModeData(IMUGATHER* gather, char* fileNameToWrite);
 
 void startRecordingData();
 

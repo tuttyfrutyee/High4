@@ -48,9 +48,9 @@ void app_main(void)
 
     initPeripherals();    
 
-    selfTestSensors(&gather);    
+    //clearSensorData();
 
-
+    //selfTestSensors(&gather);    
 
     lifeCycleStart();
 
@@ -150,7 +150,8 @@ static void tapRecogniser(){
             }
             else{
                 //handle single tap
-                printf("single tap occured\n");                
+                printf("single tap occured\n"); 
+                flagGo = 1;              
 
 
                 flashButtonStack();
@@ -159,7 +160,7 @@ static void tapRecogniser(){
         else if(holdMediumDetected){
             //handle hold medium
             printf("hold medium occured\n");
-
+            unMountSdCard();
 
             flashButtonStack();
         }
@@ -211,7 +212,7 @@ static void initPeripherals(){
     setUpButtonIsr(&gpio_evt_queue);
     xTaskCreate(buttonHandler, "buttonHandler", 4096, NULL, 10, NULL);
 
-    xTaskCreate(tapRecogniser, "tapRecogniser", 4096 * 20, NULL, 10, NULL);
+    xTaskCreate(tapRecogniser, "tapRecogniser", 4096 * 2, NULL, 10, NULL);
 
 
 
@@ -233,8 +234,19 @@ static void lifeCycleStart(){
             vTaskDelay(100 / portTICK_RATE_MS);
         }
         printf("button pressed, collecting... \n");
+        //get recordCounter and increment by 1
+        //get currentModeCounter and update it with the next one
+        int recordCounter, currentModeCounter;
+
+        getAndUpdateLookUpTable(&recordCounter, &currentModeCounter);
+
+        char fileNameToWrite[20];
+        sprintf(fileNameToWrite, "D_%d_%d", recordCounter, currentModeCounter);
+
+        printf("\n filename : %s \n", fileNameToWrite);
+
         //go collect data here
-        goCollectCurrentModeData(&gather);
+        goCollectCurrentModeData(&gather, fileNameToWrite);
 
         flagGo = 0;
         lifeCycle++;

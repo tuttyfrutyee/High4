@@ -1,4 +1,9 @@
 #include "helper.h"
+#include "sdcard.h"
+
+void alarmFire(){
+    buzz(300);
+}
 
 void physical_alarmError(){
     buzz(2000);
@@ -135,4 +140,13 @@ bool detectHoldLong(QueueButtonEl* stack, int stackSize){
     }
 
     return false;
+}
+
+
+//sd card
+
+void getAndUpdateLookUpTable(int* recordCounter, int* currentModeCounter){
+    
+    getAndUpdateLookup(recordCounter, currentModeCounter);
+
 }

@@ -20,6 +20,8 @@
 
 TaskHandle_t xRecorder = NULL;
 
+char * fileNameToWriteGlobal;
+
 typedef struct IMU{
 
     int assignedPin;
@@ -27,10 +29,11 @@ typedef struct IMU{
 
 } IMU;
 
+
 typedef struct QueueElement{
 
     int8_t* array;
-    int arrayLength
+    int arrayLength;
 
 } QueueElement;
 
@@ -251,27 +254,39 @@ int16_t* getGatherAccelerationsAsArrayInOrder(IMUGATHER* gather){
 }
 
 
-void goCollectCurrentModeData(IMUGATHER* gather){
+void goCollectCurrentModeData(IMUGATHER* gather, char* fileNameToWrite){
 
-    int8_t startSequence[3] = {0,0,0};
+    if(!(fileNameToWriteGlobal && (strcmp(fileNameToWrite, fileNameToWriteGlobal) == 0))){
+        free(fileNameToWriteGlobal);
+        int fileLength = strlen(fileNameToWrite);
+        fileNameToWriteGlobal = (char*) malloc(sizeof(char) * (fileLength + 1));
+        memset(fileNameToWriteGlobal, '\0', fileLength);
+        strcpy(fileNameToWriteGlobal, fileNameToWrite);
+    }
+
+
+
+    const int64_t fireTimeElapsed = gather->dataCollectDuration / 2;
+
+    bool fired = false;
+
+    int8_t fireSequence[3] = {0,1,2};
 
     gather->currentModeIndicator = (gather->currentModeIndicator+1) % gather->numberOfModes;
-
-    //put start sequence
-    writeToSensorDataBytes(startSequence, 3);
-
+    
     //put number of sensors used
 
-    writeToSensorDataBytes(&(gather->numberOfImu),1);
+    writeToBinFile(&(gather->numberOfImu), 1, fileNameToWrite);
 
     //put currentMode
-    writeToSensorDataBytes(&(gather->currentModeIndicator), 1);
+
+    writeToBinFile(&(gather->currentModeIndicator), 1, fileNameToWrite);
 
     //put configSettings -> linRangeBox[linRange](1byte) - radRangeBox[radRange](1byte)
 
-    writeToSensorDataBytes(&linRangeBox[linRange], 1);
+    writeToBinFile(&linRangeBox[linRange], 1, fileNameToWrite);
 
-    writeToSensorDataBytes(&radRangeBox[radRange], 1);
+    writeToBinFile(&radRangeBox[radRange], 1, fileNameToWrite);
 
     //start to fetch data continously with duration gather->dataCollectDuration
 
@@ -283,7 +298,20 @@ void goCollectCurrentModeData(IMUGATHER* gather){
 
     int totalCapture = 0;
 
+    int totalBytes = 0;
+
     while((currentTime - startTime) < gather->dataCollectDuration){
+
+        if(((currentTime - startTime) > fireTimeElapsed) && !fired){
+            fired = true;
+            alarmFire();
+            QueueElement* fireElement = (QueueElement*)malloc(sizeof(QueueElement));
+            fireElement->array = (int8_t*)malloc(sizeof(int8_t) * 3);
+            for(int i = 0; i < 3; i++)
+                fireElement->array[i] = fireSequence[i];
+            fireElement->arrayLength = 3;
+            pushToQueue(fireElement);            
+        }
 
         totalCapture++;
 
@@ -301,6 +329,7 @@ void goCollectCurrentModeData(IMUGATHER* gather){
             timeDifferenceElement->array[0] = currentTime - previousTime; // hoping that time difference will fit into 8bit signed integer
             if((currentTime-previousTime) > 63) printf("Error : Time dif between consequent data capture is bigger than 63ms, it is : %lld ms", currentTime-previousTime);
             timeDifferenceElement->arrayLength = 1;
+            //totalBytes++;
             pushToQueue(timeDifferenceElement);
         }
 
@@ -309,12 +338,13 @@ void goCollectCurrentModeData(IMUGATHER* gather){
         dataElement->array = (int8_t*)getGatherAccelerationsAsArrayInOrder(gather);
         dataElement->arrayLength = gather->numberOfImu * 6 * 2;
         pushToQueue(dataElement);
-
-        vTaskDelay(3 / portTICK_PERIOD_MS);
+        //totalBytes += dataElement->arrayLength;
+        vTaskDelay(5 / portTICK_PERIOD_MS);
 
     }
 
-    printf("capturePerSecond = %f", ((float)totalCapture) / (currentTime - startTime) * 1000.0 );
+    printf("capturePerSecond = %f\n", ((float)totalCapture) / (currentTime - startTime) * 1000.0 );
+    //printf("totalBytes : %d\n", totalBytes);
 
 
 }
@@ -328,15 +358,21 @@ void recordData(){
 
     QueueElement* elementCluster[CLUSTER_MAX_LENGTH];
 
+    //int totalTransmitedByte = 0;
+    
     
     while(1){
 
         if(isQueueEmpty()){
-            vTaskDelay(200 / portTICK_PERIOD_MS);
+            vTaskDelay(100 / portTICK_PERIOD_MS);
+            //printf("queue was empty\n");
             continue;
         }
 
         iteration++;
+
+        printf("Iteration : %d, queue size %d\n", iteration, getQueueSize());
+
 
         int elementClusterLength = 0;
         int totalTransmitByteLength = 0;
@@ -361,16 +397,15 @@ void recordData(){
             free(elementCluster[j]);
         }
 
-        printf("Iteration : %d, queue size %d\n", iteration, getQueueSize());
+        writeToBinFile(byteCluster, totalTransmitByteLength, fileNameToWriteGlobal);
 
-        writeToSensorDataBytes(byteCluster, totalTransmitByteLength);
         free(byteCluster);
 
     }
 }
 
 void startRecordingData(){
-    xTaskCreate( recordData, "dataRecorder",  CLUSTER_MAX_LENGTH * 1200 , NULL, 3 | portPRIVILEGE_BIT, &xRecorder );
+    xTaskCreate( recordData, "dataRecorder",  CLUSTER_MAX_LENGTH * 100 , NULL, 3 | portPRIVILEGE_BIT, &xRecorder );
 }
 
 void stopRecordingData(){

@@ -5,6 +5,7 @@
 
 #include <stdio.h>
 #include <string.h>
+#include "stdlib.h"
 #include <sys/unistd.h>
 #include <sys/stat.h>
 #include "esp_err.h"
@@ -21,10 +22,13 @@
 void initSdCard();
 
 
-void writeToSensorDataBytes(int8_t* bytes, int count);
+void writeToFile(int8_t* bytes, int count, char* fileName);
+void writeToBinFile(int8_t* bytes, int count, char* fileName);
+char* readFile(int count, const char* fileName, FILE** f_);
 
-void writeToErrorLog(char* error);
+void getAndUpdateLookup(int* recordCounter_, int* currentModeCounter_);
 
+void deleteLastSensorFile();
 void clearSensorData();
 void clearErrorLog();
 

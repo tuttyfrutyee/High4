@@ -12,6 +12,8 @@ typedef struct QueueButtonEl {
 
 //functions
 
+void alarmFire();
+
 void physical_alarmError();
 
 void physical_standby_start();
@@ -27,6 +29,10 @@ void flashBlueLight();
 bool checkButtonPressHoldMedium();
 
 bool checkButtonPressHoldLong();
+
+// sd card
+
+void getAndUpdateLookUpTable(int* recordCounter, int* currentModeCounter);
 
 //detect button press types
 
