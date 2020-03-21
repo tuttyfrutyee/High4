@@ -13,8 +13,8 @@ void printAccelerations(Acceleration accelerations);
 void printRawAccelerations(Acceleration accelerations);
 
 //Constants
-int linRange = 8; // range is +-16g
-int radRange = 1; // range is 4 * 250 degrees/second
+int linRange = 8; // range is +-8g
+int radRange = 1; // range is 1 * 250 degrees/second
 
 uint16_t linRangeBox[17] = {0,0,0x00,0,0x08,0,0,0,0x10,0,0,0,0,0,0,0,0x18};
 uint16_t radRangeBox[9] = {0,0,0x08,0,0x10,0,0,0,0x18};

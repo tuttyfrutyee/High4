@@ -14,6 +14,10 @@ typedef struct QueueButtonEl {
 
 void alarmFire();
 
+void giveMeTingles();
+
+void binarySound(int number);
+
 void physical_alarmError();
 
 void physical_standby_start();

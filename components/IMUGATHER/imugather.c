@@ -269,10 +269,10 @@ void goCollectCurrentModeData(IMUGATHER* gather, char* fileNameToWrite){
     const int64_t fireTimeElapsed = gather->dataCollectDuration / 2;
 
     bool fired = false;
+// 8,3,7,1,6,5
+    int8_t fireSequence[6] = {1,2,0,3,4,0};
+    const int fireSequenceLength = 6;
 
-    int8_t fireSequence[3] = {0,1,2};
-
-    gather->currentModeIndicator = (gather->currentModeIndicator+1) % gather->numberOfModes;
     
     //put number of sensors used
 
@@ -282,11 +282,17 @@ void goCollectCurrentModeData(IMUGATHER* gather, char* fileNameToWrite){
 
     writeToBinFile(&(gather->currentModeIndicator), 1, fileNameToWrite);
 
-    //put configSettings -> linRangeBox[linRange](1byte) - radRangeBox[radRange](1byte)
+    //put configSettings -> linRange(1byte) - radRange(1byte)
 
-    writeToBinFile(&linRangeBox[linRange], 1, fileNameToWrite);
+    writeToBinFile(&linRange, 1, fileNameToWrite);
 
-    writeToBinFile(&radRangeBox[radRange], 1, fileNameToWrite);
+    writeToBinFile(&radRange, 1, fileNameToWrite);
+
+/*     int16_t * deneme = (int16_t *) malloc(sizeof(int16_t) * 1);
+    deneme[0] = 513;
+
+    writeToBinFile(deneme, 2, fileNameToWrite); */
+
 
     //start to fetch data continously with duration gather->dataCollectDuration
 
@@ -306,10 +312,14 @@ void goCollectCurrentModeData(IMUGATHER* gather, char* fileNameToWrite){
             fired = true;
             alarmFire();
             QueueElement* fireElement = (QueueElement*)malloc(sizeof(QueueElement));
-            fireElement->array = (int8_t*)malloc(sizeof(int8_t) * 3);
-            for(int i = 0; i < 3; i++)
+            fireElement->array = (int8_t*)malloc(sizeof(int8_t) * fireSequenceLength);
+            printf("\n\n");
+            for(int i = 0; i < fireSequenceLength; i++){
                 fireElement->array[i] = fireSequence[i];
-            fireElement->arrayLength = 3;
+                printf("%d, ",fireSequence[i]);
+            }
+            printf("\n\n");
+            fireElement->arrayLength = fireSequenceLength;
             pushToQueue(fireElement);            
         }
 
@@ -340,6 +350,20 @@ void goCollectCurrentModeData(IMUGATHER* gather, char* fileNameToWrite){
         pushToQueue(dataElement);
         //totalBytes += dataElement->arrayLength;
         vTaskDelay(5 / portTICK_PERIOD_MS);
+
+/*         if(totalCapture == 100){
+            int8_t * deneme = (int8_t*) malloc(sizeof(int8_t) * 6);
+            deneme[0] = 8;
+            deneme[1] = 3;
+            deneme[2] = 7;
+            deneme[3] = 1;
+            deneme[4] = 6;
+            deneme[5] = 5;            
+            QueueElement* dataElement = (QueueElement*)malloc(sizeof(QueueElement));
+            dataElement->array = deneme;
+            dataElement->arrayLength = 6;
+            pushToQueue(dataElement);
+        } */
 
     }
 

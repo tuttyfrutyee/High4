@@ -1,5 +1,6 @@
 #include "helper.h"
 #include "sdcard.h"
+#include "math.h"
 
 void alarmFire(){
     buzz(300);
@@ -8,6 +9,30 @@ void alarmFire(){
 void physical_alarmError(){
     buzz(2000);
     lightOnBlueLed();
+}
+
+void giveMeTingles(){
+    buzz(200);
+}
+
+void binarySound(int number){
+    
+    buzz(700);
+
+    vTaskDelay(500 / portTICK_RATE_MS); 
+    for(int i = 0; i < 4; i++){
+        if(number % 2)
+            buzz(300);
+        else
+            buzz(30);
+
+        vTaskDelay(500 / portTICK_RATE_MS);    
+        number /= 2;
+    }
+    if(number / 2)
+        buzz(300);
+    else
+        buzz(30);
 }
 
 static TaskHandle_t standbyTaskHandle;
@@ -28,7 +53,7 @@ void standby(){
     }
 }
 
-void physical_standby_start(){ //in ms
+void physical_standby_start(){ 
     
     if(flagStandby) return;
 
@@ -70,7 +95,7 @@ void physical_alarmMedium();
 #define DoubleTapDifLow 120 //in ms
 #define DoubleTapDifHigh 400 //in ms
 
-#define HoldMediumDurLow 1500 //in ms
+#define HoldMediumDurLow 1100 //in ms
 #define HoldMediumDurHigh 3500 //in ms
 
 #define HoldLongDurLow 4000 //in ms

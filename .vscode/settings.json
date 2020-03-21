@@ -7,6 +7,7 @@
         "buzzer.h": "c",
         "button.h": "c",
         "cstdio": "cpp",
-        "cmath": "c"
+        "cmath": "c",
+        "errno.h": "c"
     }
 }

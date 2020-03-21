@@ -31,7 +31,7 @@ static xQueueHandle gpio_evt_queue;
 
 
 
-static IMUGATHER gather = {4,3,0,6000,15000}; // numberOfImu, numberOfMode, currentMode, criticalTime, dataCollectionDuration
+static IMUGATHER gather = {4,0,6000,15000}; // numberOfImu, currentMode(X), criticalTime, dataCollectionDuration
 
 
 //local function definitions
@@ -161,7 +161,7 @@ static void tapRecogniser(){
             //handle hold medium
             printf("hold medium occured\n");
             unMountSdCard();
-
+            giveMeTingles();
             flashButtonStack();
         }
         else if(holdLongDetected){
@@ -228,6 +228,8 @@ static void lifeCycleStart(){
 
     startRecordingData();
 
+    giveMeTingles();
+
     while(true){
 
         while((!flagGo) | fatalError){ //if there is fatal error stay in hold on mode
@@ -239,6 +241,8 @@ static void lifeCycleStart(){
         int recordCounter, currentModeCounter;
 
         getAndUpdateLookUpTable(&recordCounter, &currentModeCounter);
+        gather.currentModeIndicator = currentModeCounter;
+        
 
         char fileNameToWrite[20];
         sprintf(fileNameToWrite, "D_%d_%d", recordCounter, currentModeCounter);
@@ -246,8 +250,11 @@ static void lifeCycleStart(){
         printf("\n filename : %s \n", fileNameToWrite);
 
         //go collect data here
+        //notify the currentModeCounter by using binary sound ( assumes counter will be in range(32) )
+        binarySound(currentModeCounter);
+        physical_standby_start();
         goCollectCurrentModeData(&gather, fileNameToWrite);
-
+        physical_standby_stop();
         flagGo = 0;
         lifeCycle++;
     }

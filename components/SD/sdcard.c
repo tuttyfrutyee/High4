@@ -1,5 +1,6 @@
 #include "sdcard.h"
 #include "math.h"
+#include "errno.h"
 
 #define PIN_NUM_MISO 17
 #define PIN_NUM_MOSI 16
@@ -69,9 +70,10 @@ void writeToFile(int8_t* bytes, int count, char* fileName){
     strcpy(fileFullName,"/sdcard/high4/");
     strcat(fileFullName, fileName);
     strcat(fileFullName, ".txt");
-
+    errno = 0;
     FILE* f = fopen(fileFullName,"a+b");
     if(f == NULL) {
+        printf("Error %d \n", errno);
         ESP_LOGE(TAG, "Failed to open file for writing");
         return;        
     }
@@ -85,9 +87,10 @@ void writeToBinFile(int8_t* bytes, int count, char* fileName){
     strcpy(fileFullName,"/sdcard/high4/");
     strcat(fileFullName, fileName);
     strcat(fileFullName, ".bin");
-
+    errno = 0;
     FILE* f = fopen(fileFullName,"a+b");
     if(f == NULL) {
+        printf("Error %d \n", errno);
         ESP_LOGE(TAG, "Failed to open file for writing");
         printf("\n %s \n", fileFullName);
         return;        

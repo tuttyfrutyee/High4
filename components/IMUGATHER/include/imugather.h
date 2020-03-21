@@ -7,7 +7,6 @@
 typedef struct IMUGATHER {
 
     int numberOfImu;
-    int numberOfModes;
     int currentModeIndicator;
     int criticalTime; //in milliseconds
     int dataCollectDuration; //in milliseconds
