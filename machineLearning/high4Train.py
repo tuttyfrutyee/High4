@@ -88,18 +88,19 @@ def listValidatePerformanceWithThreshold(threshold = 0.5):
         predicts = net(xTorchValidate).cpu().permute(1,0,2)
         print(predicts.shape)
         values, indicies = predicts.max(axis=2)
+        softmaxValues = F.softmax(predicts,dim=2).cpu()
+        
         theValues = torch.zeros(indicies.shape[0], indicies.shape[1], dtype=torch.int64).cpu()
         
         for i,record in enumerate(indicies):
             for j,maxIndex in enumerate(record):
-                if(predicts[i][j][maxIndex] < threshold):
+                if(softmaxValues[i][j][maxIndex] < threshold):
                     theValues[i][j] = 0
                 else:
                     theValues[i][j] = maxIndex
                     
-        print(theValues.shape)
         validates = yTorchValidate.cpu()
-        print(validates.shape)
+        
         for i,record in enumerate(theValues):
             equalityCount = (record == validates[i]).sum().item()
             totalCount =  validates.shape[1]
@@ -107,6 +108,7 @@ def listValidatePerformanceWithThreshold(threshold = 0.5):
     net.train()
     
 def inspectValidatePerformanceByFileNameWithThreshold(fileName, threshold=0.5):
+    print(threshold)
     targetIndex = -1
     for i,name in enumerate(fileNamesValidate):
         if(fileName in name):
@@ -121,11 +123,12 @@ def inspectValidatePerformanceByFileNameWithThreshold(fileName, threshold=0.5):
         hidden = (torch.zeros(1,xValidate.shape[0],high4Net.hiddenSize, dtype=dtype).cuda(), torch.zeros(1,xValidate.shape[0],high4Net.hiddenSize, dtype=dtype).cuda())    
         net.hidden = hidden
         predicts = net(xTorchValidate).cpu().permute(1,0,2)
-        values, indicies = predicts.max(axis=2)
-        theValues = torch.zeros(1, indicies.shape[1], dtype=torch.int64).cpu()
+        values, maxIndicies = predicts.max(axis=2)
+        softmaxValues = F.softmax(predicts,dim=2).cpu()
+        theValues = torch.zeros(1, maxIndicies.shape[1], dtype=torch.int64).cpu()
         
-        for j,maxIndex in enumerate(indicies[targetIndex]):
-            if(predicts[targetIndex][j][maxIndex] < threshold):
+        for j,maxIndex in enumerate(maxIndicies[targetIndex]):
+            if(softmaxValues[targetIndex][j][maxIndex] < threshold):
                 theValues[0][j] = 0
             else:
                 theValues[0][j] = maxIndex
@@ -150,9 +153,9 @@ trainRatio = 0.8
 
 net = high4Net.High4Net().cuda()
 
-classWeights = torch.from_numpy(np.array([5, 15,15, 15,15,15, 15,15,15])).float().cuda()
+classWeights = torch.from_numpy(np.array([1, 10,10, 10,6,6,10,6,6])).float().cuda()
 criterion = nn.CrossEntropyLoss(weight=classWeights)
-optimizer = optim.Adam(net.parameters(), lr = 1e-5)
+optimizer = optim.Adam(net.parameters(), lr = 1e-4)
 
 seeds = [21,20,60,51,77,79,90,74]
 seed2 = 11
