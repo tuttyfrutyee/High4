@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 recordIndex = 17
 
 
-def getHigh4Dataset(seed):
+def getHigh4Dataset(seed, seed2):
 
     recordLength = 1200
 
@@ -65,8 +65,22 @@ def getHigh4Dataset(seed):
 
     print(x.shape, labels.shape)
 
-
-    return (x, labels.astype(np.float64), fileNames)
+    
+    fileNames = np.array(fileNames)
+    
+    np.random.seed(seed2)
+    np.random.shuffle(fileNames)
+    np.random.seed(seed2)
+    np.random.shuffle(labels)
+    np.random.seed(seed2)
+    np.random.shuffle(x)
+    
+    print(fileNames[0:10].tolist())
+    
+    x = (x - x.mean()) / x.std()
+    print(x.mean(), x.var())
+    
+    return (x, labels.astype(np.float64), np.array(fileNames))
 
     accMagnitudeFirstImu = []
     gyroMagnitudeFirstImu = []

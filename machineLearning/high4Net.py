@@ -11,16 +11,19 @@ import torch.nn as nn
 import torch.nn.functional as F
 
 
-hiddenSize = 15
+refinementSize = 10
+hiddenSize = 20
 classSize = 9
 
 class High4Net(nn.Module):
     def __init__(self):
         super(High4Net, self).__init__()
-        self.lstm = nn.LSTM(24,hiddenSize).float()
+        self.refinementLayer = nn.Linear(24, refinementSize).float()
+        self.lstm = nn.LSTM(refinementSize,hiddenSize).float()
         self.layerFinal = nn.Linear(hiddenSize,classSize).float()
         #self.hidden = (torch.zeros(1,batchSize,15, dtype=dtype).cuda(), torch.zeros(1,batchSize,15, dtype=dtype).cuda())
     def forward(self, x):
+        x = self.refinementLayer(x)
         x, hidden = self.lstm(x, self.hidden)
-        x = self.layerFinal(F.relu(x))
+        x = self.layerFinal(x)
         return x

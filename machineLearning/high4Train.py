@@ -79,55 +79,112 @@ def inspectValidatePerformanceByFileName(fileName):
         plt.show()
         
     net.train()
+
+def listValidatePerformanceWithThreshold(threshold = 0.5):
+    net.eval()
+    with torch.no_grad():
+        hidden = (torch.zeros(1,xValidate.shape[0],high4Net.hiddenSize, dtype=dtype).cuda(), torch.zeros(1,xValidate.shape[0],high4Net.hiddenSize, dtype=dtype).cuda())    
+        net.hidden = hidden
+        predicts = net(xTorchValidate).cpu().permute(1,0,2)
+        print(predicts.shape)
+        values, indicies = predicts.max(axis=2)
+        theValues = torch.zeros(indicies.shape[0], indicies.shape[1], dtype=torch.int64).cpu()
+        
+        for i,record in enumerate(indicies):
+            for j,maxIndex in enumerate(record):
+                if(predicts[i][j][maxIndex] < threshold):
+                    theValues[i][j] = 0
+                else:
+                    theValues[i][j] = maxIndex
+                    
+        print(theValues.shape)
+        validates = yTorchValidate.cpu()
+        print(validates.shape)
+        for i,record in enumerate(theValues):
+            equalityCount = (record == validates[i]).sum().item()
+            totalCount =  validates.shape[1]
+            print("Validate percentage correctness: " + "%.2f" % (equalityCount / totalCount * 100) + "% " + fileNamesValidate[i])
+    net.train()
+    
+def inspectValidatePerformanceByFileNameWithThreshold(fileName, threshold=0.5):
+    targetIndex = -1
+    for i,name in enumerate(fileNamesValidate):
+        if(fileName in name):
+            targetIndex = i
+            break
+    if(targetIndex is -1):
+        print("File could not be found in validate files")
+        return
+    net.eval()
+    with torch.no_grad():
+       
+        hidden = (torch.zeros(1,xValidate.shape[0],high4Net.hiddenSize, dtype=dtype).cuda(), torch.zeros(1,xValidate.shape[0],high4Net.hiddenSize, dtype=dtype).cuda())    
+        net.hidden = hidden
+        predicts = net(xTorchValidate).cpu().permute(1,0,2)
+        values, indicies = predicts.max(axis=2)
+        theValues = torch.zeros(1, indicies.shape[1], dtype=torch.int64).cpu()
+        
+        for j,maxIndex in enumerate(indicies[targetIndex]):
+            if(predicts[targetIndex][j][maxIndex] < threshold):
+                theValues[0][j] = 0
+            else:
+                theValues[0][j] = maxIndex
+                
+        plt.plot(yTorchValidate[targetIndex].to("cpu"), "g", label="yTorchValidate")
+        plt.plot(theValues[0].to("cpu"), "b", label="Predictions")
+        plt.legend(loc="upper right")
+
+        plt.show()
+        
+    net.train()    
          
 os.environ['CUDA_VISIBLE_DEVICES'] = '0'
 dtype = torch.float
 device = torch.device("cuda:0")
 
-batchSize = 32
-epochCount = 10000
+batchSize = 256
+epochCount = 100000
 trainRatio = 0.8
 
 
 
 net = high4Net.High4Net().cuda()
 
-criterion = nn.CrossEntropyLoss()
-optimizer = optim.Adam(net.parameters(), lr = 3e-4)
+classWeights = torch.from_numpy(np.array([5, 15,15, 15,15,15, 15,15,15])).float().cuda()
+criterion = nn.CrossEntropyLoss(weight=classWeights)
+optimizer = optim.Adam(net.parameters(), lr = 1e-5)
 
-seeds = [2]
+seeds = [21,20,60,51,77,79,90,74]
+seed2 = 11
 
 xBag = []
 labelBag = []
 
 
 for i,seed in enumerate(seeds):
-    x, labels, fileNames = high4Dataset.getHigh4Dataset(seed)
+    x, labels, fileNames = high4Dataset.getHigh4Dataset(seed,seed2)
     
     if(i == 0):
-        xBag = x
-        labelBag = labels
+        xBag = x[0:int(x.shape[0]*trainRatio)]
+        xValidate = x[int(x.shape[0]*trainRatio):]
+        labelBag = labels[0:int(labels.shape[0]*trainRatio)]
+        labelsValidate = labels[int(labels.shape[0]*trainRatio):]
+        fileNamesValidate = fileNames[int(fileNames.shape[0]*trainRatio):]
     else:
-        xBag = np.concatenate((xBag,x),axis=0)
-        labelBag = np.concatenate((labelBag,labels),axis=0)
+        xBag = np.concatenate((xBag,x[0:int(x.shape[0]*trainRatio)]),axis=0)
+        labelBag = np.concatenate((labelBag,labels[0:int(labels.shape[0]*trainRatio)]),axis=0)
 
 #shuffle time
 seed = np.random.randint(0,100)
 np.random.seed(seed)
-np.random.shuffle(xBag)
+np.random.shuffle(xBag) 
 np.random.seed(seed)
 np.random.shuffle(labelBag)
 np.random.seed(seed)
-np.random.shuffle(fileNames)
 
-xTrain = xBag[0:int(xBag.shape[0]*trainRatio)]
-xValidate = xBag[int(xBag.shape[0]*trainRatio):]
+xTrain = xBag
+labelsTrain = labelBag
 
-labelsTrain = labelBag[0:int(xBag.shape[0]*trainRatio)]
-labelsValidate = labelBag[int(xBag.shape[0]*trainRatio):]
-
-fileNamesTrain = fileNames[0:int(xBag.shape[0]*trainRatio)]
-fileNamesValidate = fileNames[int(xBag.shape[0]*trainRatio):]
 #reshaping
 xTrainReshaped = np.swapaxes(xTrain,0,1)
 xValidateReshaped = np.swapaxes(xValidate,0,1)
@@ -187,5 +244,5 @@ for epoch in range(epochCount):
         optimizer.step()    
 
 
-plt.plot(trainLosses[-100:])
+plt.plot(trainLosses[-200:])
 plt.show()
