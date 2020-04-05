@@ -44,7 +44,7 @@ net.cuda()
 
 
 criterion = nn.CrossEntropyLoss()
-optimizer = optim.Adam(net.parameters(), lr = 2e-5)
+optimizer = optim.Adam(net.parameters(), lr = 2e-3)
 
 seed = 4
 x, labels = high4Dataset.getHigh4Dataset(seed)

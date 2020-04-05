@@ -11,8 +11,8 @@ import torch.nn as nn
 import torch.nn.functional as F
 
 
-refinementSize = 10
-hiddenSize = 20
+refinementSize = 25 #25
+hiddenSize = 35 #25
 classSize = 9
 
 class High4Net(nn.Module):

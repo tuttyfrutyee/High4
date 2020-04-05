@@ -147,18 +147,18 @@ device = torch.device("cuda:0")
 
 batchSize = 256
 epochCount = 100000
-trainRatio = 0.8
+trainRatio = 0.85
 
 
 
 net = high4Net.High4Net().cuda()
 
-classWeights = torch.from_numpy(np.array([1, 10,10, 10,6,6,10,6,6])).float().cuda()
+classWeights = torch.from_numpy(np.array([0.1, 5,5, 5,5,5,5,5,5])).float().cuda()
 criterion = nn.CrossEntropyLoss(weight=classWeights)
 optimizer = optim.Adam(net.parameters(), lr = 1e-4)
 
 seeds = [21,20,60,51,77,79,90,74]
-seed2 = 11
+seed2 = 14
 
 xBag = []
 labelBag = []
@@ -247,5 +247,5 @@ for epoch in range(epochCount):
         optimizer.step()    
 
 
-plt.plot(trainLosses[-200:])
+plt.plot(trainLosses[-300:])
 plt.show()
