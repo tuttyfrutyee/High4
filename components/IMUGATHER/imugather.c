@@ -247,7 +247,12 @@ int16_t* getGatherAccelerationsAsArrayInOrder(IMUGATHER* gather){
         accelerationGatherData[offset + 4] = imuStack[i].imu.acc.rawRadAccY;
         accelerationGatherData[offset + 5] = imuStack[i].imu.acc.rawRadAccZ;
 
+/*         printf("%d, %d, %d | %d, %d, %d\n",accelerationGatherData[offset + 0], accelerationGatherData[offset + 1], accelerationGatherData[offset + 2],
+        accelerationGatherData[offset + 3], accelerationGatherData[offset + 4], accelerationGatherData[offset + 5] );
+ */
     }
+
+    printf("\n\n ******************** \n\n");
 
     return accelerationGatherData;
 
