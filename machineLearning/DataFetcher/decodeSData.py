@@ -204,22 +204,6 @@ def decodeSensorData(fileName): # returns x and y, x : [moment], y : [y(moment)]
 
 
 
-#
-#    accMagnitudeFirstImu = []
-#    gyroMagnitudeFirstImu = []
-#    for moment in moments:
-#        magnitudeAcc = np.sqrt(moment[9]**2 + moment[10]**2 + moment[11]**2 )
-#        magnitudeGyro = np.sqrt(moment[3]**2 )
-#        accMagnitudeFirstImu.append(magnitudeAcc)
-#        gyroMagnitudeFirstImu.append(magnitudeGyro)
-#    #print(accMagnitudeFirstImu)
-#    plt.plot(accMagnitudeFirstImu)
-#    plt.axvline(x=beforeFireMomentCount, color="red")
-#    plt.axvline(x=beforeFireMomentCount+ 150 - 25, color="blue")
-#    plt.axvline(x=beforeFireMomentCount+ 150 + 75, color="green")    
-#    plt.show(block=True)
-#    
-
 
 
     return (np.array(moments), np.array(y)) 

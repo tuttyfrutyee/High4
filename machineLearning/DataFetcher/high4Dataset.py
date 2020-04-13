@@ -1,4 +1,4 @@
-from decodeSData import *
+import DataFetcher.decodeSData as Decoder
 import os
 import numpy as np
 import random
@@ -26,7 +26,7 @@ def getHigh4Dataset(recordFolderName):
     for fileName in relativeFileNames:
         
         print(fileName)
-        moments, y = decodeSensorData(fileName)
+        moments, y = Decoder.decodeSensorData(fileName)
 
         records.append(moments[0:recordLength])
         labels.append(y[0:recordLength])

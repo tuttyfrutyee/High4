@@ -3,7 +3,7 @@ import random
 import time
 import numpy as np
 
-import high4Dataset
+import DataFetcher.high4Dataset as Dataset
 
 
 records = None
@@ -18,7 +18,7 @@ def fetchAllData(recordFolderName):
     global labels
     global fileNames
     
-    records, labels, fileNames = high4Dataset.getHigh4Dataset(recordFolderName)
+    records, labels, fileNames = Dataset.getHigh4Dataset(recordFolderName)
     
     
     
@@ -95,15 +95,19 @@ def getDataForFingers(fingers, trainRatio, multiplicity, seperationSeed = None):
             xTrain = np.concatenate((xTrain, duplicateXTrain))
             yTrain = np.concatenate((yTrain, duplicateYTrain))
     
+    np.random.seed(seperationSeed)
     np.random.shuffle(xTrain)
+    np.random.seed(seperationSeed)
     np.random.shuffle(yTrain)
     
+    xTrain = normalizer(xTrain)
+    xVal = normalizer(xVal)
     
-    
-    return (xTrain, yTrain, xVal, yVal, valFileNames)
+    return {"xTrain": xTrain, "yTrain":yTrain, "xVal":xVal, "yVal":yVal, "valFileNames":valFileNames}
 
-
-
+def normalizer(x):
+    x = (x - x.mean()) / x.std()
+    return x
 
 
 
