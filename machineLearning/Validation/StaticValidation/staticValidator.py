@@ -138,7 +138,49 @@ def inspectValidatePerformanceByFileName(net, x, y, fileNames, targetFileName):
     
     
     
+def predictRecord(net, records, threshold=0.9): #assumes record.shape (seq_len,1,input_size)
     
+    net = net.cpu()
+    
+    net.eval()
+    
+    batch_size = records.shape[1]
+
+    
+    with torch.no_grad():
+        
+        hidden = (torch.zeros(1,batch_size,net.hiddenSize, dtype=dtype), torch.zeros(1,batch_size,net.hiddenSize, dtype=dtype))
+        
+        net.hidden = hidden
+        
+        
+        predicts = net(records.cpu()).permute(1,0,2)
+        
+        values, indicies = predicts.max(axis=2)
+        
+        softmaxValues = F.softmax(predicts,dim=2).cpu()
+        
+        theValues = torch.zeros(indicies.shape[0], indicies.shape[1], dtype=torch.int64).cpu()
+        
+        for i,record in enumerate(indicies):
+            for j,maxIndex in enumerate(record):
+                if(softmaxValues[i][j][maxIndex] < threshold):
+                    theValues[i][j] = 0
+                else:
+                    theValues[i][j] = maxIndex
+        
+        for i,case in enumerate(theValues):
+            
+            plt.figure()
+            
+            plt.plot(case, "b", label="Predictions")
+            
+            plt.legend(loc="Record : "+ str(i))
+    
+            plt.show()            
+            
+        
+    net.train()
     
     
     

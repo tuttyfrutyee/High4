@@ -36,10 +36,16 @@ def on_message(client, userdata, msg):
     
     for i, data in enumerate(moment):
         valueIndex = i % 6
+        
         if(valueIndex < 3):
-            moment[i] = ((moment[i] / (65536.0 / 2.) * linRange * g) - accMean) / accStd
+            moment[i] = (moment[i] / (65536.0 / 2.) * linRange * g)
         else:
-            moment[i] = ((moment[i] / (65536.0 / 2.) * radRange * 250 ) - gyroMean) / gyroStd    
+            moment[i] = (moment[i] / (65536.0 / 2.) * radRange * 250 )     
+            
+#        if(valueIndex < 3):
+#            moment[i] = ((moment[i] / (65536.0 / 2.) * linRange * g) - accMean) / accStd
+#        else:
+#            moment[i] = ((moment[i] / (65536.0 / 2.) * radRange * 250 ) - gyroMean) / gyroStd    
 
     
     torchMoment = torch.from_numpy(moment).view(1,1,len(moment)).float()

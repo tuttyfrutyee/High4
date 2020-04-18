@@ -42,7 +42,7 @@ static void initPeripherals();
 static int fatalError = 0;
 static int flagGo = 0;
 
-static int mode = 0; 
+static int mode = 1; 
 /*
 modes : {
     0 : recorder,

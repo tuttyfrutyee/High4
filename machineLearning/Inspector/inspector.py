@@ -9,6 +9,8 @@ def visualizeRecords(records, fileNames, numberOfVisualization, maxImuIndex=3):
     
     randomRecordIndexes = np.random.randint(low = 0, high= records.shape[0], size=numberOfVisualization)
     
+    print(randomRecordIndexes)
+    
     for i,recordIndex in enumerate(randomRecordIndexes):
         
         randomImuIndex = np.random.randint(low=0,high=maxImuIndex+1)

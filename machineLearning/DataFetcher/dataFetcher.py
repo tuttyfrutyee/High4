@@ -101,15 +101,15 @@ def getDataForFingers(fingers, trainRatio, multiplicity, seperationSeed = None):
     np.random.seed(seperationSeed)
     np.random.shuffle(yTrain)
     
-    trainStatistics = {"accMean" : 0, "accStd" : 0, "gyroMean" : 0, "gyroStd": 0}
-    valStatistics = {"accMean" : 0, "accStd" : 0, "gyroMean" : 0, "gyroStd": 0}
-    
-    xTrain = normalizerBetter(xTrain, trainStatistics)
-    xVal = normalizerBetter(xVal, valStatistics)
-#    xTrain = normalizerWorse(xTrain)
-#    xVal = normalizerWorse(xVal)
-    
-    print(trainStatistics)
+#    trainStatistics = {"accMean" : 0, "accStd" : 0, "gyroMean" : 0, "gyroStd": 0}
+#    valStatistics = {"accMean" : 0, "accStd" : 0, "gyroMean" : 0, "gyroStd": 0}
+#    
+#    xTrain = normalizerBetter(xTrain, trainStatistics)
+#    xVal = normalizerBetter(xVal, valStatistics)
+##    xTrain = normalizerWorse(xTrain)
+##    xVal = normalizerWorse(xVal)
+#    
+#    print(trainStatistics)
     
     return {"xTrain": xTrain, "yTrain":yTrain, "xVal":xVal, "yVal":yVal, "valFileNames":valFileNames}
 

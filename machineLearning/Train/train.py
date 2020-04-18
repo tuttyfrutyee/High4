@@ -107,12 +107,10 @@ def train(modelGroup, data, epochCount, patience = 10):
                 modelGroup["net"] = net
                 modelGroup["optimizer"] = optimizer
                 modelGroup["losses"] = losses
-                print("After model group assign diff:", torch.cuda.memory_allocated()-a)
                 a = torch.cuda.memory_allocated()
                 Validator.calPercentageCorrectness(net, xTrainTorch[:,:batchSize], yTrainTorch[:batchSize], title="Train")
                 Validator.calPercentageCorrectness(net, xValTorch, yValTorch, title="Validate")
                 torch.cuda.empty_cache()
-                print("After validations diff:",torch.cuda.memory_allocated() - a)
             if(batchIndex == 0):
                 losses = np.append(losses,loss.item())
                 if(firstTime and losses.shape[0]>300):
@@ -132,7 +130,6 @@ def train(modelGroup, data, epochCount, patience = 10):
             if(batchIndex == 0):
                 scheduler.step(loss.item())
     
-        print("After one batch diff:",torch.cuda.memory_allocated()-b, torch.cuda.memory_allocated())
         
     del xTrainTorch, xValTorch, yTrainTorch, yValTorch, net, optimizer, classWeights, hidden
     torch.cuda.empty_cache()

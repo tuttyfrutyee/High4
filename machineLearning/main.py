@@ -20,13 +20,13 @@ import Inspector.inspector as Inspector
 
 
 #fetch necessary files
-records, labels, fileNames = Fetcher.fetchAllData("/DataFetcher/Records")
+records, labels, fileNames = Fetcher.fetchAllData("/DataFetcher/TrivialRecord")
 
 Fetcher.records = records
 Fetcher.labels = labels
 Fetcher.fileNames = fileNames
 
-data = Fetcher.getDataForFingers([0,1,2,3], 0.9, 6, 3)
+data = Fetcher.getDataForFingers([0,1,2,3], 0, 6, 3)
 
 
 
@@ -79,7 +79,7 @@ yValTorch = torch.from_numpy(data["yVal"]).long()
 #static evaluation
 StaticValidator.listValidatePerformanceWithThreshold(net, xValTorch.cpu(), yValTorch.cpu(), data["valFileNames"], 0.9)
 
-StaticValidator.inspectValidatePerformanceByFileName(net, xValTorch.cpu(), yValTorch.cpu(), data["valFileNames"], "D_125")
+StaticValidator.inspectValidatePerformanceByFileName(net, xValTorch.cpu(), yValTorch.cpu(), data["valFileNames"], "D_388")
 
 StaticValidator.calPercentageCorrectness(net, xValTorch.cpu(), yValTorch.cpu(), "vallMain")
 
@@ -88,11 +88,12 @@ StaticValidator.calPercentageCorrectness(net, xValTorch.cpu(), yValTorch.cpu(), 
 RealTimeValidator.simulateRealTimeFromFilesRandom(net, xValTorch, data["valFileNames"], 6, 600, 0.002, 0.9)
 
 #from mqtt stream
-RealTimeValidator.evaluateMqttStreamRealTime(net, 30, 600, 0.9)
-
+record = RealTimeValidator.evaluateMqttStreamRealTime(net, 120, 600, 0.3)
+record = (record - record.mean()) / record.std()
+StaticValidator.predictRecord(net, record, threshold=0.1)
 #inspect data
 Inspector.visualizeRecords(records, fileNames, 4)
-
+Inspector.visualizeRecords(record,["deneme"],1)
 #torch.cuda.empty_cache()
 #torch.cuda.memory_allocated()
 

@@ -91,11 +91,12 @@ def evaluateMqttStreamRealTime(net, duration, windowSize, threshold):
             line1.set_ydata(realTimePredicts[-windowSize:])
             fig.canvas.draw()
             fig.canvas.flush_events()
-            time.sleep(0.001)
+
     
     stream["streaming"] = False
     stream["mqttClient"].disconnect()
     streamEvaluater.join()
+    return torch.cat(streamingData,0)
     
 
 def simulateRealTimeFromFilesRandom(net, xTorch, fileNames, fileCount, windowSize, delay, threshold):
