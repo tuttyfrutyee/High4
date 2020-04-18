@@ -12,6 +12,7 @@ fileNames = None
 
 
 
+
 def fetchAllData(recordFolderName):
     
     global records
@@ -20,7 +21,7 @@ def fetchAllData(recordFolderName):
     
     records, labels, fileNames = Dataset.getHigh4Dataset(recordFolderName)
     
-    
+    return (records, labels, fileNames)
     
     
     
@@ -100,13 +101,60 @@ def getDataForFingers(fingers, trainRatio, multiplicity, seperationSeed = None):
     np.random.seed(seperationSeed)
     np.random.shuffle(yTrain)
     
-    xTrain = normalizer(xTrain)
-    xVal = normalizer(xVal)
+    trainStatistics = {"accMean" : 0, "accStd" : 0, "gyroMean" : 0, "gyroStd": 0}
+    valStatistics = {"accMean" : 0, "accStd" : 0, "gyroMean" : 0, "gyroStd": 0}
+    
+    xTrain = normalizerBetter(xTrain, trainStatistics)
+    xVal = normalizerBetter(xVal, valStatistics)
+#    xTrain = normalizerWorse(xTrain)
+#    xVal = normalizerWorse(xVal)
+    
+    print(trainStatistics)
     
     return {"xTrain": xTrain, "yTrain":yTrain, "xVal":xVal, "yVal":yVal, "valFileNames":valFileNames}
 
-def normalizer(x):
+def normalizerWorse(x):
     x = (x - x.mean()) / x.std()
+    return x
+
+def normalizerBetter(x, statistics):
+    
+    xAcc = []
+    
+    xGyro = []
+    
+    for i,moment in enumerate(x):
+        for k in range(moment.shape[1]):
+            
+            l = k % 6
+            
+            if(l < 3):
+                xAcc.append(moment[:,k])
+            else:
+                xGyro.append(moment[:,k])
+                
+
+    accMean = np.mean(xAcc)
+    accStd = np.std(xAcc)
+    gyroMean = np.mean(xGyro)
+    gyroStd = np.std(xGyro)                
+    
+    statistics["accMean"] = accMean
+    statistics["accStd"] = accStd
+    statistics["gyroMean"] = gyroMean
+    statistics["gyroStd"] = gyroStd
+    
+    for i,moment in enumerate(x):
+        for k in range(moment.shape[1]):
+            
+            l = k % 6
+                
+            if(l < 3):
+                x[i][:][k] = (x[i][:][k] - accMean) / accStd
+            else:
+                x[i][:][k] = (x[i][:][k] - gyroMean) / gyroStd             
+    
+
     return x
 
 

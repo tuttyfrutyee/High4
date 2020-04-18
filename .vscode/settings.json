@@ -8,6 +8,7 @@
         "button.h": "c",
         "cstdio": "cpp",
         "cmath": "c",
-        "errno.h": "c"
+        "errno.h": "c",
+        "mqtt.h": "c"
     }
 }

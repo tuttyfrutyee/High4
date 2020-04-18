@@ -9,6 +9,8 @@ from threading import RLock
 import numpy as np
 import matplotlib.pyplot as plt
 
+import Validation.RealTimeValidation.mqttStreamSink as MqttStream
+
 dtype = torch.float
 
 
@@ -28,6 +30,7 @@ def realTimeEvaluateStream(net, stream, preHidden, threshold = 0.9):
         if(stream["streamIndex"] > lastStreamIndex):
             lastStreamIndex +=1
             
+
             
             with torch.no_grad():
                 predict = net(stream["data"][lastStreamIndex]).permute(1,0,2)
@@ -40,12 +43,60 @@ def realTimeEvaluateStream(net, stream, preHidden, threshold = 0.9):
             with lock:
                 if(softmaxValue > threshold):
                     stream["realTimePredicts"].append(index)
+                    if(index != 0):
+                        print(index)
                 else:
                     #print(softmaxValue)
                     #print(index)
                     stream["realTimePredicts"].append(0)
+                    
+                    
             
-            
+def evaluateMqttStreamRealTime(net, duration, windowSize, threshold):
+
+    net.eval()
+    net = net.cpu()
+    hidden = (torch.zeros(1,1,net.hiddenSize, dtype=dtype), torch.zeros(1,1,net.hiddenSize, dtype=dtype))  
+    net.hidden = hidden
+
+    startTime = time.time()
+    
+    realTimePredicts = []
+    
+    for i in range(windowSize):
+        realTimePredicts.append(0)    
+        
+    fig = plt.figure()
+    ax = fig.add_subplot(111)
+    line1, = ax.plot(realTimePredicts[-windowSize:], 'r-')
+    plt.ylim(0,11)         
+    
+    fileMomentIndex = -1
+    streamingData = []
+    
+    stream = {
+                "streaming" : True,
+                "data" : streamingData,
+                "streamIndex" : fileMomentIndex,
+                "realTimePredicts" : realTimePredicts 
+            }
+    
+    streamEvaluater = Thread(target=realTimeEvaluateStream, args = (net, stream, windowSize, threshold))   
+    mqttStream = Thread(target=MqttStream.mqttSinkStream, args = (stream,))
+    streamEvaluater.start()
+    mqttStream.start()
+    
+    while((time.time() - startTime) < duration):
+        
+            line1.set_ydata(realTimePredicts[-windowSize:])
+            fig.canvas.draw()
+            fig.canvas.flush_events()
+            time.sleep(0.001)
+    
+    stream["streaming"] = False
+    stream["mqttClient"].disconnect()
+    streamEvaluater.join()
+    
 
 def simulateRealTimeFromFilesRandom(net, xTorch, fileNames, fileCount, windowSize, delay, threshold):
 
@@ -83,7 +134,7 @@ def simulateRealTimeFromFilesRandom(net, xTorch, fileNames, fileCount, windowSiz
                 }
                 
         
-        streamEvaluater = Thread(target=realTimeEvaluateStream, args = (net, stream, windowSize))
+        streamEvaluater = Thread(target=realTimeEvaluateStream, args = (net, stream, windowSize, threshold))
         streamer = Thread(target=streamFile, args = (xTorch, fileIndex, stream, delay))
         
         print("Now streaming : "+ fileNames[fileIndex])
@@ -97,7 +148,7 @@ def simulateRealTimeFromFilesRandom(net, xTorch, fileNames, fileCount, windowSiz
             fig.canvas.draw()
             fig.canvas.flush_events()
             
-        
+        stream["streaming"] = False  
         
         streamer.join()
         streamEvaluater.join()

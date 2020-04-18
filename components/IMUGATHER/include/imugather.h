@@ -26,7 +26,7 @@ void getGatherAccelerations();
 int initIMUGATHERSensors(IMUGATHER* gather);
 
 //Will get all accelerations in order : [gather1accData(consistsof6int16_t array), gather2accData(...) ...]
-int16_t* getGatherAccelerationsAsArrayInOrder(IMUGATHER* gather);
+int16_t* getGatherAccelerationsAsArrayInOrder();
 
 int selfTestSensors();
 
@@ -36,5 +36,6 @@ void startRecordingData();
 
 void stopRecordingData();
 
+void startStreamer(int* keepStreaming);
 
 #endif

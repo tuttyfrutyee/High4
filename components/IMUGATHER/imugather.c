@@ -3,6 +3,7 @@
 #include "mpu6050.h"
 #include "sdcard.h"
 #include "helper.h"
+#include "mqttt.h"
 
 #include "driver/gpio.h"
 #include "esp_timer.h"
@@ -19,6 +20,8 @@
 #define flagActive 0 //this is flag related with ssDefaultAddr, it defines being pins active low or high.
 
 TaskHandle_t xRecorder = NULL;
+
+TaskHandle_t xStreamer = NULL;
 
 char * fileNameToWriteGlobal;
 
@@ -232,9 +235,12 @@ int selfTestSensors(IMUGATHER* gather){
 }
 
 
-int16_t* getGatherAccelerationsAsArrayInOrder(IMUGATHER* gather){
+int16_t* getGatherAccelerationsAsArrayInOrder(){
 
     int16_t* accelerationGatherData = (int16_t*) malloc(sizeof(int16_t) * 6 * gather->numberOfImu);
+
+    if(accelerationGatherData == NULL)
+        printf("\nErr:Could not allocated memory for acceleration data\n");
     
     for(int i = 0; i < gather->numberOfImu; i++){
 
@@ -247,16 +253,38 @@ int16_t* getGatherAccelerationsAsArrayInOrder(IMUGATHER* gather){
         accelerationGatherData[offset + 4] = imuStack[i].imu.acc.rawRadAccY;
         accelerationGatherData[offset + 5] = imuStack[i].imu.acc.rawRadAccZ;
 
-/*         printf("%d, %d, %d | %d, %d, %d\n",accelerationGatherData[offset + 0], accelerationGatherData[offset + 1], accelerationGatherData[offset + 2],
-        accelerationGatherData[offset + 3], accelerationGatherData[offset + 4], accelerationGatherData[offset + 5] );
- */
     }
 
-    printf("\n\n ******************** \n\n");
+
 
     return accelerationGatherData;
 
 }
+
+void streamData(int* continueS){
+
+    const int fps = 120;
+    float delayAmount = 1000. / fps;
+
+    while(true){
+
+        if(*continueS){
+            getGatherAccelerations();
+
+            char* data = (char*) getGatherAccelerationsAsArrayInOrder();
+
+            pushDataToStream(data, gather->numberOfImu * 6 * 2);
+
+            vTaskDelay(delayAmount / portTICK_PERIOD_MS);
+        }else{
+            vTaskDelay(5 / portTICK_PERIOD_MS);
+        }
+
+    }
+
+
+}
+
 
 
 void goCollectCurrentModeData(IMUGATHER* gather, char* fileNameToWrite){
@@ -292,11 +320,6 @@ void goCollectCurrentModeData(IMUGATHER* gather, char* fileNameToWrite){
     writeToBinFile(&linRange, 1, fileNameToWrite);
 
     writeToBinFile(&radRange, 1, fileNameToWrite);
-
-/*     int16_t * deneme = (int16_t *) malloc(sizeof(int16_t) * 1);
-    deneme[0] = 513;
-
-    writeToBinFile(deneme, 2, fileNameToWrite); */
 
 
     //start to fetch data continously with duration gather->dataCollectDuration
@@ -350,25 +373,11 @@ void goCollectCurrentModeData(IMUGATHER* gather, char* fileNameToWrite){
 
 
         QueueElement* dataElement = (QueueElement*)malloc(sizeof(QueueElement));
-        dataElement->array = (int8_t*)getGatherAccelerationsAsArrayInOrder(gather);
+        dataElement->array = (int8_t*)getGatherAccelerationsAsArrayInOrder();
         dataElement->arrayLength = gather->numberOfImu * 6 * 2;
         pushToQueue(dataElement);
         //totalBytes += dataElement->arrayLength;
         vTaskDelay(5 / portTICK_PERIOD_MS);
-
-/*         if(totalCapture == 100){
-            int8_t * deneme = (int8_t*) malloc(sizeof(int8_t) * 6);
-            deneme[0] = 8;
-            deneme[1] = 3;
-            deneme[2] = 7;
-            deneme[3] = 1;
-            deneme[4] = 6;
-            deneme[5] = 5;            
-            QueueElement* dataElement = (QueueElement*)malloc(sizeof(QueueElement));
-            dataElement->array = deneme;
-            dataElement->arrayLength = 6;
-            pushToQueue(dataElement);
-        } */
 
     }
 
@@ -435,6 +444,10 @@ void recordData(){
 
 void startRecordingData(){
     xTaskCreate( recordData, "dataRecorder",  CLUSTER_MAX_LENGTH * 100 , NULL, 3 | portPRIVILEGE_BIT, &xRecorder );
+}
+
+void startStreamer(int* keepStreaming){
+    xTaskCreate(streamData, "streamData", 4096 * 2, keepStreaming, 10, &xStreamer);
 }
 
 void stopRecordingData(){

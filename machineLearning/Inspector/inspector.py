@@ -19,20 +19,30 @@ def visualizeRecords(records, fileNames, numberOfVisualization, maxImuIndex=3):
         
         accMagnitudes = []
         gyroMagnitudes = []
+        accs = []
+        gyros = []
         
         for moment in records[recordIndex]:
             
             accStartIndex = randomImuIndex * 6
             gyroStartIndex = randomImuIndex * 6 + 3
             
-            accMagnitudes.append( moment[accStartIndex] **2 + moment[accStartIndex+1]**2 + moment[accStartIndex+2]**2)
-            gyroMagnitudes.append( moment[gyroStartIndex]**2 + moment[gyroStartIndex+1]**2 + moment[gyroStartIndex+2]**2)
+            accMagnitudes.append(np.sqrt( moment[accStartIndex] **2 + moment[accStartIndex+1]**2 + moment[accStartIndex+2]**2))
+            gyroMagnitudes.append(np.sqrt( moment[gyroStartIndex]**2 + moment[gyroStartIndex+1]**2 + moment[gyroStartIndex+2]**2))
+            
+            for d in range(3):
+                accs.append(moment[accStartIndex + d])
+                gyros.append(moment[gyroStartIndex +d])
             
         axs[0].plot(accMagnitudes)
         axs[0].set_title("Acc Magnitudes")
         
         axs[1].plot(gyroMagnitudes)
         axs[1].set_title("Gyro Magnitudes")
+        
+        print(np.mean(accs), np.std(accs))
+        
+        print(np.mean(gyros), np.std(gyros))
         
         fig.suptitle(fileNames[recordIndex] + " - imu:" + str(randomImuIndex))
         

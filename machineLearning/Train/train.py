@@ -12,7 +12,9 @@ import os
 import Validation.StaticValidation.staticValidator as Validator
 
 
-def train(modelGroup, data, epochCount, patience = 10, ):
+def train(modelGroup, data, epochCount, patience = 10):
+    
+    beforeInit = torch.cuda.memory_allocated()
     
     epoch = modelGroup["epoch"] 
     net = modelGroup["net"] 
@@ -20,17 +22,22 @@ def train(modelGroup, data, epochCount, patience = 10, ):
     losses = modelGroup["losses"]
     classWeights = modelGroup["classWeights"]
     
+    print("After init diff:",torch.cuda.memory_allocated() - beforeInit)
+    
     
     xTrainTorch = torch.from_numpy(np.swapaxes(data["xTrain"], 0,1)).float().cuda()
     yTrainTorch = torch.from_numpy(data["yTrain"]).long().cuda()
     
-    xValTorch = torch.from_numpy(np.swapaxes(data["xVal"], 0,1)).float().cuda()
-    yValTorch = torch.from_numpy(data["yVal"]).long().cuda()
+    xValTorch = torch.from_numpy(np.swapaxes(data["xVal"], 0,1)).float()
+    yValTorch = torch.from_numpy(data["yVal"]).long()    
         
+    
+    N = yTrainTorch.shape[0]
+    
     batchSize = 256
     
-    if(data["xTrain"].shape[0] < batchSize):
-        batchSize = data.data["xTrain"][0]
+    if(N < batchSize):
+        batchSize = N
         
         
     os.environ['CUDA_VISIBLE_DEVICES'] = '0'
@@ -39,7 +46,7 @@ def train(modelGroup, data, epochCount, patience = 10, ):
     
     
     #create to hidden, since the last batch might not be divisible quite
-    lastHiddenSize = data["xTrain"].shape[0] % batchSize
+    lastHiddenSize = N % batchSize
     #for the divisible ones
     hidden = (torch.zeros(1,batchSize, net.hiddenSize, dtype=dtype).cuda(), torch.zeros(1,batchSize,net.hiddenSize, dtype=dtype).cuda())
     #for the last one
@@ -53,7 +60,7 @@ def train(modelGroup, data, epochCount, patience = 10, ):
     
     criterion = nn.CrossEntropyLoss(weight=classWeights)
     
-    batchIterationCount = math.ceil(data["xTrain"].shape[0] / batchSize)
+    batchIterationCount = math.ceil(N / batchSize)
     
     
     net.train()
@@ -65,14 +72,17 @@ def train(modelGroup, data, epochCount, patience = 10, ):
     
     for _ in range(epochCount):
         
-        epoch += 1
+        if(modelGroup["stopTraining"]):
+            break
         
+        epoch += 1
+        b = torch.cuda.memory_allocated()
         for batchIndex in range(batchIterationCount):
             
             if(lastHiddenSize != 0 and batchIndex == (batchIterationCount-1)):
                 net.hidden = hiddenLast
-                slicingIndexLeft = data["xTrain"].shape[0] - lastHiddenSize
-                slicingIndexRight = data["xTrain"].shape[0]
+                slicingIndexLeft = N - lastHiddenSize
+                slicingIndexRight = N
                 
             else:
                 net.hidden = hidden
@@ -92,16 +102,17 @@ def train(modelGroup, data, epochCount, patience = 10, ):
                 
                 print(epoch, loss.item())
                 print(optimizer.param_groups[0]["lr"])
-                
+                a = torch.cuda.memory_allocated()
                 modelGroup["epoch"] = epoch
                 modelGroup["net"] = net
                 modelGroup["optimizer"] = optimizer
                 modelGroup["losses"] = losses
-    
+                print("After model group assign diff:", torch.cuda.memory_allocated()-a)
+                a = torch.cuda.memory_allocated()
                 Validator.calPercentageCorrectness(net, xTrainTorch[:,:batchSize], yTrainTorch[:batchSize], title="Train")
                 Validator.calPercentageCorrectness(net, xValTorch, yValTorch, title="Validate")
                 torch.cuda.empty_cache()
-                
+                print("After validations diff:",torch.cuda.memory_allocated() - a)
             if(batchIndex == 0):
                 losses = np.append(losses,loss.item())
                 if(firstTime and losses.shape[0]>300):
@@ -121,6 +132,7 @@ def train(modelGroup, data, epochCount, patience = 10, ):
             if(batchIndex == 0):
                 scheduler.step(loss.item())
     
-    
-
-    
+        print("After one batch diff:",torch.cuda.memory_allocated()-b, torch.cuda.memory_allocated())
+        
+    del xTrainTorch, xValTorch, yTrainTorch, yValTorch, net, optimizer, classWeights, hidden
+    torch.cuda.empty_cache()

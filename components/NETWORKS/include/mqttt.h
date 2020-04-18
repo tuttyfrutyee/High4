@@ -21,5 +21,7 @@
 #include "mqtt_client.h"
 
 
-static void wifi_init(void);
-static void mqtt_app_start(void);
+void wifi_init(void);
+void mqtt_app_start(void);
+
+void pushDataToStream(char* data, int length);

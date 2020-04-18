@@ -20,7 +20,7 @@
 #include "acceleration.h"
 #include "imugather.h"
 #include "sdcard.h"
-#include "mqtt.h"
+#include "mqttt.h"
 #include "button.h"
 #include "buzzer.h"
 #include "helper.h"
@@ -41,6 +41,15 @@ static void initPeripherals();
 
 static int fatalError = 0;
 static int flagGo = 0;
+
+static int mode = 0; 
+/*
+modes : {
+    0 : recorder,
+    1 : streamer,
+    2 : controller
+}
+*/
 
 void app_main(void)
 {
@@ -181,14 +190,17 @@ static void tapRecogniser(){
 
 static void initPeripherals(){
 
-/*  //init internal storeage system, not sure if need it, todo: check it
-    nvs_flash_init();
-    
-    //init wifi for mqtt, at this point esp32 draws heavy current
-    wifi_init();
+    if(mode > 0){
+    //init internal storeage system, not sure if need it, todo: check it
+        nvs_flash_init();
+        
+        //init wifi for mqtt, at this point esp32 draws heavy current
+        wifi_init();
 
-    //init mqtt
-    mqtt_app_start(); */
+        //init mqtt
+        mqtt_app_start();
+    }
+
     
     //init i2c
     int ret;
@@ -200,9 +212,12 @@ static void initPeripherals(){
 
     //init gpio relateds
     //note : it init button gpio and also the internal blue led gpio
-    initButtonGpio();
+    initButtonGpio();   
 
-    initBuzzGpio();
+    if(mode == 0) 
+        initBuzzGpio();
+    
+
 
     //note that, imuInit has to be after i2c init
     initIMUGATHERSensors(&gather);
@@ -217,46 +232,76 @@ static void initPeripherals(){
 
 
     //init spi, sdcard
-    initSdCard();
+    if(mode == 0)
+        initSdCard();
 
 
 }
 
 static void lifeCycleStart(){
 
-    int lifeCycle = 0;
+    //for mode == 1
+    int keepStreaming = false;
 
-    startRecordingData();
 
-    giveMeTingles();
+    if(mode == 0){
+        startRecordingData();
+        giveMeTingles();
+    }
+
+    if(mode == 1){
+        startStreamer(&keepStreaming);
+    }
+    
 
     while(true){
 
         while((!flagGo) | fatalError){ //if there is fatal error stay in hold on mode
             vTaskDelay(100 / portTICK_RATE_MS);
         }
-        printf("button pressed, collecting... \n");
-        //get recordCounter and increment by 1
-        //get currentModeCounter and update it with the next one
-        int recordCounter, currentModeCounter;
 
-        getAndUpdateLookUpTable(&recordCounter, &currentModeCounter);
-        gather.currentModeIndicator = currentModeCounter;
-        
+        switch(mode){
+            
+            ////recordMode
+            case 0:
 
-        char fileNameToWrite[20];
-        sprintf(fileNameToWrite, "D_%d_%d", recordCounter, currentModeCounter);
+                printf("button pressed, collecting... \n");
+                //get recordCounter and increment by 1
+                //get currentModeCounter and update it with the next one
+                int recordCounter, currentModeCounter;
+                getAndUpdateLookUpTable(&recordCounter, &currentModeCounter);
+                gather.currentModeIndicator = currentModeCounter;
+                char fileNameToWrite[20];
+                sprintf(fileNameToWrite, "D_%d_%d", recordCounter, currentModeCounter);
+                printf("\n filename : %s \n", fileNameToWrite);
+                //go collect data here
+                //notify the currentModeCounter by using binary sound ( assumes counter will be in range(32) )
+                binarySound(currentModeCounter);
+                physical_standby_start();
+                goCollectCurrentModeData(&gather, fileNameToWrite);
+                physical_standby_stop();
+                flagGo = 0;
 
-        printf("\n filename : %s \n", fileNameToWrite);
+            break;
 
-        //go collect data here
-        //notify the currentModeCounter by using binary sound ( assumes counter will be in range(32) )
-        binarySound(currentModeCounter);
-        physical_standby_start();
-        goCollectCurrentModeData(&gather, fileNameToWrite);
-        physical_standby_stop();
-        flagGo = 0;
-        lifeCycle++;
+            ////streamMode
+            case 1:
+
+                keepStreaming = true;
+                physical_standby_start();
+                vTaskDelay(40000 / portTICK_PERIOD_MS);
+                keepStreaming = false;
+                physical_standby_stop();
+                flagGo = 0;
+
+            break;
+
+            ////controllerMode
+            case 2:
+
+            break;
+        }
+
     }
 }
 

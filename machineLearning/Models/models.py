@@ -16,8 +16,8 @@ high4ModelsDict = {
                 {
                     "fingerCount" : 3,
                     "classSize" : 10,
-                    "refinementSize" : None,
-                    "hiddenSize" : None
+                    "refinementSize" : 30,
+                    "hiddenSize" : 30
                 },
         ],
         "high4Net_finger_013_10" : [
