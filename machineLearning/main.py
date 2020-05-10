@@ -88,7 +88,7 @@ StaticValidator.calPercentageCorrectness(net, xValTorch.cpu(), yValTorch.cpu(), 
 RealTimeValidator.simulateRealTimeFromFilesRandom(net, xValTorch, data["valFileNames"], 6, 600, 0.002, 0.9)
 
 #from mqtt stream
-record = RealTimeValidator.evaluateMqttStreamRealTime(net, 120, 600, 0.3)
+record = RealTimeValidator.evaluateMqttStreamRealTime(net, 300, 600, 0.5)
 record = (record - record.mean()) / record.std()
 StaticValidator.predictRecord(net, record, threshold=0.1)
 #inspect data

@@ -49,3 +49,4 @@ def visualizeRecords(records, fileNames, numberOfVisualization, maxImuIndex=3):
         fig.suptitle(fileNames[recordIndex] + " - imu:" + str(randomImuIndex))
         
         plt.show()
+        

@@ -277,7 +277,7 @@ void streamData(int* continueS){
 
             vTaskDelay(delayAmount / portTICK_PERIOD_MS);
         }else{
-            vTaskDelay(5 / portTICK_PERIOD_MS);
+            vTaskDelay(10 / portTICK_PERIOD_MS);
         }
 
     }
@@ -447,7 +447,7 @@ void startRecordingData(){
 }
 
 void startStreamer(int* keepStreaming){
-    xTaskCreate(streamData, "streamData", 4096 * 2, keepStreaming, 10, &xStreamer);
+    xTaskCreate(streamData, "streamData", 4096 * 3, keepStreaming, 10, &xStreamer);
 }
 
 void stopRecordingData(){

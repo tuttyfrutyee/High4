@@ -43,8 +43,7 @@ def realTimeEvaluateStream(net, stream, preHidden, threshold = 0.9):
             with lock:
                 if(softmaxValue > threshold):
                     stream["realTimePredicts"].append(index)
-                    if(index != 0):
-                        print(index)
+
                 else:
                     #print(softmaxValue)
                     #print(index)
