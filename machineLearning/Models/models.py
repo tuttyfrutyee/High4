@@ -2,6 +2,7 @@
 
 import Models.nets as Nets
 import torch
+import numpy as np
 
 high4ModelsDict = {
         "high4Net_finger_0123_10" : [
@@ -10,6 +11,7 @@ high4ModelsDict = {
                     "classSize" : 10,
                     "refinementSize" : 40,
                     "hiddenSize" : 40,
+                    "seed" : 3
                 },
         ],
         "high4Net_finger_012_10" : [
@@ -17,7 +19,8 @@ high4ModelsDict = {
                     "fingerCount" : 3,
                     "classSize" : 10,
                     "refinementSize" : 30,
-                    "hiddenSize" : 30
+                    "hiddenSize" : 30,
+                    "seed" : 3
                 },
         ],
         "high4Net_finger_013_10" : [
@@ -25,7 +28,8 @@ high4ModelsDict = {
                     "fingerCount" : 3,
                     "classSize" : 10,
                     "refinementSize" : None,
-                    "hiddenSize" : None
+                    "hiddenSize" : None,
+                    "seed" : 3
                 },
         ],
         "high4Net_finger_02_10" : [
@@ -33,7 +37,8 @@ high4ModelsDict = {
                     "fingerCount" : 3,
                     "classSize" : 10,
                     "refinementSize" : None,
-                    "hiddenSize" : None
+                    "hiddenSize" : None,
+                    "seed" : 3
                 },
         ],                
                 
@@ -77,10 +82,20 @@ def printNet(net):
             print(name, param.data.shape)    
             
             
-            
-            
-            
-            
+def getParameters(net):
+    
+    net = net.cpu()
+    
+    weights = {}
+        
+    for name, param in net.named_parameters():
+        if param.requires_grad:
+            weights[name] = np.array(param.data)
+    
+    return weights
+                
+                
+                
             
             
             

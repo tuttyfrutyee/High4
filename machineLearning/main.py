@@ -20,13 +20,13 @@ import Inspector.inspector as Inspector
 
 
 #fetch necessary files
-records, labels, fileNames = Fetcher.fetchAllData("/DataFetcher/TrivialRecord")
+records, labels, fileNames = Fetcher.fetchAllData("/DataFetcher/Records")
 
 Fetcher.records = records
 Fetcher.labels = labels
 Fetcher.fileNames = fileNames
 
-data = Fetcher.getDataForFingers([0,1,2,3], 0, 6, 3)
+data = Fetcher.getDataForFingers([0,1,2,3], 0.8, 6, 3)
 
 
 
@@ -41,6 +41,9 @@ epoch = 0
 #constructing modelsGroup
 net = Models.createHigh4Model("high4Net_finger_0123_10",0).cuda()
 
+net = Models.createHigh4Model("high4Net_finger_012_10",0)
+
+
 modelGroup = {}
 modelGroup["epoch"] = epoch
 modelGroup["net"] = net
@@ -53,7 +56,7 @@ modelGroup["net"] = modelGroup["net"].cuda()
 
 
 #train time
-Train.train(modelGroup, data, 300,60)
+Train.train(modelGroup, data, 100,60)
     
 
 
@@ -63,7 +66,7 @@ Models.loadModelGroup(modelGroup,"0123_10")
 
 
 
-net = modelGroup["net"]
+net = modelGroup["net"].cpu()
 
 
 
@@ -79,7 +82,7 @@ yValTorch = torch.from_numpy(data["yVal"]).long()
 #static evaluation
 StaticValidator.listValidatePerformanceWithThreshold(net, xValTorch.cpu(), yValTorch.cpu(), data["valFileNames"], 0.9)
 
-StaticValidator.inspectValidatePerformanceByFileName(net, xValTorch.cpu(), yValTorch.cpu(), data["valFileNames"], "D_388")
+StaticValidator.inspectValidatePerformanceByFileName(net, xValTorch.cpu(), yValTorch.cpu(), data["valFileNames"], "D_378")
 
 StaticValidator.calPercentageCorrectness(net, xValTorch.cpu(), yValTorch.cpu(), "vallMain")
 
@@ -88,16 +91,17 @@ StaticValidator.calPercentageCorrectness(net, xValTorch.cpu(), yValTorch.cpu(), 
 RealTimeValidator.simulateRealTimeFromFilesRandom(net, xValTorch, data["valFileNames"], 6, 600, 0.002, 0.9)
 
 #from mqtt stream
-record = RealTimeValidator.evaluateMqttStreamRealTime(net, 300, 600, 0.5)
+record = RealTimeValidator.evaluateMqttStreamRealTime(net, 200, 600, 0.5)
 record = (record - record.mean()) / record.std()
 StaticValidator.predictRecord(net, record, threshold=0.1)
 #inspect data
 Inspector.visualizeRecords(records, fileNames, 4)
 Inspector.visualizeRecords(record,["deneme"],1)
-#torch.cuda.empty_cache()
-#torch.cuda.memory_allocated()
+
+torch.cuda.empty_cache()
+torch.cuda.memory_allocated()
 
 
 
-
-
+Models.printNet(net)
+parameters = Models.getParameters(net)

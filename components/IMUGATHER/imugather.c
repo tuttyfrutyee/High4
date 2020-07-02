@@ -263,7 +263,7 @@ int16_t* getGatherAccelerationsAsArrayInOrder(){
 
 void streamData(int* continueS){
 
-    const int fps = 120;
+    const int fps = 60;
     float delayAmount = 1000. / fps;
 
     while(true){

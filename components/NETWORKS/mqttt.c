@@ -4,7 +4,7 @@ static const char *TAG = "MQTT_EXAMPLE";
 
 #define SSID "Bedel"
 #define PASSWORD "19982002ab"
-#define BROKERURL "mqtt://192.168.1.233:1883"
+#define BROKERURL "ws://192.168.1.233:9001"
 
 
 static EventGroupHandle_t wifi_event_group;

@@ -58,13 +58,13 @@ def mqttSinkStream(stream_):
     global stream
     stream = stream_
     
-    client = mqtt.Client()
+    client = mqtt.Client(transport="websockets")
     client.on_connect = on_connect
     client.on_message = on_message
     
     stream_["mqttClient"] = client
     
-    client.connect("192.168.1.233")
+    client.connect("192.168.1.233", 9001)
     client.loop_forever()
     
 
