@@ -9,6 +9,10 @@
         "cstdio": "cpp",
         "cmath": "c",
         "errno.h": "c",
-        "mqtt.h": "c"
+        "mqtt.h": "c",
+        "imugather.h": "c",
+        "mpu6050.h": "c",
+        "mqttt.h": "c",
+        "dl_lib_matrix3d.h": "c"
     }
 }

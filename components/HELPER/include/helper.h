@@ -1,3 +1,7 @@
+#ifndef HELPER_
+
+#define HELPER_
+
 #include "buzzer.h"
 #include "button.h"
 
@@ -45,3 +49,4 @@ bool detectSingleTap(QueueButtonEl* stack, int stackSize);
 bool detectHoldMedium(QueueButtonEl* stack, int stackSize);
 bool detectHoldLong(QueueButtonEl* stack, int stackSize);
 
+#endif

@@ -2,7 +2,7 @@
 
 import numpy as np
 import matplotlib.pyplot as plt
-
+import torch
 
 def forwardHigh4Net(weights, x, hiddens):
     
@@ -47,6 +47,7 @@ def sigmoid(x):
 
 def tanh(x):
     return ( np.exp(x) - np.exp(-x) ) / ( np.exp(x) + np.exp(-x) )
+
 
 
 def inspectValidatePerformanceByFileName(weights, x, y, fileNames, targetFileName):

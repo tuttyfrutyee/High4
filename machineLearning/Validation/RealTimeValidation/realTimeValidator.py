@@ -33,6 +33,7 @@ def realTimeEvaluateStream(net, stream, preHidden, threshold = 0.9):
 
             
             with torch.no_grad():
+                print(stream["data"][lastStreamIndex].shape)
                 predict = net(stream["data"][lastStreamIndex]).permute(1,0,2)
                 softMaxed = F.softmax(predict, dim=2)[0,0,:]
                 #print(softMaxed)

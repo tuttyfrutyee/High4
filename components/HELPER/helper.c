@@ -1,6 +1,14 @@
 #include "helper.h"
 #include "sdcard.h"
 #include "math.h"
+#include <time.h>
+#include "esp_timer.h"
+
+
+int64_t getTime(){
+    return (int64_t) (clock() * 1000 / CLOCKS_PER_SEC ); //returns time in milliseconds
+}
+
 
 void alarmFire(){
     buzz(300);

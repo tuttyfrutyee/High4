@@ -17,6 +17,8 @@ import Validation.RealTimeValidation.realTimeValidator as RealTimeValidator
 import Inspector.inspector as Inspector
 
 
+torch.nn.Module.dump_patches = True
+
 
 
 #fetch necessary files
@@ -69,7 +71,6 @@ Models.loadModelGroup(modelGroup,"0123_10")
 net = modelGroup["net"].cpu()
 
 
-
 #for validation get data ready
 xValTorch = torch.from_numpy(np.swapaxes(data["xVal"], 0,1)).float()
 yValTorch = torch.from_numpy(data["yVal"]).long()
@@ -105,3 +106,28 @@ torch.cuda.memory_allocated()
 
 Models.printNet(net)
 parameters = Models.getParameters(net)
+
+
+
+
+del net
+net = modelGroup["net"].cpu()
+
+hidden = (torch.zeros(1,1,net.hiddenSize, dtype=dtype).cpu(), torch.zeros(1,1,net.hiddenSize, dtype=dtype).cpu())
+
+net.hidden = hidden
+
+trashInput = torch.ones((1,1,24))
+
+for i in range(24):
+    trashInput[0][0][i] = i+1
+
+with torch.no_grad():
+    
+    for i in range(10000):
+        
+        predicts = net(trashInput)
+        print(predicts)
+
+    
+

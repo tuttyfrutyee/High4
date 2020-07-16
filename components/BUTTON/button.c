@@ -66,6 +66,4 @@ void lightOffBlueLed(){
     gpio_set_level(BLUELED, 0);
 }
 
-int64_t getTime(){
-    return (int64_t) (clock() * 1000 / CLOCKS_PER_SEC ); //returns time in milliseconds
-}
+

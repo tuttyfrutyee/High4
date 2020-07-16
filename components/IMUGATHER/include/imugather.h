@@ -3,6 +3,14 @@
 #define IMUGATHER_
 
 
+#include "esp_system.h"
+
+#include "acceleration.h"
+#include "imugather.h"
+#include "mpu6050.h"
+#include "helper.h"
+
+
 
 typedef struct IMUGATHER {
 
@@ -12,6 +20,19 @@ typedef struct IMUGATHER {
     int dataCollectDuration; //in milliseconds
 
 } IMUGATHER;
+
+typedef struct IMU{
+
+    int assignedPin;
+    MPU6050 imu;
+
+} IMU;
+
+extern IMU* imuStack;
+extern IMUGATHER* gather;
+extern IMU* previousSelectedImu;
+
+
 
 
 //These functions will effect the selected sensorImu

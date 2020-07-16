@@ -16,7 +16,7 @@
 #include "stdio.h"
 #include <time.h>
 
-
+#include "mode.h"
 #include "acceleration.h"
 #include "imugather.h"
 #include "sdcard.h"
@@ -31,7 +31,7 @@ static xQueueHandle gpio_evt_queue;
 
 
 
-static IMUGATHER gather = {4,0,6000,15000}; // numberOfImu, currentMode(X), criticalTime, dataCollectionDuration
+static IMUGATHER gather_local = {4,0,6000,15000}; // numberOfImu, currentMode(X), criticalTime, dataCollectionDuration
 
 
 //local function definitions
@@ -59,7 +59,7 @@ void app_main(void)
 
     //clearSensorData();
 
-    //selfTestSensors(&gather);    
+    //selfTestSensors(&gather_local);    
 
     lifeCycleStart();
 
@@ -197,8 +197,13 @@ static void initPeripherals(){
         //init wifi for mqtt, at this point esp32 draws heavy current
         wifi_init();
 
-        //init mqtt
-        mqtt_app_start();
+        if(mode == 1){
+            //init mqtt
+            mqtt_app_start();
+        }
+        else if(mode == 2){
+            //init bluetooth stuff
+        }
     }
 
     
@@ -220,7 +225,7 @@ static void initPeripherals(){
 
 
     //note that, imuInit has to be after i2c init
-    initIMUGATHERSensors(&gather);
+    initIMUGATHERSensors(&gather_local);
 
     //create a queue to handle gpio event from isr
     gpio_evt_queue = xQueueCreate(10, sizeof(uint32_t));
@@ -249,10 +254,13 @@ static void lifeCycleStart(){
         giveMeTingles();
     }
 
-    if(mode == 1){
+    else if(mode == 1){
         startStreamer(&keepStreaming);
     }
     
+    else if(mode == 2){
+        //startController();
+    }
 
     while(true){
 
@@ -270,7 +278,7 @@ static void lifeCycleStart(){
                 //get currentModeCounter and update it with the next one
                 int recordCounter, currentModeCounter;
                 getAndUpdateLookUpTable(&recordCounter, &currentModeCounter);
-                gather.currentModeIndicator = currentModeCounter;
+                gather_local.currentModeIndicator = currentModeCounter;
                 char fileNameToWrite[20];
                 sprintf(fileNameToWrite, "D_%d_%d", recordCounter, currentModeCounter);
                 printf("\n filename : %s \n", fileNameToWrite);
@@ -278,7 +286,7 @@ static void lifeCycleStart(){
                 //notify the currentModeCounter by using binary sound ( assumes counter will be in range(32) )
                 binarySound(currentModeCounter);
                 physical_standby_start();
-                goCollectCurrentModeData(&gather, fileNameToWrite);
+                goCollectCurrentModeData(&gather_local, fileNameToWrite);
                 physical_standby_stop();
                 flagGo = 0;
 
@@ -298,7 +306,8 @@ static void lifeCycleStart(){
 
             ////controllerMode
             case 2:
-
+                printf("it is case 2 babe\n");
+                vTaskDelay(40000 / portTICK_PERIOD_MS);
             break;
         }
 
