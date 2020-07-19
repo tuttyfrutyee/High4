@@ -28,7 +28,7 @@ Fetcher.records = records
 Fetcher.labels = labels
 Fetcher.fileNames = fileNames
 
-data = Fetcher.getDataForFingers([0,1,2,3], 0.8, 6, 3)
+data = Fetcher.getDataForFingers([0,1,2], 0.8, 6, 3)
 
 
 
@@ -43,7 +43,7 @@ epoch = 0
 #constructing modelsGroup
 net = Models.createHigh4Model("high4Net_finger_0123_10",0).cuda()
 
-net = Models.createHigh4Model("high4Net_finger_012_10",0)
+net = Models.createHigh4Model("high4Net_finger_012_10",0).cuda()
 
 
 modelGroup = {}
@@ -66,7 +66,8 @@ Train.train(modelGroup, data, 100,60)
 Models.saveModelGroup(modelGroup, "0123_10") #98.06
 Models.loadModelGroup(modelGroup,"0123_10")
 
-
+Models.saveModelGroup(modelGroup, "012_10") #97.86
+Models.loadModelGroup(modelGroup, "012_10")
 
 net = modelGroup["net"].cpu()
 
@@ -83,7 +84,7 @@ yValTorch = torch.from_numpy(data["yVal"]).long()
 #static evaluation
 StaticValidator.listValidatePerformanceWithThreshold(net, xValTorch.cpu(), yValTorch.cpu(), data["valFileNames"], 0.9)
 
-StaticValidator.inspectValidatePerformanceByFileName(net, xValTorch.cpu(), yValTorch.cpu(), data["valFileNames"], "D_378")
+StaticValidator.inspectValidatePerformanceByFileName(net, xValTorch.cpu(), yValTorch.cpu(), data["valFileNames"], "D_223")
 
 StaticValidator.calPercentageCorrectness(net, xValTorch.cpu(), yValTorch.cpu(), "vallMain")
 
@@ -112,6 +113,7 @@ parameters = Models.getParameters(net)
 
 del net
 net = modelGroup["net"].cpu()
+dtype= torch.float
 
 hidden = (torch.zeros(1,1,net.hiddenSize, dtype=dtype).cpu(), torch.zeros(1,1,net.hiddenSize, dtype=dtype).cpu())
 
@@ -124,7 +126,7 @@ for i in range(24):
 
 with torch.no_grad():
     
-    for i in range(10000):
+    for i in range(2):
         
         predicts = net(trashInput)
         print(predicts)

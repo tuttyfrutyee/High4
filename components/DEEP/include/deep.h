@@ -12,3 +12,5 @@ void dumpMatrix3d(dl_matrix3d_t* matrix);
 dl_matrix3d_t ** createForwardPassWorkArea();
 
 void fillZerosIntoMatrix3d(dl_matrix3d_t* matrix);
+
+void fillNumbersIntoMatrix3d(dl_matrix3d_t* matrix, float* number);

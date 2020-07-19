@@ -13,6 +13,10 @@
         "imugather.h": "c",
         "mpu6050.h": "c",
         "mqttt.h": "c",
-        "dl_lib_matrix3d.h": "c"
+        "dl_lib_matrix3d.h": "c",
+        "deep.h": "c",
+        "weights.h": "c",
+        "mode.h": "c",
+        "mode1.h": "c"
     }
 }

@@ -42,7 +42,7 @@ static void initPeripherals();
 static int fatalError = 0;
 static int flagGo = 0;
 
-static int mode = 1; 
+static int mode = 2; 
 /*
 modes : {
     0 : recorder,
@@ -53,6 +53,8 @@ modes : {
 
 void app_main(void)
 {
+
+    printf("free heap size : %zu\n", xPortGetFreeHeapSize());
 
 
     initPeripherals();    
@@ -248,6 +250,8 @@ static void lifeCycleStart(){
     //for mode == 1
     int keepStreaming = false;
 
+    //for mode == 2
+    int continueProcessing = false;
 
     if(mode == 0){
         startRecordingData();
@@ -259,7 +263,7 @@ static void lifeCycleStart(){
     }
     
     else if(mode == 2){
-        //startController();
+        startController(&continueProcessing);
     }
 
     while(true){
@@ -294,7 +298,6 @@ static void lifeCycleStart(){
 
             ////streamMode
             case 1:
-
                 keepStreaming = true;
                 physical_standby_start();
                 vTaskDelay(40000 / portTICK_PERIOD_MS);
@@ -306,8 +309,19 @@ static void lifeCycleStart(){
 
             ////controllerMode
             case 2:
-                printf("it is case 2 babe\n");
-                vTaskDelay(40000 / portTICK_PERIOD_MS);
+
+                printf("free heap size : %zu\n", xPortGetFreeHeapSize());
+                continueProcessing = true;
+                physical_standby_start();
+                vTaskDelay(5000 / portTICK_PERIOD_MS);
+                continueProcessing = false;
+                physical_standby_stop();
+                vTaskDelay(100 / portTICK_PERIOD_MS);
+                flagGo = 0;
+
+                printf("totalProcessing is : %d\n", continueProcessing);
+                printf("free heap size : %zu\n", xPortGetFreeHeapSize());
+
             break;
         }
 

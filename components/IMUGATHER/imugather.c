@@ -167,8 +167,15 @@ int16_t* getGatherAccelerationsAsArrayInOrder(){
 
     int16_t* accelerationGatherData = (int16_t*) malloc(sizeof(int16_t) * 6 * gather->numberOfImu);
 
-    if(accelerationGatherData == NULL)
+    if(accelerationGatherData == NULL){
         printf("\nErr:Could not allocated memory for acceleration data\n");
+        return NULL;
+    }
+
+    if(imuStack == NULL){
+        printf("\n Err: Imu stack is null, could not get accelerations raw.\n");
+        return NULL;
+    }
     
     for(int i = 0; i < gather->numberOfImu; i++){
 
@@ -182,10 +189,37 @@ int16_t* getGatherAccelerationsAsArrayInOrder(){
         accelerationGatherData[offset + 5] = imuStack[i].imu.acc.rawRadAccZ;
 
     }
-
-
-
     return accelerationGatherData;
+}
+
+float * getGatherAccelerationsAsArrayInOrderProcessed(){
+
+    float* accelerationGatherDataProcessed = (float*) malloc(sizeof(float) * 6 * gather->numberOfImu);
+
+    if(accelerationGatherDataProcessed == NULL){
+        printf("\n Err: Could not allocated memory for acceleration data processed\n");
+        return NULL;
+    }
+
+    if(imuStack == NULL){
+        printf("\n Err: Imu stack is null, could not get accelerations processed.\n");
+        return NULL;
+    }
+
+    for(int i = 0; i < gather->numberOfImu; i++){
+
+        int offset = i * 6;
+
+        accelerationGatherDataProcessed[offset + 0] = imuStack[i].imu.acc.linAccX;
+        accelerationGatherDataProcessed[offset + 1] = imuStack[i].imu.acc.linAccY;
+        accelerationGatherDataProcessed[offset + 2] = imuStack[i].imu.acc.linAccZ;
+        accelerationGatherDataProcessed[offset + 3] = imuStack[i].imu.acc.radAccX;
+        accelerationGatherDataProcessed[offset + 4] = imuStack[i].imu.acc.radAccY;
+        accelerationGatherDataProcessed[offset + 5] = imuStack[i].imu.acc.radAccZ;
+
+    }
+
+    return accelerationGatherDataProcessed;    
 
 }
 

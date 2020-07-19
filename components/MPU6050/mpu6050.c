@@ -78,9 +78,9 @@ Acceleration getAccelerations(){
     accelerations.linAccY = accelerations.rawLinAccY / (65536.0 / 2.) * linRange * g;
     accelerations.linAccZ = accelerations.rawLinAccZ / (65536.0 / 2.) * linRange * g;
 
-    accelerations.radAccX = accelerations.rawRadAccX / (65536.0 / 2.) * radRange * 250 / 360.0 * 2 * pi;
-    accelerations.radAccY = accelerations.rawRadAccY / (65536.0 / 2.) * radRange * 250 / 360.0 * 2 * pi;
-    accelerations.radAccZ = accelerations.rawRadAccZ / (65536.0 / 2.) * radRange * 250 / 360.0 * 2 * pi;
+    accelerations.radAccX = accelerations.rawRadAccX / (65536.0 / 2.) * radRange * 250 ;
+    accelerations.radAccY = accelerations.rawRadAccY / (65536.0 / 2.) * radRange * 250 ;
+    accelerations.radAccZ = accelerations.rawRadAccZ / (65536.0 / 2.) * radRange * 250 ;
 
     return accelerations;
 

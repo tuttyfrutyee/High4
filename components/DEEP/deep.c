@@ -14,6 +14,19 @@ void fillZerosIntoMatrix3d(dl_matrix3d_t* matrix){
     }    
 }
 
+void fillNumbersIntoMatrix3d(dl_matrix3d_t* matrix, float* number){
+    for(int n = 0; n < matrix->n; n++){
+        for(int h = 0; h < matrix->h; h++){
+            for(int w = 0; w < matrix->w; w++){
+                for(int c = 0; c < matrix->c; c++){
+                    int index = n * (matrix->h * matrix->w) + h * matrix->stride + w*matrix->c + c;
+                    matrix->item[index] = number[index];
+                }
+            }
+        }
+    }    
+}
+
 void printMatrix3d(dl_matrix3d_t* matrix){
     printf("\n****************\n");
     for(int n = 0; n < matrix->n; n++){
@@ -147,23 +160,28 @@ void innerProduct3dMatrix(dl_matrix3d_t* result, dl_matrix3d_t* matrix1, dl_matr
 }
 
 dl_matrix3d_t ** createForwardPassWorkArea(){
+
+    const int lstmInputSize = lstmweight_ih_l0.w ;
+    const int hiddenSize = lstmweight_hh_l0.w;
+    const int outputSize = layerFinalweight.h;
+
     //intermediate outputs
-    dl_matrix3d_t * refinedOut = (dl_matrix3d_t *)dl_matrix3d_alloc(1, 1, 40,1); 
+    dl_matrix3d_t * refinedOut = (dl_matrix3d_t *)dl_matrix3d_alloc(1, 1, lstmInputSize,1); 
     
-    dl_matrix3d_t * outI = (dl_matrix3d_t *) dl_matrix3d_alloc(1, 1, 160, 1);
-    dl_matrix3d_t * outH = (dl_matrix3d_t *) dl_matrix3d_alloc(1, 1, 160, 1);
+    dl_matrix3d_t * outI = (dl_matrix3d_t *) dl_matrix3d_alloc(1, 1, hiddenSize*4, 1);
+    dl_matrix3d_t * outH = (dl_matrix3d_t *) dl_matrix3d_alloc(1, 1, hiddenSize*4, 1);
 
-    dl_matrix3d_t * outIt = (dl_matrix3d_t *) dl_matrix3d_alloc(1, 40, 1, 1);
-    dl_matrix3d_t * outFt = (dl_matrix3d_t *) dl_matrix3d_alloc(1, 40, 1, 1);
-    dl_matrix3d_t * outGt = (dl_matrix3d_t *) dl_matrix3d_alloc(1, 40, 1, 1);
-    dl_matrix3d_t * outOt = (dl_matrix3d_t *) dl_matrix3d_alloc(1, 40, 1, 1);
+    dl_matrix3d_t * outIt = (dl_matrix3d_t *) dl_matrix3d_alloc(1, hiddenSize, 1, 1);
+    dl_matrix3d_t * outFt = (dl_matrix3d_t *) dl_matrix3d_alloc(1, hiddenSize, 1, 1);
+    dl_matrix3d_t * outGt = (dl_matrix3d_t *) dl_matrix3d_alloc(1, hiddenSize, 1, 1);
+    dl_matrix3d_t * outOt = (dl_matrix3d_t *) dl_matrix3d_alloc(1, hiddenSize, 1, 1);
 
-    dl_matrix3d_t * temp1 = (dl_matrix3d_t *) dl_matrix3d_alloc(1, 40, 1, 1);
-    dl_matrix3d_t * temp2 = (dl_matrix3d_t *) dl_matrix3d_alloc(1, 40, 1, 1);
-    dl_matrix3d_t * temp3 = (dl_matrix3d_t *) dl_matrix3d_alloc(1, 40, 1, 1);
+    dl_matrix3d_t * temp1 = (dl_matrix3d_t *) dl_matrix3d_alloc(1, hiddenSize, 1, 1);
+    dl_matrix3d_t * temp2 = (dl_matrix3d_t *) dl_matrix3d_alloc(1, hiddenSize, 1, 1);
+    dl_matrix3d_t * temp3 = (dl_matrix3d_t *) dl_matrix3d_alloc(1, hiddenSize, 1, 1);
 
     //final output
-    dl_matrix3d_t * finalOutput = (dl_matrix3d_t *) dl_matrix3d_alloc(1, 1, 10, 1);
+    dl_matrix3d_t * finalOutput = (dl_matrix3d_t *) dl_matrix3d_alloc(1, 1, outputSize, 1);
 
     freeMatrixContent(outIt);
     freeMatrixContent(outFt);
@@ -243,20 +261,13 @@ void forwardPass(dl_matrix3d_t* input, dl_matrix3d_t* hidden, dl_matrix3d_t** ce
     tanhMatrix3d(tanhed);
 
 
-
     innerProduct3dMatrix(hidden, outOt, tanhed);
 
     dl_matrix3d_free(tanhed);
     dl_matrix3d_free(outSum);
 
 
-
-
     dl_matrix3dff_fc_with_bias(finalOutput, hidden, &layerFinalweight, &layerFinalbias);
-    finalOutput->n = 1;
-    finalOutput->w = 1;
-    finalOutput->h = 1;
-    finalOutput->c = 10;
 
     softmax3dMatrix(finalOutput);    
 
