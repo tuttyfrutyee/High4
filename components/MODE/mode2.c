@@ -10,14 +10,24 @@
 
 TaskHandle_t xController = NULL;
 
+#define MONITORQUEUE 1
+#define TRANSMIT_MONITOR_QUEUE 1
+
 float *** queues;
 int * fronts;
 int * rears;
-
 float * runningMeans;
-
 int MAXCAPACITY;
 int QUEUECOUNT;
+
+float *** monitorQueues;
+int * fronts_monitor;
+int * rears_monitor;
+int MAXCAPACITY_MONITOR;
+
+int64_t lastDetection = 0;
+
+
 
 void initQueues(int maxCapacity, int queueCount){
 
@@ -34,6 +44,18 @@ void initQueues(int maxCapacity, int queueCount){
 
 }
 
+void initMonitorQueues(int maxCapacity_monitor){
+    MAXCAPACITY_MONITOR = maxCapacity_monitor;
+    
+    monitorQueues = (float***) calloc(QUEUECOUNT, sizeof(float**));
+    
+    for(int i = 0; i < QUEUECOUNT; i++)
+        monitorQueues[i] = (float**) calloc(MAXCAPACITY_MONITOR, sizeof(float*));
+
+    fronts_monitor = (float*) calloc(QUEUECOUNT, sizeof(float));  
+    rears_monitor = (float*) calloc(QUEUECOUNT, sizeof(float));        
+}
+
 void initRunningMeans(int queueCount){
     runningMeans = (float*) calloc(queueCount, sizeof(float));
 }
@@ -41,9 +63,21 @@ void initRunningMeans(int queueCount){
 void flashQueuesAndRunningMeans(){
 
     for(int i = 0; i < QUEUECOUNT; i++){
+
+        runningMeans[i] = 0;
+
+        if(i == 0 && !MONITORQUEUE){
+            for(int j = 0; j < MAXCAPACITY; j++){
+                if(rears[i] != j && queues[i][j] != NULL){
+                    printf("i : %d, j : %d, value : %f \n", i, j, *queues[i][j]);
+                    free( queues[i][j]);               
+                    queues[i][j] = NULL;
+                }
+            }
+        }
+
         rears[i] = 0;
         fronts[i] = 0;
-        runningMeans[i] = 0;
     }
 
 }
@@ -92,6 +126,50 @@ float** popFromQueue(int queueIndex){
 
 }
 
+//monitor queue functions
+
+int isMonitorQueueFull(int queueIndex){
+    return ((rears_monitor[queueIndex]+1) % MAXCAPACITY_MONITOR) == fronts_monitor[queueIndex];
+}
+
+int isMonitorQueueEmpty(int queueIndex){
+    return (rears_monitor[queueIndex] == fronts_monitor[queueIndex]);
+}
+
+int getMonitorQueueSize(int queueIndex){
+    int size = (rears_monitor[queueIndex] - fronts_monitor[queueIndex]);
+    if(size < 0)
+        size += MAXCAPACITY_MONITOR;
+    return size;
+}
+
+int pushToMonitorQueue(float* element, int queueIndex){
+    
+    if(isMonitorQueueFull(queueIndex)){
+        printf("Error : Queue is full, can not push anymore\n");
+        return 0;
+    }
+    monitorQueues[queueIndex][rears_monitor[queueIndex]] = element;    
+    rears_monitor[queueIndex] = (rears_monitor[queueIndex] + 1) % MAXCAPACITY_MONITOR;
+
+    return 1;
+}
+
+float** popFromMonitorQueue(int queueIndex){
+
+    if(isMonitorQueueEmpty(queueIndex)){
+        printf("Error . Queue is empty, can not pop anymore\n");
+        return 0;
+    }
+
+    float** willReturn = monitorQueues[queueIndex] + fronts_monitor[queueIndex];
+
+    fronts_monitor[queueIndex] = (fronts_monitor[queueIndex] + 1) % MAXCAPACITY_MONITOR;
+
+    return willReturn;
+
+}
+
 
 
 void updateWithNewOutcomes(float * newOutcomes){
@@ -119,9 +197,40 @@ void updateWithNewOutcomes(float * newOutcomes){
         }
     }
 
+    if(!MONITORQUEUE)
+        if(lastElementBeginning != NULL)
+            free(*lastElementBeginning);
+
+}
+
+void pushNewOutComes_toMonitorQueues(float * newOutcomes){
+
+    float**lastElementBeginning = NULL;
+
+    for(int i = 0; i < QUEUECOUNT; i++){
+
+        if(isMonitorQueueEmpty(i)){
+            pushToMonitorQueue(newOutcomes+i, i);
+
+        }
+        else if(!isMonitorQueueFull(i)){
+            pushToMonitorQueue(newOutcomes+i, i);
+        }
+        else{
+            float** lastElement = popFromMonitorQueue(i);
+            if(i == 0)
+                lastElementBeginning = lastElement;
+            pushToMonitorQueue(newOutcomes+i, i);
+        }
+    }
+
     if(lastElementBeginning != NULL)
         free(*lastElementBeginning);
 }
+
+
+
+
 
 int8_t getTheWinnerAndUpdate(float threshold){
     
@@ -141,6 +250,33 @@ int8_t getTheWinnerAndUpdate(float threshold){
 
 }
 
+void transmitMonitorQueues(){
+
+    printf("Start to trasmit queues\n");
+    
+    int16_t totalTransmissionInOneQueue = (rears_monitor[0] - fronts_monitor[0]);
+    if(totalTransmissionInOneQueue < 0)
+        totalTransmissionInOneQueue += MAXCAPACITY_MONITOR;    
+
+
+
+    //first transmit the number of packages to transmit
+    pushDataToMonitor(&totalTransmissionInOneQueue, 2);
+
+    //secondly transmit the number of the elements in one package
+    char queueCount = QUEUECOUNT;
+    pushDataToMonitor(&queueCount, 1);
+    //now send all of it
+    for(int i = 0; i < totalTransmissionInOneQueue; i++){
+        float * willSend = (float*) calloc(QUEUECOUNT, sizeof(float));
+        for(int j = 0; j < QUEUECOUNT; j++)
+            willSend[j] = *monitorQueues[j][((fronts_monitor[j] + i) % MAXCAPACITY_MONITOR)];
+
+        pushDataToMonitor(willSend, 4 * QUEUECOUNT);
+        free(willSend);
+    }
+}
+
 
 
 void startController(int * continueProcessing){
@@ -152,9 +288,11 @@ void startController(int * continueProcessing){
 void processAndControl(int * continueProcessing){
 
     int numberOfPasses = 0;
-    bool abortFlag = false;
+    bool sessionStarted = false;
 
-    float threshold = 0.9;
+    int64_t timerStart = 0;    
+
+    float threshold = 0.7;
 
     dl_matrix3d_t ** workArea =  createForwardPassWorkArea();
 
@@ -171,20 +309,33 @@ void processAndControl(int * continueProcessing){
     fillZerosIntoMatrix3d(hidden);
     fillZerosIntoMatrix3d(cellState);   
 
-    initQueues(20, outputSize);
+    initQueues(30, outputSize);
+    if(MONITORQUEUE)
+        initMonitorQueues(300);
+
     initRunningMeans(outputSize);
 
     while(true){
 
-        if(*continueProcessing && !abortFlag){
+        
+
+        if(*continueProcessing){
+
+
+            if(!sessionStarted){
+                sessionStarted = true;
+                numberOfPasses = 0;
+                timerStart = esp_timer_get_time();                
+            }
+
 
             //fetch the sensor data
 
 
             getGatherAccelerations();
 
-
-            float* accelerations = getGatherAccelerationsAsArrayInOrderProcessed();
+            int imuIndexes[] = {0,1,2};
+            float* accelerations = getGatherAccelerationsAsArrayInOrderProcessed(imuIndexes,3);
 
             fillNumbersIntoMatrix3d(inputX, accelerations);
 
@@ -196,7 +347,7 @@ void processAndControl(int * continueProcessing){
 
             //stack the outputs through running average filter
 
-
+            free(accelerations);
 
             float* newOutComes = (float*) calloc(outputSize, sizeof(float));
 
@@ -207,13 +358,31 @@ void processAndControl(int * continueProcessing){
            
 
             updateWithNewOutcomes(newOutComes);
+            if(MONITORQUEUE)
+                pushNewOutComes_toMonitorQueues(newOutComes);
+
 
             //now pass it through a desicion
             int8_t theWinner = getTheWinnerAndUpdate(threshold);
 
-            printf("theWinner : %" PRIi8 "\n", theWinner);
-            if(theWinner != 0)
-                printf("\n########################\n");
+            if(theWinner != 0){
+
+                if((getTime() - lastDetection) > 1000){
+
+                    printf("theWinner : %" PRIi8 "\n", theWinner);
+                    printf("\n########################\n");
+                    pushGestureToNotification(theWinner);
+
+                    fillZerosIntoMatrix3d(hidden);
+                    fillZerosIntoMatrix3d(cellState); 
+
+                }
+
+                lastDetection = getTime();
+
+                  
+
+            }
 
             //based on the desicion take action
 
@@ -223,10 +392,14 @@ void processAndControl(int * continueProcessing){
 
         }else{
 
-            if((!abortFlag) && numberOfPasses){
-                abortFlag = true;
-                (*continueProcessing) = numberOfPasses;
+            if(sessionStarted){
+                sessionStarted = false;
                 printMatrix3d(workArea[10]);
+                printf("Fps is : %f\n", numberOfPasses / ((esp_timer_get_time() - timerStart) / 1000000.0));
+
+                if(MONITORQUEUE && TRANSMIT_MONITOR_QUEUE)
+                    transmitMonitorQueues();                
+
             }
 
             vTaskDelay(10 / portTICK_PERIOD_MS);

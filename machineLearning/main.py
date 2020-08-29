@@ -42,8 +42,11 @@ epoch = 0
 
 #constructing modelsGroup
 net = Models.createHigh4Model("high4Net_finger_0123_10",0).cuda()
+net = Models.createHigh4Model("high4Net_finger_0123_10",1).cuda()
+
 
 net = Models.createHigh4Model("high4Net_finger_012_10",0).cuda()
+net = Models.createHigh4Model("high4Net_finger_012_10",1).cuda()
 
 
 modelGroup = {}
@@ -63,11 +66,17 @@ Train.train(modelGroup, data, 100,60)
 
 
 #saving models and loading
-Models.saveModelGroup(modelGroup, "0123_10") #98.06
+Models.saveModelGroup(modelGroup, "0123_10") #98.81
 Models.loadModelGroup(modelGroup,"0123_10")
+
+Models.saveModelGroup(modelGroup, "0123_10_1") #97.91
+Models.loadModelGroup(modelGroup,"0123_10_1")
 
 Models.saveModelGroup(modelGroup, "012_10") #97.86
 Models.loadModelGroup(modelGroup, "012_10")
+
+Models.saveModelGroup(modelGroup, "012_10_1") #97.84
+Models.loadModelGroup(modelGroup, "012_10_1")
 
 net = modelGroup["net"].cpu()
 
@@ -84,7 +93,7 @@ yValTorch = torch.from_numpy(data["yVal"]).long()
 #static evaluation
 StaticValidator.listValidatePerformanceWithThreshold(net, xValTorch.cpu(), yValTorch.cpu(), data["valFileNames"], 0.9)
 
-StaticValidator.inspectValidatePerformanceByFileName(net, xValTorch.cpu(), yValTorch.cpu(), data["valFileNames"], "D_223")
+StaticValidator.inspectValidatePerformanceByFileName(net, xValTorch.cpu(), yValTorch.cpu(), data["valFileNames"], "D_179")
 
 StaticValidator.calPercentageCorrectness(net, xValTorch.cpu(), yValTorch.cpu(), "vallMain")
 
@@ -108,7 +117,9 @@ torch.cuda.memory_allocated()
 Models.printNet(net)
 parameters = Models.getParameters(net)
 
-
+"""
+ exportFullConnectedWeightsToHeaderFile(parameters, "weights_3fingers_v1.h")
+"""
 
 
 del net

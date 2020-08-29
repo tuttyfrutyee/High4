@@ -19,6 +19,15 @@ void pushDataToStream(char* data, int length){
     free(data);
 }
 
+void pushGestureToNotification(int gestureId){
+    char send = gestureId;
+    esp_mqtt_client_publish(client_, "/high4/notification", &send, 1, 0, 0);
+}
+
+void pushDataToMonitor(char * data, int length){
+    esp_mqtt_client_publish(client_, "/high4/monitor", data, length, 0, 0);
+}
+
 
 static esp_err_t mqtt_event_handler(esp_mqtt_event_handle_t event)
 {

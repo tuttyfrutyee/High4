@@ -233,9 +233,9 @@ Acceleration getFactorTrimValues(){
     accelerations.linAccY = ftya / (65536.0 / 2.) * 8 * g;
     accelerations.linAccZ = ftza / (65536.0 / 2.) * 8 * g;
 
-    accelerations.radAccX = ftxg / (65536.0 / 2.) * 1 * 250 / 360.0 * 2 * pi;
-    accelerations.radAccY = ftyg / (65536.0 / 2.) * 1 * 250 / 360.0 * 2 * pi;
-    accelerations.radAccZ = ftzg / (65536.0 / 2.) * 1 * 250 / 360.0 * 2 * pi;
+    accelerations.radAccX = ftxg / (65536.0 / 2.) * 1 * 250 ;
+    accelerations.radAccY = ftyg / (65536.0 / 2.) * 1 * 250 ;
+    accelerations.radAccZ = ftzg / (65536.0 / 2.) * 1 * 250 ;
 
     return accelerations;
 

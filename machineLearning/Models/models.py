@@ -13,15 +13,29 @@ high4ModelsDict = {
                     "hiddenSize" : 40,
                     "seed" : 3
                 },
+                {   #ver1
+                    "fingerCount" : 4,
+                    "classSize" : 10,
+                    "refinementSize" : 30,
+                    "hiddenSize" : 30,
+                    "seed" : 3
+                },                
         ],
         "high4Net_finger_012_10" : [
-                {
+                {   #ver0
                     "fingerCount" : 3,
                     "classSize" : 10,
                     "refinementSize" : 30,
                     "hiddenSize" : 30,
                     "seed" : 3
                 },
+                {   #ver1
+                    "fingerCount" : 3,
+                    "classSize" : 10,
+                    "refinementSize" : 20,
+                    "hiddenSize" : 20,
+                    "seed" : 3
+                },                
         ],
         "high4Net_finger_013_10" : [
                 {

@@ -212,6 +212,8 @@ dl_matrix3d_t ** createForwardPassWorkArea(){
 
 void forwardPass(dl_matrix3d_t* input, dl_matrix3d_t* hidden, dl_matrix3d_t** cellState, dl_matrix3d_t** workArea){
 
+    const int hiddenSize = lstmweight_hh_l0.w;
+
         //intermediate outputs
     dl_matrix3d_t * refinedOut = workArea[0];
     
@@ -239,9 +241,9 @@ void forwardPass(dl_matrix3d_t* input, dl_matrix3d_t* hidden, dl_matrix3d_t** ce
 
 
     outIt->item = outSum->item;
-    outFt->item = outSum->item + 40;
-    outGt->item = outSum->item + 80;
-    outOt->item = outSum->item + 120;
+    outFt->item = outSum->item + hiddenSize;
+    outGt->item = outSum->item + hiddenSize * 2;
+    outOt->item = outSum->item + hiddenSize * 3;
 
     sigmaMatrix3d(outIt);
     sigmaMatrix3d(outFt);

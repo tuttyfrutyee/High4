@@ -192,7 +192,7 @@ int16_t* getGatherAccelerationsAsArrayInOrder(){
     return accelerationGatherData;
 }
 
-float * getGatherAccelerationsAsArrayInOrderProcessed(){
+float * getGatherAccelerationsAsArrayInOrderProcessed(int* imuIndexes, int numberOfImus){
 
     float* accelerationGatherDataProcessed = (float*) malloc(sizeof(float) * 6 * gather->numberOfImu);
 
@@ -206,17 +206,15 @@ float * getGatherAccelerationsAsArrayInOrderProcessed(){
         return NULL;
     }
 
-    for(int i = 0; i < gather->numberOfImu; i++){
-
+    for(int i = 0; i < numberOfImus; i++){
         int offset = i * 6;
 
-        accelerationGatherDataProcessed[offset + 0] = imuStack[i].imu.acc.linAccX;
-        accelerationGatherDataProcessed[offset + 1] = imuStack[i].imu.acc.linAccY;
-        accelerationGatherDataProcessed[offset + 2] = imuStack[i].imu.acc.linAccZ;
-        accelerationGatherDataProcessed[offset + 3] = imuStack[i].imu.acc.radAccX;
-        accelerationGatherDataProcessed[offset + 4] = imuStack[i].imu.acc.radAccY;
-        accelerationGatherDataProcessed[offset + 5] = imuStack[i].imu.acc.radAccZ;
-
+        accelerationGatherDataProcessed[offset + 0] = imuStack[imuIndexes[i]].imu.acc.linAccX;
+        accelerationGatherDataProcessed[offset + 1] = imuStack[imuIndexes[i]].imu.acc.linAccY;
+        accelerationGatherDataProcessed[offset + 2] = imuStack[imuIndexes[i]].imu.acc.linAccZ;
+        accelerationGatherDataProcessed[offset + 3] = imuStack[imuIndexes[i]].imu.acc.radAccX;
+        accelerationGatherDataProcessed[offset + 4] = imuStack[imuIndexes[i]].imu.acc.radAccY;
+        accelerationGatherDataProcessed[offset + 5] = imuStack[imuIndexes[i]].imu.acc.radAccZ;        
     }
 
     return accelerationGatherDataProcessed;    

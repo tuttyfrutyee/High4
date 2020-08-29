@@ -205,6 +205,8 @@ static void initPeripherals(){
         }
         else if(mode == 2){
             //init bluetooth stuff
+            mqtt_app_start();
+
         }
     }
 
@@ -309,18 +311,20 @@ static void lifeCycleStart(){
 
             ////controllerMode
             case 2:
+                if(continueProcessing){
 
-                printf("free heap size : %zu\n", xPortGetFreeHeapSize());
-                continueProcessing = true;
-                physical_standby_start();
-                vTaskDelay(5000 / portTICK_PERIOD_MS);
-                continueProcessing = false;
-                physical_standby_stop();
-                vTaskDelay(100 / portTICK_PERIOD_MS);
-                flagGo = 0;
+                    printf("free heap size : %zu\n", xPortGetFreeHeapSize());
+                    continueProcessing = false;
+                    physical_standby_stop();
+                    flagGo = 0;
 
-                printf("totalProcessing is : %d\n", continueProcessing);
-                printf("free heap size : %zu\n", xPortGetFreeHeapSize());
+                }else{
+                    continueProcessing = true;
+                    physical_standby_start();
+                    flagGo = 0;
+                    printf("free heap size : %zu\n", xPortGetFreeHeapSize());
+
+                }
 
             break;
         }

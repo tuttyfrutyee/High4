@@ -25,3 +25,7 @@ void wifi_init(void);
 void mqtt_app_start(void);
 
 void pushDataToStream(char* data, int length);
+
+void pushGestureToNotification(int gestureId);
+
+void pushDataToMonitor(char * data, int length);

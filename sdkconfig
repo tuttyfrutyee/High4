@@ -131,8 +131,8 @@ CONFIG_BROKER_URL="mqtt://mqtt.eclipse.org"
 #
 # Example Configuration
 #
-CONFIG_ESP_WIFI_SSID="Bedel"
-CONFIG_ESP_WIFI_PASSWORD="19982002ab"
+CONFIG_ESP_WIFI_SSID="myssid"
+CONFIG_ESP_WIFI_PASSWORD="mypassword"
 # end of Example Configuration
 
 #

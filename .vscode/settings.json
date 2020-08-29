@@ -17,6 +17,9 @@
         "deep.h": "c",
         "weights.h": "c",
         "mode.h": "c",
-        "mode1.h": "c"
-    }
+        "mode1.h": "c",
+        "mode2.h": "c",
+        "string.h": "c",
+        "mqtt_client.h": "c"
+    },
 }
